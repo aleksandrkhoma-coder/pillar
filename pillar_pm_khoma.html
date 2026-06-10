@@ -362,4 +362,16 @@ document.addEventListener('click',function(e){if(!e.target.closest('.psearch')){
   if(!pts.length)return;
   document.getElementById('mapSection').style.display='block';
   var map=L.map('projMap').setView([pts[0].lat,pts[0].lng],6);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(map);
+  var coords=[];
+  pts.forEach(function(p){
+    var m=L.marker([p.lat,p.lng]).addTo(map);
+    m.bindPopup('<b>&#8470; '+p.id+' '+p.name+'</b><br>ПМ: '+p.pm+(p.loc?'<br>'+p.loc:'')+'<br><a href=\"pillar_dashboard_'+p.id+'.html\">Деталі &#8594;</a>');
+    coords.push([p.lat,p.lng]);
+  });
+  if(coords.length>1)map.fitBounds(coords,{padding:[40,40]});
+  setTimeout(function(){map.invalidateSize();},200);
+})();
+</script>
+</body>
+</html>
