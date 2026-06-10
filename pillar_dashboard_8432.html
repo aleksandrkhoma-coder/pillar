@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pillar — Проєкт № 8432</title>
+<style>
+:root{--brand-dark:#1A2332;--brand-orange:#E85D1A;--accent-blue:#1D6FA4;--accent-blue-light:#E8F3FA;--green:#1E9E5A;--green-light:#E6F7EE;--red:#D93025;--red-light:#FDECEA;--yellow:#E6A817;--gray-50:#F8F9FA;--gray-100:#F1F3F5;--gray-200:#E5E7EB;--gray-400:#9CA3AF;--text:#1A2332;--text-muted:#6B7280;--border:#E5E7EB;--radius:8px;--shadow:0 1px 4px rgba(0,0,0,.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--gray-50);color:var(--text);font-size:14px}
+.header{background:var(--brand-dark);color:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.logo{font-weight:800;font-size:20px;letter-spacing:2px;color:var(--brand-orange)}
+.back-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:6px;color:#fff;text-decoration:none;font-size:12px;font-weight:600}
+.back-btn:hover{background:rgba(255,255,255,.18)}
+.badge-late{background:var(--red);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px}
+.badge-ok{background:var(--green);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px}
+.page{max-width:1280px;margin:0 auto;padding:20px 24px}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.kpi{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;box-shadow:var(--shadow)}
+.kpi-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);margin-bottom:6px}
+.kpi-value{font-size:26px;font-weight:800;color:var(--brand-dark);line-height:1}
+.kpi-value.orange{color:var(--brand-orange)}.kpi-value.red{color:var(--red)}
+.kpi-sub{font-size:11px;color:var(--text-muted);margin-top:4px}
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:20px;box-shadow:var(--shadow)}
+.card h2{font-size:14px;font-weight:700;margin-bottom:14px}
+.budget-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.bl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--text-muted);margin-bottom:3px}
+.bv{font-size:22px;font-weight:800}.bv.plan{color:var(--accent-blue)}.bv.fact{color:var(--green)}.bv.pct{color:var(--brand-orange)}
+.bbar{background:var(--gray-100);border-radius:4px;height:8px;margin-top:12px;overflow:hidden}
+.bfill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--green),#2DC872)}
+.warn-box{margin-top:12px;padding:8px 12px;background:#FFF8E6;border:1px solid #E6A817;border-radius:6px;font-size:12px;color:#7A5200}
+.pay-list{overflow:hidden}
+.pay-row{display:flex;align-items:center;padding:10px 16px;border-bottom:1px solid var(--gray-100);gap:10px}
+.pay-row:last-child{border-bottom:none}
+.pdot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.pname{flex:1;font-size:13px;font-weight:600}
+.pdate{font-size:12px;color:var(--text-muted);min-width:85px}
+.pamount{font-size:12px;color:var(--text-muted);min-width:120px}
+.pamount.fact-val{font-size:13px;font-weight:700;color:var(--green)}
+.pamount.fact-empty{font-size:13px;color:var(--gray-400)}
+.pst{min-width:80px;text-align:right}
+.sb{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:12px}
+.s-done{background:var(--green-light);color:var(--green)}.s-none{background:var(--gray-100);color:var(--gray-400)}
+.section-title{font-size:15px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.section-title span{font-size:12px;font-weight:500;color:var(--text-muted)}
+.gantt-wrap{background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-bottom:20px}
+.gantt-scroll{overflow-x:auto}
+.gantt-table{width:100%;border-collapse:collapse;min-width:700px}
+.gantt-table th{background:var(--gray-50);font-size:10px;font-weight:700;text-transform:uppercase;color:var(--text-muted);padding:7px 5px;text-align:center;border-bottom:1px solid var(--border);border-right:1px solid var(--gray-100)}
+.gantt-table th.lc{text-align:left;min-width:160px;padding-left:14px}
+.gantt-table td{border-bottom:1px solid var(--gray-100);border-right:1px solid var(--gray-100);height:36px;position:relative;vertical-align:middle;padding:0 2px}
+.gantt-table td.lc{padding:0 14px;font-size:12px;font-weight:700;white-space:nowrap;color:var(--brand-dark);min-width:160px}
+.gbar{position:absolute;top:50%;transform:translateY(-50%);height:18px;border-radius:4px;display:flex;align-items:center;padding:0 5px;font-size:10px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;min-width:3px}
+.gb-done{background:var(--green)}.gb-progress{background:var(--accent-blue)}.gb-late{background:var(--red)}.gb-none{background:var(--gray-200);color:#555}
+.tday-col{background:rgba(232,93,26,.05)!important}
+.tday-line{position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--brand-orange);z-index:5}
+.gantt-legend{display:flex;gap:14px;padding:10px 16px;border-top:1px solid var(--border);flex-wrap:wrap}
+.leg{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-muted)}
+.ldot{width:11px;height:11px;border-radius:2px}
+.filters{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.fbtn{padding:6px 14px;border:1px solid var(--border);border-radius:20px;background:#fff;font-size:12px;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all .15s}
+.fbtn.active{background:var(--accent-blue);border-color:var(--accent-blue);color:#fff}
+.fbtn.f-late.active{background:var(--red);border-color:var(--red)}
+.fbtn.f-green.active{background:var(--green);border-color:var(--green)}
+.task-wrap{background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.task-table{width:100%;border-collapse:collapse}
+.task-table thead th{background:var(--gray-50);font-size:11px;font-weight:700;text-transform:uppercase;color:var(--text-muted);padding:9px 14px;text-align:left;border-bottom:1px solid var(--border)}
+.task-table tbody tr{border-bottom:1px solid var(--gray-100);transition:background .1s}
+.task-table tbody tr:hover{background:var(--gray-50)}
+.task-table tbody tr:last-child{border-bottom:none}
+.task-table td{padding:7px 14px;vertical-align:middle}
+.tn{font-weight:600}.tn.ph{font-weight:800;font-size:13px;color:var(--brand-dark)}.tn.i1{padding-left:16px}.tn.i2{padding-left:32px;font-size:13px}.tn.i3{padding-left:48px;font-size:12px;color:var(--text-muted)}
+.ms{display:inline-block;width:7px;height:7px;transform:rotate(45deg);background:var(--brand-orange);margin-right:5px}
+.pc{display:flex;align-items:center;gap:7px}.pb{flex:1;background:var(--gray-100);border-radius:3px;height:5px;overflow:hidden;min-width:55px}.pf{height:100%;border-radius:3px}
+.pf-g{background:var(--green)}.pf-b{background:var(--accent-blue)}.pf-r{background:var(--red)}.pf-gr{background:var(--gray-200)}
+.pp{font-size:12px;font-weight:700;min-width:28px;text-align:right}
+.sb2{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:12px}
+.s-done2{background:var(--green-light);color:var(--green)}.s-prog{background:var(--accent-blue-light);color:var(--accent-blue)}.s-late2{background:var(--red-light);color:var(--red)}.s-none2{background:var(--gray-100);color:var(--gray-400)}
+.psearch{position:relative;flex:0 0 auto}
+.psearch input{width:260px;max-width:42vw;padding:7px 12px;border-radius:18px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.1);color:#fff;font-size:12px;outline:none}
+.psearch input::placeholder{color:rgba(255,255,255,.5)}
+.ps-results{display:none;position:absolute;top:38px;left:0;width:340px;max-width:80vw;background:#fff;border:1px solid var(--border);border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.18);z-index:200;overflow:hidden}
+.ps-results.show{display:block}
+.ps-item{display:flex;align-items:center;gap:8px;padding:8px 12px;text-decoration:none;color:var(--text);border-bottom:1px solid var(--gray-100);font-size:12px}
+.ps-item:last-child{border-bottom:none}
+.ps-item:hover{background:var(--gray-50)}
+.ps-id{font-weight:700;color:var(--accent-blue);flex-shrink:0}
+.ps-nm{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ps-pm{font-size:11px;color:var(--text-muted);flex-shrink:0}
+.ps-empty{padding:10px 12px;color:var(--text-muted);font-size:12px}
+
+  @media (max-width:680px){
+    html,body{overflow-x:hidden}
+    .gx-scroll{touch-action:pan-x pan-y}
+    .header{flex-wrap:wrap;gap:10px}
+    .psearch{flex:1 1 100%;order:3}
+    .psearch input{width:100%;max-width:none}
+    .ps-results{width:88vw}
+    .page{padding:14px 12px}
+    .kpi-row{grid-template-columns:1fr 1fr;gap:8px}
+    .kpi{padding:12px 14px}
+    .budget-grid{grid-template-columns:1fr 1fr}
+    .pay-row{flex-wrap:wrap;gap:4px 10px}
+    .pay-row .pname{flex:1 1 55%}
+    .pay-row .pamount{min-width:0}
+    .filters{flex-wrap:wrap}
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <div style="display:flex;align-items:center;gap:14px">
+    <a href="pillar_portfolio.html" class="logo" style="text-decoration:none;cursor:pointer">PILLAR</a>
+    <div style="width:1px;height:28px;background:rgba(255,255,255,.2)"></div>
+    <div>
+      <div style="font-size:15px;font-weight:600">Проєкт № 8432</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">ПМ: Заянчковський &nbsp;&middot;&nbsp; 19.05.2026 &rarr; 20.06.2026 &nbsp;&middot;&nbsp; Дані: 10.06.2026</div>
+    </div>
+  </div>
+  <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <a class="back-btn" href="pillar_portfolio.html#pm-Заянчковський">&larr; Портфель ПМ</a>
+    <span class="badge-late">&#9888; Відставання</span>
+  </div>
+</div>
+<div class="page">
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-label">Загальний прогрес</div><div class="kpi-value orange">41%</div><div class="kpi-sub" id="activePhase">—</div></div>
+    <div class="kpi"><div class="kpi-label">Терміни проєкту</div><div style="display:flex;align-items:baseline;gap:5px;margin-top:4px"><span style="font-size:17px;font-weight:800">19.05.2026</span><span style="font-size:13px;color:var(--text-muted)">&rarr;</span><span style="font-size:17px;font-weight:800">20.06.2026</span></div><div class="kpi-sub" id="kpiDur">—</div></div>
+    <div class="kpi"><div class="kpi-label">Завдань</div><div class="kpi-value" id="kpiTasks">—</div><div class="kpi-sub" id="kpiTaskSub">—</div></div>
+    <div class="kpi"><div class="kpi-label">Прострочених</div><div class="kpi-value red" id="kpiOverdue">—</div><div class="kpi-sub">відносно 10.06.2026</div></div>
+  </div>
+<div class="card"><h2>&#128176; Бюджет проєкту</h2><div class="budget-grid"><div><div class="bl">План (сума платежів)</div><div class="bv plan">674к ₴</div></div><div><div class="bl">Факт (отримано)</div><div class="bv fact">—</div></div><div><div class="bl">Оплачено</div><div class="bv pct">0%</div></div></div><div class="bbar"><div class="bfill" style="width:0%"></div></div><div style="display:flex;justify-content:space-between;margin-top:5px;font-size:11px;color:var(--text-muted)"><span>0</span><span style="color:var(--green);font-weight:600">— отримано</span><span>674к ₴</span></div></div>
+<div class="section-title">&#128179; Платіжний графік</div><div class="card pay-list"><div class="pay-row"><div class="pdot" style="background:var(--gray-200)"></div><div class="pname">Авансовий платіж</div><div class="pdate">29.05.2026</div><span class="pamount">план: 411к ₴</span><span class="pamount fact-empty">факт: —</span><div class="pst"><span class="sb s-none">Очікується</span></div></div><div class="pay-row"><div class="pdot" style="background:var(--gray-200)"></div><div class="pname">Другий платіж</div><div class="pdate">02.06.2026</div><span class="pamount">план: 132к ₴</span><span class="pamount fact-empty">факт: —</span><div class="pst"><span class="sb s-none">Очікується</span></div></div><div class="pay-row"><div class="pdot" style="background:var(--gray-200)"></div><div class="pname">Третій платіж</div><div class="pdate">02.06.2026</div><span class="pamount">план: 132к ₴</span><span class="pamount fact-empty">факт: —</span><div class="pst"><span class="sb s-none">Очікується</span></div></div><div class="pay-row" style="opacity:.6"><div class="pdot" style="background:var(--gray-200)"></div><div class="pname" style="text-decoration:line-through">П'ятий платіж</div><div class="pdate">19.06.2026</div><span class="pamount fact-empty" style="flex:1">не застосовується</span><div class="pst"><span class="sb s-none">&mdash;</span></div></div></div>
+  <div class="section-title">&#128197; Діаграма Ганта — декомпозиція WBS</div>
+  <div class="filters">
+    <button class="fbtn active" onclick="ft('all',this)">Всі</button>
+    <button class="fbtn f-late" onclick="ft('late',this)">&#9888; Прострочені</button>
+    <button class="fbtn" onclick="ft('progress',this)">&#9658; В роботі</button>
+    <button class="fbtn" onclick="ft('notstarted',this)">&#8212; Не розпочато</button>
+    <button class="fbtn f-green" onclick="ft('done',this)">&#10003; Завершені</button>
+  </div>
+  <style>
+  .gx-wrap{border:1px solid var(--border);border-radius:var(--radius);background:#fff;box-shadow:var(--shadow);margin-bottom:14px;max-width:100%;overflow:hidden}
+  .gx-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+  .gx-grid{position:relative;font-size:12px}
+  .gx-head{display:flex;border-bottom:1px solid var(--border);background:var(--gray-50)}
+  .gx-head-label{flex:0 0 320px;padding:9px 12px;font-weight:700;font-size:10px;text-transform:uppercase;color:var(--text-muted);border-right:1px solid var(--border);position:sticky;left:0;background:var(--gray-50);z-index:7}
+  .gx-head-time{position:relative;height:34px}
+  .gx-tick{position:absolute;top:0;bottom:0;border-left:1px solid var(--gray-200);font-size:10px;color:var(--text-muted);padding:6px 0 0 4px;white-space:nowrap}
+  .gx-body{position:relative}
+  .gx-row{display:flex;border-bottom:1px solid var(--gray-100);height:30px;align-items:center}
+  .gx-row:hover{background:var(--gray-50)}
+  .gx-label{flex:0 0 320px;display:flex;align-items:center;gap:5px;border-right:1px solid var(--border);overflow:hidden;white-space:nowrap;position:sticky;left:0;background:#fff;z-index:4;height:100%}
+  .gx-row:hover .gx-label{background:var(--gray-50)}
+  .gx-toggle{cursor:pointer;width:14px;display:inline-block;text-align:center;color:var(--text-muted);flex-shrink:0;font-size:11px;user-select:none}
+  .gx-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}
+  .gx-time{position:relative;height:30px;flex-shrink:0}
+  .gx-bar{position:absolute;top:8px;height:14px;border-radius:3px;display:flex;align-items:center;padding:0 4px;font-size:9px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden}
+  .gx-ms{position:absolute;top:8px;width:13px;height:13px;transform:rotate(45deg);border-radius:2px;border:1px solid #fff;box-sizing:border-box}
+  .gx-today{position:absolute;top:0;bottom:0;width:2px;background:var(--brand-orange);z-index:3}
+  .gb-na{background:repeating-linear-gradient(45deg,var(--gray-200),var(--gray-200) 4px,#fff 4px,#fff 8px);color:#999}
+  .gx-na{opacity:.65}
+  .gx-na .gx-name{text-decoration:line-through;color:var(--gray-400)}
+  </style>
+  <div class="filters" style="margin-top:-6px;align-items:center">
+    <span style="font-size:11px;color:var(--text-muted);margin-right:2px">Масштаб:</span>
+    <button class="zbtn" onclick="gxSetScale('day',this)">День</button>
+    <button class="zbtn active" onclick="gxSetScale('week',this)">Тиждень</button>
+    <button class="zbtn" onclick="gxSetScale('month',this)">Місяць</button>
+    <button class="zbtn" onclick="gxSetScale('year',this)">Рік</button>
+  </div>
+  <style>
+  .zbtn{padding:5px 14px;border:1px solid var(--border);border-radius:20px;background:#fff;font-size:12px;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all .15s}
+  .zbtn.active{background:var(--brand-dark);border-color:var(--brand-dark);color:#fff}
+  </style>
+  <div class="gx-wrap" id="gxWrap"></div>
+  <div class="gantt-legend" style="padding:8px 14px 14px;display:flex;gap:16px;flex-wrap:wrap;font-size:11px;color:var(--text-muted)">
+    <div><span style="display:inline-block;width:11px;height:11px;border-radius:2px;background:var(--green);vertical-align:middle;margin-right:5px"></span>Завершено</div>
+    <div><span style="display:inline-block;width:11px;height:11px;border-radius:2px;background:var(--accent-blue);vertical-align:middle;margin-right:5px"></span>В роботі</div>
+    <div><span style="display:inline-block;width:11px;height:11px;border-radius:2px;background:var(--red);vertical-align:middle;margin-right:5px"></span>Прострочено</div>
+    <div><span style="display:inline-block;width:11px;height:11px;border-radius:2px;background:var(--gray-200);vertical-align:middle;margin-right:5px"></span>Не розпочато</div>
+    <div><span style="display:inline-block;width:3px;height:11px;background:var(--brand-orange);vertical-align:middle;margin-right:5px"></span>Сьогодні</div>
+    <div><span style="display:inline-block;width:9px;height:9px;transform:rotate(45deg);background:var(--text-muted);vertical-align:middle;margin:0 6px 0 2px"></span>Віха</div>
+    <div><span style="display:inline-block;width:11px;height:11px;border-radius:2px;background:repeating-linear-gradient(45deg,var(--gray-200),var(--gray-200) 3px,#fff 3px,#fff 6px);vertical-align:middle;margin-right:5px"></span>Не застосовується</div>
+  </div>
+
+</div>
+<script>
+const TODAY=new Date();TODAY.setHours(0,0,0,0);
+const PROJ_START='19.05.2026',PROJ_END='20.06.2026';
+const TASKS=[{"wbs": "1", "name": "Проект № 8432", "pct": 41, "start": "19.05.2026", "end": "20.06.2026", "dur": "33 дн.", "who": "", "budget": 674264.0, "fact": 0.0, "milestone": false, "status": "progress"}, {"wbs": "1.1", "name": "00 Бюджет", "pct": 0, "start": "29.05.2026", "end": "19.06.2026", "dur": "22 дн.", "who": "", "budget": 674264.0, "fact": 0.0, "milestone": false, "status": "notstarted"}, {"wbs": "1.1.1", "name": "Авансовий платіж", "pct": 0, "start": "29.05.2026", "end": "09.06.2026", "dur": "12 дн.", "who": "", "budget": 411264.0, "fact": 0.0, "milestone": false, "status": "late"}, {"wbs": "1.1.2", "name": "Другий платіж", "pct": 0, "start": "02.06.2026", "end": "11.06.2026", "dur": "10 дн.", "who": "", "budget": 131500.0, "fact": 0.0, "milestone": false, "status": "notstarted"}, {"wbs": "1.1.3", "name": "Третій платіж", "pct": 0, "start": "02.06.2026", "end": "15.06.2026", "dur": "14 дн.", "who": "", "budget": 131500.0, "fact": 0.0, "milestone": false, "status": "notstarted"}, {"wbs": "1.1.4", "name": "П'ятий платіж", "pct": 0, "start": "19.06.2026", "end": "19.06.2026", "dur": "0 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": true, "status": "na", "na": true}, {"wbs": "1.2", "name": "01 Ініціація", "pct": 100, "start": "19.05.2026", "end": "29.05.2026", "dur": "11 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.2.1", "name": "Запуск проєкту (оцінка термінів та ресурсів)", "pct": 100, "start": "19.05.2026", "end": "29.05.2026", "dur": "11 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.2.1.1", "name": "Аналіз ТЗ", "pct": 100, "start": "29.05.2026", "end": "29.05.2026", "dur": "1 день", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.2.1.2", "name": "ТЗ проаналізовано", "pct": 100, "start": "29.05.2026", "end": "29.05.2026", "dur": "0 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": true, "status": "done"}, {"wbs": "1.2.1.3", "name": "Вибір типу проекту", "pct": 100, "start": "19.05.2026", "end": "20.05.2026", "dur": "2 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.2.1.4", "name": "Вибір ресурсів проєкту", "pct": 100, "start": "19.05.2026", "end": "21.05.2026", "dur": "3 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.2.1.5", "name": "Узгоджені ресурси і терміни реалізації", "pct": 100, "start": "19.05.2026", "end": "20.05.2026", "dur": "2 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.3", "name": "02 Планування", "pct": 100, "start": "20.05.2026", "end": "30.05.2026", "dur": "11 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.3.1", "name": "Планування ресурсів", "pct": 100, "start": "20.05.2026", "end": "29.05.2026", "dur": "10 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.3.2", "name": "Оцінка ризиків", "pct": 100, "start": "21.05.2026", "end": "29.05.2026", "dur": "9 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.3.3", "name": "Планування розкладу", "pct": 100, "start": "30.05.2026", "end": "30.05.2026", "dur": "1 день", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.3.4", "name": "Розклад проєкту готовий", "pct": 100, "start": "30.05.2026", "end": "30.05.2026", "dur": "0 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": true, "status": "done"}, {"wbs": "1.4", "name": "03 Розробка КМД", "pct": 100, "start": "19.05.2026", "end": "02.06.2026", "dur": "15 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.4.1", "name": "Розробка ТЗ для ВК", "pct": 100, "start": "21.05.2026", "end": "21.05.2026", "dur": "1 день", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.4.2", "name": "ТЗ розроблено", "pct": 100, "start": "21.05.2026", "end": "21.05.2026", "dur": "0 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": true, "status": "done"}, {"wbs": "1.4.3", "name": "КМ розроблено", "pct": 100, "start": "19.05.2026", "end": "19.05.2026", "dur": "0 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": true, "status": "done"}, {"wbs": "1.4.4", "name": "Погодження КМ з замовником", "pct": 100, "start": "19.05.2026", "end": "19.05.2026", "dur": "1 день", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.4.5", "name": "КМ з замовником погоджено", "pct": 100, "start": "19.05.2026", "end": "19.05.2026", "dur": "0 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": true, "status": "done"}, {"wbs": "1.4.6", "name": "Розробка монтажних креслень", "pct": 100, "start": "01.06.2026", "end": "02.06.2026", "dur": "2 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.4.7", "name": "Монтажні креслення розроблено", "pct": 100, "start": "02.06.2026", "end": "02.06.2026", "dur": "0 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": true, "status": "done"}, {"wbs": "1.5", "name": "04 Виробництво", "pct": 100, "start": "20.05.2026", "end": "02.06.2026", "dur": "14 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.5.1", "name": "Закупівля матеріалів", "pct": 100, "start": "20.05.2026", "end": "20.05.2026", "dur": "1 день", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.5.2", "name": "Виготовлення", "pct": 100, "start": "21.05.2026", "end": "02.06.2026", "dur": "13 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.5.2.1", "name": "Виготовлення ГШ", "pct": 100, "start": "21.05.2026", "end": "29.05.2026", "dur": "9 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.5.2.2", "name": "Цинкування / Покриття ГШ", "pct": 100, "start": "29.05.2026", "end": "01.06.2026", "dur": "4 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.5.2.3", "name": "Контроль якості ГШ", "pct": 100, "start": "01.06.2026", "end": "01.06.2026", "dur": "1 день", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.5.2.4", "name": "Готово до відвантаження ГШ", "pct": 100, "start": "02.06.2026", "end": "02.06.2026", "dur": "1 день", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.6", "name": "05 Логістика", "pct": 0, "start": "08.06.2026", "end": "11.06.2026", "dur": "4 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "notstarted"}, {"wbs": "1.6.1", "name": "Митниця / ЗЕД-документи", "pct": 0, "start": "08.06.2026", "end": "08.06.2026", "dur": "1 день", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "na", "na": true}, {"wbs": "1.6.2", "name": "Доставка на локацію", "pct": 0, "start": "08.06.2026", "end": "11.06.2026", "dur": "4 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "notstarted"}, {"wbs": "1.6.2.1", "name": "Доставка ГШ", "pct": 0, "start": "10.06.2026", "end": "11.06.2026", "dur": "2 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "notstarted"}, {"wbs": "1.6.2.2", "name": "Доставка Зварні конструкції", "pct": 0, "start": "08.06.2026", "end": "09.06.2026", "dur": "2 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "na", "na": true}, {"wbs": "1.6.2.3", "name": "Доставка ЛСТК", "pct": 0, "start": "08.06.2026", "end": "09.06.2026", "dur": "2 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "na", "na": true}, {"wbs": "1.6.3", "name": "Продукція доставлена", "pct": 0, "start": "11.06.2026", "end": "11.06.2026", "dur": "0 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": true, "status": "notstarted"}, {"wbs": "1.7", "name": "06 Монтаж", "pct": 0, "start": "08.06.2026", "end": "17.06.2026", "dur": "10 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "notstarted"}, {"wbs": "1.7.1", "name": "Монтаж на об'єкті", "pct": 0, "start": "08.06.2026", "end": "17.06.2026", "dur": "10 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "notstarted"}, {"wbs": "1.7.1.1", "name": "Розмітка свайного поля", "pct": 0, "start": "08.06.2026", "end": "09.06.2026", "dur": "2 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "late"}, {"wbs": "1.7.1.2", "name": "Монтажні роботи", "pct": 0, "start": "10.06.2026", "end": "17.06.2026", "dur": "8 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "notstarted"}, {"wbs": "1.7.1.2.1", "name": "Монтажні роботи ГШ", "pct": 0, "start": "12.06.2026", "end": "17.06.2026", "dur": "6 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "notstarted"}, {"wbs": "1.7.1.2.2", "name": "Монтажні роботи Зварні конструкції", "pct": 0, "start": "10.06.2026", "end": "17.06.2026", "dur": "8 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "na", "na": true}, {"wbs": "1.7.1.2.3", "name": "Монтажні роботи ЛСТК", "pct": 0, "start": "10.06.2026", "end": "17.06.2026", "dur": "8 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "na", "na": true}, {"wbs": "1.7.1.3", "name": "Монтажне креслення підписано", "pct": 0, "start": "17.06.2026", "end": "17.06.2026", "dur": "0 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": true, "status": "notstarted"}, {"wbs": "1.7.1.4", "name": "Фіксація фото та відео звіту зроблено", "pct": 0, "start": "17.06.2026", "end": "17.06.2026", "dur": "0 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": true, "status": "notstarted"}, {"wbs": "1.8", "name": "07 Закриття", "pct": 0, "start": "18.06.2026", "end": "20.06.2026", "dur": "3 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "notstarted"}, {"wbs": "1.8.1", "name": "Завершення проєкту", "pct": 0, "start": "18.06.2026", "end": "20.06.2026", "dur": "3 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "notstarted"}, {"wbs": "1.8.1.1", "name": "Підготовка та підписання виконавчої документації", "pct": 0, "start": "18.06.2026", "end": "18.06.2026", "dur": "1 день", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "notstarted"}, {"wbs": "1.8.1.2", "name": "Акт виконаних робіт + Оплата", "pct": 0, "start": "19.06.2026", "end": "19.06.2026", "dur": "1 день", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "notstarted"}, {"wbs": "1.8.1.3", "name": "Проєкт закрито", "pct": 0, "start": "19.06.2026", "end": "19.06.2026", "dur": "0 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": true, "status": "notstarted"}, {"wbs": "1.8.1.4", "name": "Аналіз результатів виконання проєкту", "pct": 0, "start": "20.06.2026", "end": "20.06.2026", "dur": "1 день", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "notstarted"}];
+const PHASES=[{"wbs": "1.2", "name": "01 Ініціація", "pct": 100, "start": "19.05.2026", "end": "29.05.2026", "dur": "11 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.3", "name": "02 Планування", "pct": 100, "start": "20.05.2026", "end": "30.05.2026", "dur": "11 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.4", "name": "03 Розробка КМД", "pct": 100, "start": "19.05.2026", "end": "02.06.2026", "dur": "15 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.5", "name": "04 Виробництво", "pct": 100, "start": "20.05.2026", "end": "02.06.2026", "dur": "14 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "done"}, {"wbs": "1.6", "name": "05 Логістика", "pct": 0, "start": "08.06.2026", "end": "11.06.2026", "dur": "4 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "notstarted"}, {"wbs": "1.7", "name": "06 Монтаж", "pct": 0, "start": "08.06.2026", "end": "17.06.2026", "dur": "10 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "notstarted"}, {"wbs": "1.8", "name": "07 Закриття", "pct": 0, "start": "18.06.2026", "end": "20.06.2026", "dur": "3 дн.", "who": "", "budget": 0.0, "fact": 0.0, "milestone": false, "status": "notstarted"}];
+const MONTHS=[];
+const PAUSED=false;
+const PROJ_INDEX=[{"id": "3456", "name": "А Підселання фундаменту", "pm": "Донська"}, {"id": "4766", "name": "ALTECO Carport Model Taurus 280кВт", "pm": "Заянчковський"}, {"id": "5438", "name": "Stonava. Cz. SGM 100 MW", "pm": "Донська"}, {"id": "5870", "name": "Carport Airport Munich", "pm": "Александров"}, {"id": "5910", "name": "А   AGM 2V", "pm": "Донська"}, {"id": "6704", "name": "SCP Taurus 236PS", "pm": "Александров"}, {"id": "6842", "name": "2", "pm": "Александров"}, {"id": "7002", "name": "А Фора  SCP W 24PS V1", "pm": "Донська"}, {"id": "7068", "name": "А Remtec energy  AGM  160 TP", "pm": "Александров"}, {"id": "7244", "name": "В Модулекс модульна будівля Чернігів", "pm": "Заянчковський"}, {"id": "7474", "name": "А Головне управління Національної поліції в Одеській області  SCP  15PS", "pm": "Іщук"}, {"id": "7508", "name": "-8602 Євген Весільна тераса Подорожнє", "pm": "Заянчковський"}, {"id": "7536", "name": "А Ранчо “Едельвейс”  AGM  171PV", "pm": "Іщук"}, {"id": "7894", "name": "А Фора  SCP  32PS", "pm": "Донська"}, {"id": "7960", "name": "Сірокко Sirocco вітрова ел ст Львів", "pm": "Іщук"}, {"id": "8008", "name": "Модулі Григорівка", "pm": "Донська"}, {"id": "8070", "name": "А Карпорты B2C  SCP", "pm": "Іщук"}, {"id": "8140", "name": "В Газинвестпроект фундамент Киев", "pm": "Заянчковський"}, {"id": "8185", "name": "Фундамент Hytte House Development Славське", "pm": "Донська"}, {"id": "8188", "name": "Фундамент Ужгород Стефанія", "pm": "Александров"}, {"id": "8238", "name": "А UTEM SOLAR  SCP Taurus 190PV", "pm": "Іщук"}, {"id": "8360", "name": "Хаджет Лебедівка", "pm": "Донська"}, {"id": "8432", "name": "Олександр 12 мод. буд. с.Вільшанка Полт.обл", "pm": "Заянчковський"}, {"id": "8438", "name": "GS", "pm": "Александров"}, {"id": "8454", "name": "Олександр каркасний Верховина", "pm": "Донська"}, {"id": "8544", "name": "Isolar фланець Хмельницький", "pm": "Донська"}, {"id": "8604", "name": "МілТек", "pm": "Хома"}];
+function pd(s){if(!s)return null;const[d,m,y]=s.split('.');return new Date(+y,+m-1,+d)}
+function sb(s){
+  if(s==='done')return '<span class="sb2 s-done2">&#10003; Завершено</span>';
+  if(s==='progress')return '<span class="sb2 s-prog">&#9658; В роботі</span>';
+  if(s==='late')return '<span class="sb2 s-late2">&#9888; Прострочено</span>';
+  return '<span class="sb2 s-none2">&#8212; Не розпочато</span>';
+}
+function pfc(s){return s==='done'?'pf-g':s==='progress'?'pf-b':s==='late'?'pf-r':'pf-gr'}
+function ptc(s){return s==='done'?'var(--green)':s==='progress'?'var(--accent-blue)':s==='late'?'var(--red)':'var(--gray-400)'}
+function ic(wbs){const d=(wbs.match(/\./g)||[]).length;return d===0?'ph':d===1?'i1':d===2?'i2':'i3'}
+const leaves=TASKS.filter(t=>t.wbs.split('.').length>=3&&!t.na);
+let done=0,prog=0,ov=0;
+leaves.forEach(t=>{if(t.status==='done')done++;else if(t.status==='progress')prog++;else if(t.status==='late')ov++;});
+document.getElementById('kpiTasks').textContent=leaves.length;
+document.getElementById('kpiTaskSub').textContent='Готово: '+done+' · В роботі: '+prog;
+document.getElementById('kpiOverdue').textContent=ov;
+const ap=PHASES.find(p=>p.pct>0&&p.pct<100)||PHASES.find(p=>p.pct===0&&pd(p.start)<=TODAY);
+document.getElementById('activePhase').textContent=ap?'Фаза: '+ap.name:'—';
+const ps=pd(PROJ_START),pe=pd(PROJ_END);
+if(ps&&pe)document.getElementById('kpiDur').textContent='Тривалість: '+Math.round((pe-ps)/86400000)+' дн.';
+function gxEff(t){if(t.na)return 'na';var e=pd(t.end);if(t.pct>=100)return 'done';if(e&&e<TODAY&&t.pct<100)return (typeof PAUSED!=='undefined'&&PAUSED)?(t.pct>0?'progress':'notstarted'):'late';if(t.pct>0)return 'progress';return 'notstarted';}
+function gxHasChild(w){return TASKS.some(function(t){return t.wbs!==w&&t.wbs.indexOf(w+'.')===0;});}
+function gxDepth(w){return w.split('.').length;}
+var GX_MON=['січ','лют','бер','кві','тра','чер','лип','сер','вер','жов','лис','гру'];
+var GX_DAY=86400000,GX_LBL=320;
+var gxMin=null,gxMax=null;
+TASKS.forEach(function(t){var s=pd(t.start),e=pd(t.end);if(s&&(!gxMin||s<gxMin))gxMin=s;if(e&&(!gxMax||e>gxMax))gxMax=e;});
+var gxTotalDays=Math.max(1,Math.round((gxMax-gxMin)/GX_DAY)+1);
+var gxScale='week',gxPxd=20;
+var gxCollapsed=new Set();
+TASKS.forEach(function(t){if(gxDepth(t.wbs)>=2&&gxHasChild(t.wbs))gxCollapsed.add(t.wbs);});
+var gxFilter='all';
+function gxCls(s){return s==='na'?'gb-na':s==='done'?'gb-done':s==='late'?'gb-late':s==='progress'?'gb-progress':'gb-none';}
+function gxX(d){return (pd(d)-gxMin)/GX_DAY*gxPxd;}
+function gxVisible(){
+  if(gxFilter!=='all')return TASKS.filter(function(t){return gxEff(t)===gxFilter;});
+  return TASKS.filter(function(t){var p=t.wbs.split('.');for(var i=1;i<p.length;i++){if(gxCollapsed.has(p.slice(0,i).join('.')))return false;}return true;});
+}
+function gxToggle(w){if(gxCollapsed.has(w))gxCollapsed.delete(w);else gxCollapsed.add(w);gxRender();}
+function gxSetScale(s,btn){gxScale=s;var bs=document.querySelectorAll('.zbtn');for(var i=0;i<bs.length;i++)bs[i].classList.remove('active');btn.classList.add('active');gxRender();}
+function gxRender(){
+  gxPxd=gxScale==='day'?34:gxScale==='week'?20:gxScale==='month'?7:3;
+  var timeW=gxTotalDays*gxPxd;
+  var ticks='';
+  if(gxScale==='month'||gxScale==='year'){
+    var mc=new Date(gxMin.getFullYear(),gxMin.getMonth(),1);
+    while(mc<=gxMax){var off=(mc-gxMin)/GX_DAY;if(off>=0)ticks+='<div class="gx-tick" style="left:'+(off*gxPxd)+'px">'+GX_MON[mc.getMonth()]+' '+(''+mc.getFullYear()).slice(2)+'</div>';mc=new Date(mc.getFullYear(),mc.getMonth()+1,1);}
+  }else{
+    var step=gxScale==='day'?1:7;
+    for(var d=0;d<gxTotalDays;d+=step){var dt=new Date(gxMin.getTime()+d*GX_DAY);var lab=(gxScale==='day')?(dt.getDate()+((dt.getDate()===1||d===0)?' '+GX_MON[dt.getMonth()]:'')):(dt.getDate()+' '+GX_MON[dt.getMonth()]);ticks+='<div class="gx-tick" style="left:'+(d*gxPxd)+'px">'+lab+'</div>';}
+  }
+  var tdyX=(TODAY-gxMin)/GX_DAY*gxPxd;var tdyOn=tdyX>=0&&tdyX<=timeW;
+  var rows='';
+  gxVisible().forEach(function(t){
+    var dep=gxDepth(t.wbs),hc=gxHasChild(t.wbs),eff=gxEff(t),pad=(dep-1)*16;
+    var nmEsc=(''+t.name).replace(/"/g,'&quot;');
+    var tog=(hc&&gxFilter==='all')?'<span class="gx-toggle" onclick="gxToggle(\''+t.wbs+'\')">'+(gxCollapsed.has(t.wbs)?'▸':'▾')+'</span>':'<span class="gx-toggle"></span>';
+    var nm=dep<=2?'font-weight:700':'';
+    var x=gxX(t.start);var bar;
+    if(t.milestone){bar='<div class="gx-ms '+gxCls(eff)+'" style="left:'+(x-6)+'px" title="'+nmEsc+'"></div>';}
+    else{var wid=Math.max(8,(pd(t.end)-pd(t.start))/GX_DAY*gxPxd+gxPxd);bar='<div class="gx-bar '+gxCls(eff)+'" style="left:'+x+'px;width:'+wid+'px" title="'+nmEsc+' ('+t.start+'–'+t.end+')">'+(wid>34&&t.pct>0?t.pct+'%':'')+'</div>';}
+    rows+='<div class="gx-row'+(t.na?' gx-na':'')+'"><div class="gx-label" style="padding-left:'+(12+pad)+'px">'+tog+'<span class="gx-name" style="'+nm+'" title="'+t.wbs+' '+nmEsc+'">'+t.name+'</span></div><div class="gx-time" style="width:'+timeW+'px">'+bar+'</div></div>';
+  });
+  var html='<div class="gx-scroll"><div class="gx-grid" style="width:'+(GX_LBL+timeW)+'px"><div class="gx-head"><div class="gx-head-label">Завдання ('+gxVisible().length+')</div><div class="gx-head-time" style="width:'+timeW+'px">'+ticks+(tdyOn?'<div class="gx-today" style="left:'+tdyX+'px"></div>':'')+'</div></div><div class="gx-body">'+(tdyOn?'<div class="gx-today" style="left:'+(GX_LBL+tdyX)+'px"></div>':'')+rows+'</div></div></div>';
+  document.getElementById('gxWrap').innerHTML=html;
+}
+function ft(f,btn){document.querySelectorAll('.fbtn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');gxFilter=f;gxRender();}
+(function(){var ov=0;TASKS.forEach(function(t){if(gxDepth(t.wbs)>=3&&gxEff(t)==='late')ov++;});var el=document.getElementById('kpiOverdue');if(el)el.textContent=ov;})();
+gxRender();
+
+const PS_DATA=(typeof PROJECTS!=='undefined')?PROJECTS:(typeof PROJ_INDEX!=='undefined'?PROJ_INDEX:[]);
+function psFilter(){var q=document.getElementById('psInput').value.trim().toLowerCase();var box=document.getElementById('psResults');if(!q){box.innerHTML='';box.classList.remove('show');return;}var m=PS_DATA.filter(function(p){return (''+p.id).indexOf(q)>=0||((p.name||'').toLowerCase().indexOf(q)>=0);}).slice(0,8);if(!m.length){box.innerHTML='<div class="ps-empty">Нічого не знайдено</div>';box.classList.add('show');return;}box.innerHTML=m.map(function(p){return '<a class="ps-item" href="pillar_dashboard_'+p.id+'.html"><span class="ps-id">№'+p.id+'</span><span class="ps-nm">'+(p.name||'')+'</span><span class="ps-pm">'+(p.pm||'')+'</span></a>';}).join('');box.classList.add('show');}
+function psKey(e){if(e.key==='Enter'){var a=document.querySelector('#psResults .ps-item');if(a)location.href=a.getAttribute('href');}else if(e.key==='Escape'){document.getElementById('psInput').value='';psFilter();}}
+document.addEventListener('click',function(e){if(!e.target.closest('.psearch')){var b=document.getElementById('psResults');if(b)b.classList.remove('show');}});
+
+(function(){var b=document.createElement('button');b.textContent='↑';b.title='Вгору';b.setAttribute('aria-label','Вгору');b.style.cssText='position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;border:none;background:var(--brand-orange,#E85D1A);color:#fff;font-size:20px;font-weight:700;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.28);display:none;z-index:500';b.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};document.body.appendChild(b);var t=function(){b.style.display=(window.scrollY||document.documentElement.scrollTop)>300?'block':'none';};window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>

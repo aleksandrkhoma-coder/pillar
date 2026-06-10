@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pillar — Портфель проєктів ОУП</title>
+<style>
+:root {
+  --brand-dark: #1A2332;
+  --brand-orange: #E85D1A;
+  --accent-blue: #1D6FA4;
+  --green: #1E9E5A;
+  --green-light: #E6F7EE;
+  --red: #D93025;
+  --red-light: #FDECEA;
+  --yellow: #E6A817;
+  --gray-50: #F8F9FA;
+  --gray-100: #F1F3F5;
+  --gray-200: #E5E7EB;
+  --gray-400: #9CA3AF;
+  --text: #1A2332;
+  --text-muted: #6B7280;
+  --border: #E5E7EB;
+  --radius: 8px;
+  --shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--gray-50);color:var(--text);font-size:14px}
+
+.header{background:var(--brand-dark);color:#fff;padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.header-top{display:flex;align-items:center;justify-content:space-between;padding:14px 0 10px;border-bottom:1px solid rgba(255,255,255,.08)}
+.logo{font-weight:800;font-size:22px;letter-spacing:2px;color:var(--brand-orange)}
+.quick-nav{display:flex;gap:4px;padding:8px 0;overflow-x:auto;scrollbar-width:none}
+.quick-nav::-webkit-scrollbar{display:none}
+.nav-btn{display:flex;align-items:center;gap:7px;padding:5px 14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:20px;color:rgba(255,255,255,.8);font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;white-space:nowrap;transition:all .15s;flex-shrink:0}
+.nav-btn:hover{background:rgba(255,255,255,.18);color:#fff}
+.nc{background:rgba(255,255,255,.15);border-radius:10px;padding:1px 7px;font-size:11px}
+.nl{background:rgba(216,48,37,.7);border-radius:10px;padding:1px 7px;font-size:11px;color:#fff}
+
+.page{max-width:1320px;margin:0 auto;padding:20px 24px}
+
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px}
+.kpi{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
+.kpi-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);margin-bottom:6px}
+.kpi-value{font-size:28px;font-weight:800;color:var(--brand-dark);line-height:1}
+.kpi-value.orange{color:var(--brand-orange)}
+.kpi-value.red{color:var(--red)}
+.kpi-sub{font-size:11px;color:var(--text-muted);margin-top:4px}
+.kpi.clickable{cursor:pointer;transition:all .15s}
+.kpi.clickable:hover{border-color:var(--red);box-shadow:0 2px 8px rgba(216,48,37,.15)}
+.kpi.clickable.active{border-color:var(--red);background:var(--red-light);box-shadow:0 2px 8px rgba(216,48,37,.2)}
+.kpi.clickable.active .kpi-label{color:var(--red)}
+.filter-banner{display:none;background:var(--red-light);border:1px solid var(--red);border-radius:var(--radius);padding:10px 16px;margin-bottom:16px;font-size:13px;font-weight:600;color:var(--red);align-items:center;justify-content:space-between}
+.filter-banner.show{display:flex}
+.clear-filter{background:none;border:none;cursor:pointer;font-size:12px;color:var(--red);font-weight:700;text-decoration:underline}
+.proj-card.hidden{display:none}
+.kpi-budget{display:flex;gap:16px;margin-top:6px}
+.kb-item .kbl{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.4px}
+.kb-item .kbv{font-size:17px;font-weight:800}
+.kb-item .kbv.plan{color:var(--accent-blue)}
+.kb-item .kbv.fact{color:var(--green)}
+
+.pm-section{margin-bottom:28px;scroll-margin-top:110px}
+.pm-header{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:var(--brand-dark);border-radius:var(--radius) var(--radius) 0 0;flex-wrap:wrap;gap:10px}
+.pm-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0}
+.pm-name{font-size:14px;font-weight:700;color:#fff;margin-left:10px}
+.pm-stats{display:flex;gap:16px;font-size:12px;color:rgba(255,255,255,.55)}
+.pm-stats strong{color:#fff}
+.sr{color:#F08080;font-weight:700}
+.pm-bbar{display:flex;align-items:center;gap:6px;justify-content:flex-end}
+.pm-bbar .bar{width:70px;height:4px;background:rgba(255,255,255,.15);border-radius:2px;overflow:hidden}
+.pm-bbar .bf{height:100%;border-radius:2px;background:var(--green)}
+
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);overflow:hidden}
+.proj-card{background:#fff;padding:13px 15px;display:flex;flex-direction:column;gap:9px;position:relative;transition:background .1s}
+.proj-card:hover{background:var(--gray-50)}
+.proj-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px}
+.rc-green::before{background:var(--green)}
+.rc-yellow::before{background:var(--yellow)}
+.rc-orange::before{background:var(--brand-orange)}
+.rc-red::before{background:var(--red)}
+.rc-gray::before{background:var(--gray-200)}
+
+.proj-top{display:flex;align-items:flex-start;justify-content:space-between;gap:6px}
+.proj-id{font-size:10px;font-weight:700;color:var(--text-muted);letter-spacing:.4px}
+.proj-name{font-size:13px;font-weight:700;color:var(--text);line-height:1.3;margin-top:2px}
+.late-badge{display:inline-flex;align-items:center;background:var(--red-light);color:var(--red);font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;white-space:nowrap;flex-shrink:0}
+
+.prog-row{display:flex;align-items:center;gap:8px}
+.prog-bar{flex:1;background:var(--gray-100);border-radius:3px;height:6px;overflow:hidden}
+.prog-fill{height:100%;border-radius:3px}
+.pf-green{background:var(--green)}
+.pf-blue{background:var(--accent-blue)}
+.pf-orange{background:var(--brand-orange)}
+.pf-red{background:var(--red)}
+.pf-gray{background:var(--gray-200)}
+.prog-pct{font-size:14px;font-weight:800;min-width:36px;text-align:right}
+
+.dates-row{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-muted)}
+.date-bar{flex:1;height:4px;background:var(--gray-100);border-radius:2px;overflow:hidden}
+.date-fill{height:100%;border-radius:2px;background:var(--accent-blue);opacity:.35}
+
+.task-stats{display:flex;gap:10px;font-size:11px;color:var(--text-muted)}
+.task-stats span strong{font-weight:700;color:var(--text)}
+.task-stats .tr strong{color:var(--red)}
+
+.brow{display:flex;gap:10px;font-size:11px}
+.brow .bl{color:var(--text-muted)}
+.brow .bvp{font-weight:700;color:var(--accent-blue)}
+.brow .bvf{font-weight:700;color:var(--green)}
+.no-data{font-size:11px;color:var(--gray-400);font-style:italic}
+
+.detail-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;background:var(--accent-blue);color:#fff;border-radius:6px;font-size:11px;font-weight:700;text-decoration:none;align-self:flex-start;transition:background .12s}
+.detail-btn:hover{background:#155d8a}
+.psearch{position:relative;flex:0 0 auto}
+.psearch input{width:260px;max-width:42vw;padding:7px 12px;border-radius:18px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.1);color:#fff;font-size:12px;outline:none}
+.psearch input::placeholder{color:rgba(255,255,255,.5)}
+.ps-results{display:none;position:absolute;top:38px;left:0;width:340px;max-width:80vw;background:#fff;border:1px solid var(--border);border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.18);z-index:200;overflow:hidden}
+.ps-results.show{display:block}
+.ps-item{display:flex;align-items:center;gap:8px;padding:8px 12px;text-decoration:none;color:var(--text);border-bottom:1px solid var(--gray-100);font-size:12px}
+.ps-item:last-child{border-bottom:none}
+.ps-item:hover{background:var(--gray-50)}
+.ps-id{font-weight:700;color:var(--accent-blue);flex-shrink:0}
+.ps-nm{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ps-pm{font-size:11px;color:var(--text-muted);flex-shrink:0}
+.ps-empty{padding:10px 12px;color:var(--text-muted);font-size:12px}
+
+  @media (max-width:680px){
+    .header-top{flex-wrap:wrap;gap:8px}
+    .header-top > div:last-child{text-align:left}
+    .psearch{flex:1 1 100%;order:3}
+    .psearch input{width:100%;max-width:none}
+    .ps-results{width:88vw}
+    .page{padding:14px 12px}
+    .kpi-row{grid-template-columns:1fr 1fr;gap:8px}
+    .kpi{padding:12px 14px}
+    .kpi-value{font-size:22px}
+    .proj-grid{grid-template-columns:1fr}
+    .pm-header{flex-direction:column;align-items:flex-start;gap:8px}
+    .pm-stats{flex-wrap:wrap;gap:6px 12px}
+    .pm-bbar{justify-content:flex-start}
+  }
+  #projMap{height:420px;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .map-head{font-size:15px;font-weight:700;margin:24px 0 12px;color:var(--brand-dark)}
+  @media (max-width:680px){#projMap{height:300px}}
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div style="display:flex;align-items:center">
+      <div class="logo" style="cursor:pointer" title="Вгору" onclick="window.scrollTo({top:0,behavior:'smooth'})">PILLAR</div>
+      <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
+      <div>
+        <div style="font-size:15px;font-weight:600;color:#fff">Портфель ПМ — Александров</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 10.06.2026</div>
+      </div>
+    </div>
+    <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
+    <a href="lessons_learned.html" style="display:inline-flex;align-items:center;gap:6px;padding:7px 16px;background:rgba(30,158,90,.2);border:1px solid rgba(30,158,90,.45);border-radius:20px;color:#4DC98A;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap;transition:all .15s;flex-shrink:0" onmouseover="this.style.background='rgba(30,158,90,.35)'" onmouseout="this.style.background='rgba(30,158,90,.2)'">&#128218; Lessons Learned</a>
+    <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
+      <div>Оновлено: 10.06.2026</div>
+      <div>6 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
+    </div>
+  </div>
+  <nav class="quick-nav" id="quickNav"></nav>
+</div>
+
+<div class="page">
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-label">Активних проєктів</div>
+      <div class="kpi-value">6</div>
+      <div class="kpi-sub">1 ПМ у портфелі</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Середній прогрес</div>
+      <div class="kpi-value orange" id="kpiAvg">—</div>
+      <div class="kpi-sub">по всьому портфелю</div>
+    </div>
+    <div class="kpi clickable" id="kpiRiskCard" onclick="applyFilter('risk')" title="Натисни щоб відфільтрувати">
+      <div class="kpi-label">Під ризиком</div>
+      <div class="kpi-value red" id="kpiRisk">—</div>
+      <div class="kpi-sub">відставання &gt;15% або прострочені</div>
+    </div>
+    <div class="kpi clickable" id="kpiOverdueCard" onclick="applyFilter('overdue')" title="Натисни щоб відфільтрувати">
+      <div class="kpi-label">Прострочених завдань</div>
+      <div class="kpi-value red" id="kpiOverdue">—</div>
+      <div class="kpi-sub">по всьому портфелю</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Бюджет портфелю</div>
+      <div class="kpi-budget">
+        <div class="kb-item"><div class="kbl">План</div><div class="kbv plan" id="kpiPlan">—</div></div>
+        <div class="kb-item"><div class="kbl">Факт</div><div class="kbv fact" id="kpiFact">—</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="filter-banner" id="filterBanner">
+    <span id="filterLabel"></span>
+    <button class="clear-filter" onclick="applyFilter(null)">✕ Скинути фільтр</button>
+  </div>
+  <div id="pmSections"></div>
+  <div id="mapSection" style="display:none">
+    <div class="map-head">&#128506; Карта проєктів</div>
+    <div id="projMap"></div>
+  </div>
+</div>
+
+<script>
+const TODAY = new Date('2026-06-10');
+
+const PROJECTS = [{"id": "5870", "name": "Carport Airport Munich", "pm": "Александров", "pct": 87, "start": "19.05.2026", "end": "10.07.2026", "tasks": 51, "done": 39, "overdue": 0, "plan": 10400000, "fact": 2600000, "paused": false},
+  {"id": "6704", "name": "SCP Taurus 236PS", "pm": "Александров", "pct": 89, "start": "19.05.2026", "end": "03.07.2026", "tasks": 45, "done": 36, "overdue": 0, "plan": 11596000, "fact": 5200000, "paused": false},
+  {"id": "6842", "name": "2", "pm": "Александров", "pct": 46, "start": "22.05.2026", "end": "07.07.2026", "tasks": 50, "done": 28, "overdue": 1, "plan": 3308968, "fact": 3308968, "paused": false},
+  {"id": "7068", "name": "А Remtec energy  AGM  160 TP", "pm": "Александров", "pct": 98, "start": "19.05.2026", "end": "31.07.2026", "tasks": 52, "done": 44, "overdue": 3, "plan": 5640128, "fact": 0, "paused": false},
+  {"id": "8188", "name": "Фундамент Ужгород Стефанія", "pm": "Александров", "pct": 31, "start": "26.05.2026", "end": "18.07.2026", "tasks": 51, "done": 20, "overdue": 0, "plan": 281926, "fact": 208000, "paused": true},
+  {"id": "8438", "name": "GS", "pm": "Александров", "pct": 67, "start": "19.05.2026", "end": "20.06.2026", "tasks": 51, "done": 39, "overdue": 6, "plan": 758160, "fact": 758160, "paused": false}];
+
+const PM_CONFIG = {
+  'Донська':       {initials:'НД', color:'#9B5DE5'},
+  'Александров':   {initials:'МО', color:'#00B4D8'},
+  'Іщук':          {initials:'ІІ', color:'#06D6A0'},
+  'Заянчковський': {initials:'ОЗ', color:'#F77F00'},
+  'Хома':          {initials:'ОХ', color:'#E85D1A'},
+};
+
+const PM_ORDER = ['Донська','Александров','Іщук','Заянчковський','Хома'];
+
+function parseDate(s){if(!s)return null;const[d,m,y]=s.split('.');return new Date(+y,+m-1,+d)}
+function expectedPct(p){const s=parseDate(p.start),e=parseDate(p.end);if(!s||!e||e<=s)return 0;return Math.max(0,Math.min(100,(TODAY-s)/(e-s)*100));}
+const RISK_LAG=15; // поріг відставання від графіка, пунктів
+function isRisk(p){if(p.paused)return true;if(p.overdue>0)return true;const st=parseDate(p.start);if(st&&TODAY>=st&&p.pct===0)return true;if(p.pct<expectedPct(p)-RISK_LAG)return true;return false;}
+function fmtM(n){if(!n||n===0)return '—';if(n>=1000000)return (n/1000000).toFixed(1)+' млн ₴';return (n/1000).toFixed(0)+'к ₴'}
+function dateProg(s,e){const sd=parseDate(s),ed=parseDate(e);if(!sd||!ed)return 0;return Math.max(0,Math.min(100,(TODAY-sd)/(ed-sd)*100))}
+function riskClass(p){if(p.overdue>5)return 'rc-red';if(p.overdue>0)return 'rc-orange';if(p.pct>=80)return 'rc-green';if(p.pct>=40)return 'rc-yellow';return 'rc-gray'}
+function pctFill(p){if(p.pct>=80)return 'pf-green';if(p.overdue>0&&p.pct<30)return 'pf-red';if(p.overdue>0)return 'pf-orange';return 'pf-blue'}
+function pctClr(p){if(p.pct>=80)return 'var(--green)';if(p.overdue>0&&p.pct<30)return 'var(--red)';if(p.overdue>0)return 'var(--brand-orange)';return 'var(--accent-blue)'}
+
+// KPI
+let sp=0,risk=0,ov=0,splan=0,sfact=0;
+PROJECTS.forEach(p=>{sp+=p.pct;if(isRisk(p))risk++;ov+=p.overdue;splan+=p.plan||0;sfact+=p.fact||0});
+document.getElementById('kpiAvg').textContent=Math.round(sp/PROJECTS.length)+'%';
+document.getElementById('kpiRisk').textContent=risk;
+document.getElementById('kpiOverdue').textContent=ov+'+';
+document.getElementById('kpiPlan').textContent=fmtM(splan);
+document.getElementById('kpiFact').textContent=fmtM(sfact);
+
+// Group
+const byPm={};PM_ORDER.forEach(pm=>byPm[pm]=[]);
+PROJECTS.forEach(p=>{if(byPm[p.pm])byPm[p.pm].push(p)});
+
+// Nav
+const nav=document.getElementById('quickNav');
+PM_ORDER.forEach(pm=>{
+  const ps=byPm[pm];if(!ps.length)return;
+  const pov=ps.reduce((a,p)=>a+p.overdue,0);
+  const a=document.createElement('a');
+  a.className='nav-btn';a.href='#pm-'+pm;
+  a.innerHTML=pm+' <span class="nc">'+ps.length+'</span>'+(pov>0?'<span class="nl">&#9888; '+pov+'</span>':'');
+  a.addEventListener('click',e=>{e.preventDefault();document.querySelector('#pm-'+pm).scrollIntoView({behavior:'smooth',block:'start'})});
+  nav.appendChild(a);
+});
+
+// Sections
+let html='';
+PM_ORDER.forEach(pm=>{
+  const ps=byPm[pm];if(!ps.length)return;
+  const cfg=PM_CONFIG[pm]||{initials:pm[0],color:'#666'};
+  const pov=ps.reduce((a,p)=>a+p.overdue,0);
+  const avg=Math.round(ps.reduce((a,p)=>a+p.pct,0)/ps.length);
+  const planS=ps.reduce((a,p)=>a+(p.plan||0),0);
+  const factS=ps.reduce((a,p)=>a+(p.fact||0),0);
+  const bpct=planS>0?Math.round(factS/planS*100):0;
+
+  html+='<div class="pm-section" id="pm-'+pm+'">'
+    +'<div class="pm-header">'
+    +'<div style="display:flex;align-items:center;gap:10px">'
+    +'<div class="pm-avatar" style="background:'+cfg.color+'">'+cfg.initials+'</div>'
+    +'<div><div class="pm-name">'+pm+'</div>'
+    +'<div class="pm-stats"><span>Проєктів: <strong>'+ps.length+'</strong></span>'
+    +'<span>Прогрес: <strong>'+avg+'%</strong></span>'
+    +(pov>0?'<span class="sr">&#9888; Прострочено: '+pov+'</span>':'<span style="color:rgba(255,255,255,.5)">&#10003; Без прострочень</span>')
+    +'</div></div></div>'
+    +'<div style="text-align:right">'
+    +(planS>0
+      ?'<div class="pm-bbar"><span style="font-size:10px;color:rgba(255,255,255,.4)">Бюджет</span><div class="bar"><div class="bf" style="width:'+bpct+'%"></div></div><span style="font-size:11px;color:rgba(255,255,255,.7)">'+bpct+'%</span></div>'
+      +'<div style="margin-top:4px;font-size:12px"><span style="color:rgba(255,255,255,.4);font-size:10px">Plan </span><strong style="color:#fff">'+fmtM(planS)+'</strong>'
+      +(factS>0?'<span style="color:rgba(255,255,255,.4);font-size:10px;margin-left:8px">Fact </span><strong style="color:var(--green)">'+fmtM(factS)+'</strong>':'')+'</div>'
+      :'<div style="font-size:11px;color:rgba(255,255,255,.3)">Бюджет не внесено</div>')
+    +'</div></div>'
+    +'<div class="proj-grid">';
+
+  ps.forEach(p=>{
+    const dp=dateProg(p.start,p.end).toFixed(0);
+    html+='<div class="proj-card '+riskClass(p)+'" data-id="'+p.id+'" data-overdue="'+p.overdue+'" data-pct="'+p.pct+'" data-risk="'+(isRisk(p)?1:0)+'"'+(p.paused?' style="opacity:.62"':'')+'>'
+      +'<div class="proj-top"><div><div class="proj-id">&#8470; '+p.id+' &nbsp;&#183;&nbsp; '+p.start+' &#8594; '+p.end+'</div><div class="proj-name">'+p.name+'</div></div>'
+      +(p.paused?'<div class="late-badge" style="background:var(--gray-100);color:var(--text-muted)">&#9208; Пауза</div>':(p.overdue>0?'<div class="late-badge">&#9888; '+p.overdue+'</div>':''))+'</div>'
+      +'<div class="prog-row"><div class="prog-bar"><div class="prog-fill '+pctFill(p)+'" style="width:'+p.pct+'%"></div></div>'
+      +'<span class="prog-pct" style="color:'+pctClr(p)+'">'+p.pct+'%</span></div>'
+      +'<div class="task-stats"><span>Задач: <strong>'+p.tasks+'</strong></span><span>Готово: <strong>'+p.done+'</strong></span>'
+      +(p.overdue>0?'<span class="tr">Простр.: <strong>'+p.overdue+'</strong></span>':'')+'</div>'
+      +(p.plan?'<div class="brow"><span class="bl">План: </span><span class="bvp">'+fmtM(p.plan)+'</span>'
+        +(p.fact?'<span class="bl" style="margin-left:8px">Факт: </span><span class="bvf">'+fmtM(p.fact)+'</span>':'')+'</div>'
+        :'<div class="no-data">Бюджет не внесено</div>')
+      +'<a class="detail-btn" href="pillar_dashboard_'+p.id+'.html">Деталі &#8594;</a>'
+      +'</div>';
+  });
+
+  html+='</div></div>';
+});
+
+document.getElementById('pmSections').innerHTML=html;
+
+// Filter logic
+let activeFilter=null;
+function applyFilter(type){
+  if(activeFilter===type) type=null; // toggle off
+  activeFilter=type;
+  const rCard=document.getElementById('kpiRiskCard');
+  const oCard=document.getElementById('kpiOverdueCard');
+  const banner=document.getElementById('filterBanner');
+  const lbl=document.getElementById('filterLabel');
+  rCard.classList.toggle('active',type==='risk');
+  oCard.classList.toggle('active',type==='overdue');
+  const cards=document.querySelectorAll('.proj-card');
+  const sections=document.querySelectorAll('.pm-section');
+  if(!type){
+    cards.forEach(c=>c.classList.remove('hidden'));
+    sections.forEach(s=>s.style.display='');
+    banner.classList.remove('show');
+    return;
+  }
+  let shown=0;
+  cards.forEach(card=>{
+    const ov=parseInt(card.dataset.overdue||'0');
+    const pct=parseInt(card.dataset.pct||'0');
+    let match=false;
+    if(type==='risk')    match=card.dataset.risk==='1';
+    if(type==='overdue') match=ov>0;
+    card.classList.toggle('hidden',!match);
+    if(match) shown++;
+  });
+  sections.forEach(s=>{
+    const vis=s.querySelectorAll('.proj-card:not(.hidden)').length;
+    s.style.display=vis===0?'none':'';
+  });
+  const name=type==='risk'?'Під ризиком':'Прострочені завдання';
+  lbl.textContent='🔍 Фільтр: '+name+' — '+shown+' проєктів';
+  banner.classList.add('show');
+}
+
+const PS_DATA=(typeof PROJECTS!=='undefined')?PROJECTS:(typeof PROJ_INDEX!=='undefined'?PROJ_INDEX:[]);
+function psFilter(){var q=document.getElementById('psInput').value.trim().toLowerCase();var box=document.getElementById('psResults');if(!q){box.innerHTML='';box.classList.remove('show');return;}var m=PS_DATA.filter(function(p){return (''+p.id).indexOf(q)>=0||((p.name||'').toLowerCase().indexOf(q)>=0);}).slice(0,8);if(!m.length){box.innerHTML='<div class="ps-empty">Нічого не знайдено</div>';box.classList.add('show');return;}box.innerHTML=m.map(function(p){return '<a class="ps-item" href="pillar_dashboard_'+p.id+'.html"><span class="ps-id">№'+p.id+'</span><span class="ps-nm">'+(p.name||'')+'</span><span class="ps-pm">'+(p.pm||'')+'</span></a>';}).join('');box.classList.add('show');}
+function psKey(e){if(e.key==='Enter'){var a=document.querySelector('#psResults .ps-item');if(a)location.href=a.getAttribute('href');}else if(e.key==='Escape'){document.getElementById('psInput').value='';psFilter();}}
+document.addEventListener('click',function(e){if(!e.target.closest('.psearch')){var b=document.getElementById('psResults');if(b)b.classList.remove('show');}});
+
+(function(){var b=document.createElement('button');b.textContent='↑';b.title='Вгору';b.setAttribute('aria-label','Вгору');b.style.cssText='position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;border:none;background:var(--brand-orange,#E85D1A);color:#fff;font-size:20px;font-weight:700;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.28);display:none;z-index:500';b.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};document.body.appendChild(b);var t=function(){b.style.display=(window.scrollY||document.documentElement.scrollTop)>300?'block':'none';};window.addEventListener('scroll',t,{passive:true});t();})();
+
+// ---- Карта проєктів ----
+(function(){
+  if(typeof L==='undefined')return;
+  var pts=PROJECTS.filter(function(p){return p.lat&&p.lng;});
+  if(!pts.length)return;
+  document.getElementById('mapSection').style.display='block';
+  var map=L.map('projMap').setView([pts[0].lat,pts[0].lng],6);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'
