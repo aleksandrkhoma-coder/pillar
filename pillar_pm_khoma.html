@@ -156,13 +156,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель ПМ — Хома</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 10.06.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 11.06.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <a href="lessons_learned.html" style="display:inline-flex;align-items:center;gap:6px;padding:7px 16px;background:rgba(30,158,90,.2);border:1px solid rgba(30,158,90,.45);border-radius:20px;color:#4DC98A;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap;transition:all .15s;flex-shrink:0" onmouseover="this.style.background='rgba(30,158,90,.35)'" onmouseout="this.style.background='rgba(30,158,90,.2)'">&#128218; Lessons Learned</a>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 10.06.2026</div>
+      <div>Оновлено: 11.06.2026</div>
       <div>1 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
     </div>
   </div>
@@ -211,9 +211,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
 
 <script>
-const TODAY = new Date('2026-06-10');
+const TODAY = new Date('2026-06-11');
 
-const PROJECTS = [{"id": "8604", "name": "МілТек", "pm": "Хома", "pct": 91, "start": "25.05.2026", "end": "10.06.2026", "tasks": 37, "done": 35, "overdue": 0, "plan": 0, "fact": 0, "paused": false}];
+const PROJECTS = [{"id": "8604", "name": "МілТек", "pm": "Хома", "pct": 91, "start": "25.05.2026", "end": "16.06.2026", "tasks": 37, "done": 35, "overdue": 0, "plan": 0, "fact": 0, "paused": false}];
 
 const PM_CONFIG = {
   'Донська':       {initials:'НД', color:'#9B5DE5'},
@@ -366,7 +366,7 @@ document.addEventListener('click',function(e){if(!e.target.closest('.psearch')){
   var coords=[];
   pts.forEach(function(p){
     var m=L.marker([p.lat,p.lng]).addTo(map);
-    m.bindPopup('<b>&#8470; '+p.id+' '+p.name+'</b><br>ПМ: '+p.pm+(p.loc?'<br>'+p.loc:'')+'<br><a href=\"pillar_dashboard_'+p.id+'.html\">Деталі &#8594;</a>');
+    m.bindPopup('<b>&#8470; '+p.id+' '+p.name+'</b><br>ПМ: '+p.pm+(p.loc?'<br>'+p.loc:'')+'<br><a href="pillar_dashboard_'+p.id+'.html">Деталі &#8594;</a>');
     coords.push([p.lat,p.lng]);
   });
   if(coords.length>1)map.fitBounds(coords,{padding:[40,40]});

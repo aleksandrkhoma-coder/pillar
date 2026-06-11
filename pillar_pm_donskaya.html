@@ -156,13 +156,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель ПМ — Донська</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 10.06.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 11.06.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <a href="lessons_learned.html" style="display:inline-flex;align-items:center;gap:6px;padding:7px 16px;background:rgba(30,158,90,.2);border:1px solid rgba(30,158,90,.45);border-radius:20px;color:#4DC98A;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap;transition:all .15s;flex-shrink:0" onmouseover="this.style.background='rgba(30,158,90,.35)'" onmouseout="this.style.background='rgba(30,158,90,.2)'">&#128218; Lessons Learned</a>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 10.06.2026</div>
+      <div>Оновлено: 11.06.2026</div>
       <div>10 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
     </div>
   </div>
@@ -211,9 +211,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
 
 <script>
-const TODAY = new Date('2026-06-10');
+const TODAY = new Date('2026-06-11');
 
-const PROJECTS = [{"id": "3456", "name": "А Підселання фундаменту", "pm": "Донська", "pct": 59, "start": "19.05.2026", "end": "24.07.2026", "tasks": 45, "done": 24, "overdue": 0, "plan": 1541883, "fact": 421968, "paused": false, "lat": 50.42551, "lng": 30.51821, "loc": "Київ, Велика Васильківська"}, {"id": "5438", "name": "Stonava. Cz. SGM 100 MW", "pm": "Донська", "pct": 22, "start": "19.05.2026", "end": "22.08.2026", "tasks": 48, "done": 20, "overdue": 0, "plan": 260000000, "fact": 78000000, "paused": true, "lat": 49.8211, "lng": 18.5061, "loc": "Stonava, Чехія (≈ центр)"}, {"id": "5910", "name": "А   AGM 2V", "pm": "Донська", "pct": 2, "start": "19.05.2026", "end": "25.07.2026", "tasks": 51, "done": 4, "overdue": 2, "plan": 28962388, "fact": 0, "paused": false, "lat": 45.871, "lng": 15.76493, "loc": "Brdovec, Хорватія"}, {"id": "7002", "name": "А Фора  SCP W 24PS V1", "pm": "Донська", "pct": 19, "start": "19.05.2026", "end": "22.08.2026", "tasks": 51, "done": 18, "overdue": 3, "plan": 2416856, "fact": 1015173, "paused": false, "lat": 50.33997, "lng": 30.62302, "loc": "Київ (ур. Млиново)"}, {"id": "7894", "name": "А Фора  SCP  32PS", "pm": "Донська", "pct": 8, "start": "04.06.2026", "end": "18.09.2026", "tasks": 50, "done": 13, "overdue": 1, "plan": 3334874, "fact": 1487743, "paused": false, "lat": 50.33023, "lng": 30.4506, "loc": "Хотів, Київська обл."}, {"id": "8008", "name": "Модулі Григорівка", "pm": "Донська", "pct": 44, "start": "19.05.2026", "end": "30.07.2026", "tasks": 43, "done": 23, "overdue": 0, "plan": 787027, "fact": 430850, "paused": false, "lat": 49.929544, "lng": 31.405436, "loc": "Григорівка, Черкаська обл."}, {"id": "8185", "name": "Фундамент Hytte House Development Славське", "pm": "Донська", "pct": 23, "start": "02.06.2026", "end": "09.07.2026", "tasks": 40, "done": 16, "overdue": 4, "plan": 294650, "fact": 168024, "paused": false, "lat": 48.84511, "lng": 23.44765, "loc": "Славське, Львівська обл."}, {"id": "8360", "name": "Хаджет Лебедівка", "pm": "Донська", "pct": 51, "start": "19.05.2026", "end": "28.06.2026", "tasks": 45, "done": 24, "overdue": 0, "plan": 422936, "fact": 231000, "paused": false}, {"id": "8454", "name": "Олександр каркасний Верховина", "pm": "Донська", "pct": 30, "start": "26.05.2026", "end": "15.07.2026", "tasks": 48, "done": 20, "overdue": 1, "plan": 242938, "fact": 173272, "paused": false, "lat": 48.1525, "lng": 24.8089, "loc": "Верховина, Івано-Фр. обл. (≈ центр)"}, {"id": "8544", "name": "Isolar фланець Хмельницький", "pm": "Донська", "pct": 43, "start": "26.05.2026", "end": "29.08.2026", "tasks": 45, "done": 23, "overdue": 0, "plan": 261990, "fact": 261990, "paused": false}];
+const PROJECTS = [{"id": "3456", "name": "А Підселання фундаменту", "pm": "Донська", "pct": 64, "start": "19.05.2026", "end": "24.07.2026", "tasks": 45, "done": 26, "overdue": 0, "plan": 1541883, "fact": 1205908, "paused": false, "lat": 50.42551, "lng": 30.51821, "loc": "Київ, Велика Васильківська"},
+  {"id": "5438", "name": "Stonava. Cz. SGM 100 MW", "pm": "Донська", "pct": 22, "start": "19.05.2026", "end": "22.08.2026", "tasks": 48, "done": 20, "overdue": 0, "plan": 260000000, "fact": 78000000, "paused": true, "lat": 49.8211, "lng": 18.5061, "loc": "Stonava, Чехія (≈ центр)"},
+  {"id": "5910", "name": "А   AGM 2V", "pm": "Донська", "pct": 2, "start": "19.05.2026", "end": "07.08.2026", "tasks": 51, "done": 4, "overdue": 0, "plan": 28962388, "fact": 0, "paused": false, "lat": 45.871, "lng": 15.76493, "loc": "Brdovec, Хорватія"},
+  {"id": "7002", "name": "А Фора  SCP W 24PS V1", "pm": "Донська", "pct": 30, "start": "19.05.2026", "end": "22.08.2026", "tasks": 51, "done": 19, "overdue": 3, "plan": 2416856, "fact": 1015173, "paused": false, "lat": 50.33997, "lng": 30.62302, "loc": "Київ (ур. Млиново)"},
+  {"id": "7894", "name": "А Фора  SCP  32PS", "pm": "Донська", "pct": 9, "start": "04.06.2026", "end": "18.09.2026", "tasks": 50, "done": 14, "overdue": 1, "plan": 3334874, "fact": 1487743, "paused": false, "lat": 50.33023, "lng": 30.4506, "loc": "Хотів, Київська обл."},
+  {"id": "8008", "name": "Модулі Григорівка", "pm": "Донська", "pct": 54, "start": "19.05.2026", "end": "30.07.2026", "tasks": 43, "done": 25, "overdue": 0, "plan": 787027, "fact": 430850, "paused": false, "lat": 49.929544, "lng": 31.405436, "loc": "Григорівка, Черкаська обл."},
+  {"id": "8185", "name": "Фундамент Hytte House Development Славське", "pm": "Донська", "pct": 23, "start": "02.06.2026", "end": "09.07.2026", "tasks": 39, "done": 17, "overdue": 4, "plan": 294650, "fact": 168024, "paused": false, "lat": 48.84511, "lng": 23.44765, "loc": "Славське, Львівська обл."},
+  {"id": "8360", "name": "Хаджет Лебедівка", "pm": "Донська", "pct": 57, "start": "19.05.2026", "end": "28.06.2026", "tasks": 44, "done": 25, "overdue": 0, "plan": 422936, "fact": 231000, "paused": false},
+  {"id": "8454", "name": "Олександр каркасний Верховина", "pm": "Донська", "pct": 30, "start": "26.05.2026", "end": "15.07.2026", "tasks": 45, "done": 20, "overdue": 1, "plan": 242938, "fact": 173272, "paused": false, "lat": 48.1525, "lng": 24.8089, "loc": "Верховина, Івано-Фр. обл. (≈ центр)"},
+  {"id": "8544", "name": "Isolar фланець Хмельницький", "pm": "Донська", "pct": 43, "start": "26.05.2026", "end": "29.08.2026", "tasks": 43, "done": 23, "overdue": 1, "plan": 261990, "fact": 261990, "paused": false}];
 
 const PM_CONFIG = {
   'Донська':       {initials:'НД', color:'#9B5DE5'},
@@ -366,7 +375,7 @@ document.addEventListener('click',function(e){if(!e.target.closest('.psearch')){
   var coords=[];
   pts.forEach(function(p){
     var m=L.marker([p.lat,p.lng]).addTo(map);
-    m.bindPopup('<b>&#8470; '+p.id+' '+p.name+'</b><br>ПМ: '+p.pm+(p.loc?'<br>'+p.loc:'')+'<br><a href=\"pillar_dashboard_'+p.id+'.html\">Деталі &#8594;</a>');
+    m.bindPopup('<b>&#8470; '+p.id+' '+p.name+'</b><br>ПМ: '+p.pm+(p.loc?'<br>'+p.loc:'')+'<br><a href="pillar_dashboard_'+p.id+'.html">Деталі &#8594;</a>');
     coords.push([p.lat,p.lng]);
   });
   if(coords.length>1)map.fitBounds(coords,{padding:[40,40]});
