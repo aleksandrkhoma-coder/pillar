@@ -156,14 +156,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель ПМ — Александров</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 11.06.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 12.06.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <a href="lessons_learned.html" style="display:inline-flex;align-items:center;gap:6px;padding:7px 16px;background:rgba(30,158,90,.2);border:1px solid rgba(30,158,90,.45);border-radius:20px;color:#4DC98A;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap;transition:all .15s;flex-shrink:0" onmouseover="this.style.background='rgba(30,158,90,.35)'" onmouseout="this.style.background='rgba(30,158,90,.2)'">&#128218; Lessons Learned</a>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 11.06.2026</div>
-      <div>6 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
+      <div>Оновлено: 12.06.2026</div>
+      <div>8 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
     </div>
   </div>
   <nav class="quick-nav" id="quickNav"></nav>
@@ -173,7 +173,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="kpi-row">
     <div class="kpi">
       <div class="kpi-label">Активних проєктів</div>
-      <div class="kpi-value">6</div>
+      <div class="kpi-value">8</div>
       <div class="kpi-sub">1 ПМ у портфелі</div>
     </div>
     <div class="kpi">
@@ -211,14 +211,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
 
 <script>
-const TODAY = new Date('2026-06-11');
+const TODAY = new Date('2026-06-12');
 
-const PROJECTS = [{"id": "5870", "name": "Carport Airport Munich", "pm": "Александров", "pct": 90, "start": "19.05.2026", "end": "10.07.2026", "tasks": 51, "done": 40, "overdue": 1, "plan": 10400000, "fact": 2600000, "paused": false},
+const PROJECTS = [{"id": "5870", "name": "Carport Airport Munich", "pm": "Александров", "pct": 93, "start": "19.05.2026", "end": "10.07.2026", "tasks": 51, "done": 42, "overdue": 1, "plan": 10400000, "fact": 2600000, "paused": false},
+  {"id": "6406", "name": "Максим Яловий Чинадієво", "pm": "Александров", "pct": 0, "start": "08.06.2026", "end": "20.09.2026", "tasks": 51, "done": 0, "overdue": 3, "plan": 373582, "fact": 15530610, "paused": false},
   {"id": "6704", "name": "SCP Taurus 236PS", "pm": "Александров", "pct": 94, "start": "19.05.2026", "end": "03.07.2026", "tasks": 45, "done": 39, "overdue": 0, "plan": 11596000, "fact": 5200000, "paused": false},
-  {"id": "6842", "name": "2", "pm": "Александров", "pct": 59, "start": "22.05.2026", "end": "07.07.2026", "tasks": 50, "done": 29, "overdue": 1, "plan": 3308968, "fact": 3308968, "paused": false},
+  {"id": "6842", "name": "2", "pm": "Александров", "pct": 59, "start": "22.05.2026", "end": "07.07.2026", "tasks": 50, "done": 29, "overdue": 3, "plan": 3308968, "fact": 3308968, "paused": false},
   {"id": "7068", "name": "А Remtec energy  AGM  160 TP", "pm": "Александров", "pct": 99, "start": "19.05.2026", "end": "31.07.2026", "tasks": 52, "done": 45, "overdue": 3, "plan": 5640128, "fact": 0, "paused": false},
   {"id": "8188", "name": "Фундамент Ужгород Стефанія", "pm": "Александров", "pct": 31, "start": "26.05.2026", "end": "18.07.2026", "tasks": 51, "done": 20, "overdue": 0, "plan": 281926, "fact": 208000, "paused": true},
-  {"id": "8438", "name": "GS", "pm": "Александров", "pct": 77, "start": "19.05.2026", "end": "20.06.2026", "tasks": 51, "done": 39, "overdue": 6, "plan": 758160, "fact": 758160, "paused": false}];
+  {"id": "8438", "name": "GS", "pm": "Александров", "pct": 79, "start": "19.05.2026", "end": "20.06.2026", "tasks": 51, "done": 42, "overdue": 3, "plan": 758160, "fact": 758160, "paused": false},
+  {"id": "8644", "name": "Solars ГШ 1,7+надставки 3,5", "pm": "Александров", "pct": 0, "start": "08.06.2026", "end": "20.09.2026", "tasks": 51, "done": 0, "overdue": 3, "plan": 415900, "fact": 0, "paused": false}];
 
 const PM_CONFIG = {
   'Донська':       {initials:'НД', color:'#9B5DE5'},
