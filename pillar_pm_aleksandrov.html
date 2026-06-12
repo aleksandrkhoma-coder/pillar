@@ -34,6 +34,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .quick-nav::-webkit-scrollbar{display:none}
 .nav-btn{display:flex;align-items:center;gap:7px;padding:5px 14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:20px;color:rgba(255,255,255,.8);font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;white-space:nowrap;transition:all .15s;flex-shrink:0}
 .nav-btn:hover{background:rgba(255,255,255,.18);color:#fff}
+.nav-btn.map-active{background:var(--brand-orange,#E85D1A);border-color:var(--brand-orange,#E85D1A);color:#fff}
 .nc{background:rgba(255,255,255,.15);border-radius:10px;padding:1px 7px;font-size:11px}
 .nl{background:rgba(216,48,37,.7);border-radius:10px;padding:1px 7px;font-size:11px;color:#fff}
 
@@ -213,7 +214,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <script>
 const TODAY = new Date('2026-06-12');
 
-const PROJECTS = [{"id": "5870", "name": "Carport Airport Munich", "pm": "Александров", "pct": 93, "start": "19.05.2026", "end": "10.07.2026", "tasks": 51, "done": 42, "overdue": 1, "plan": 10400000, "fact": 2600000, "paused": false, "lat": 48.35631, "lng": 11.76392, "loc": "Аеропорт Мюнхен, Німеччина"}, {"id": "6406", "name": "Максим Яловий Чинадієво", "pm": "Александров", "pct": 0, "start": "08.06.2026", "end": "20.09.2026", "tasks": 51, "done": 0, "overdue": 3, "plan": 373582, "fact": 155306.1, "paused": false, "lat": 48.4846, "lng": 22.82756, "loc": "Чинадійово, Закарпатська обл."}, {"id": "6704", "name": "SCP Taurus 236PS", "pm": "Александров", "pct": 94, "start": "19.05.2026", "end": "03.07.2026", "tasks": 45, "done": 39, "overdue": 0, "plan": 11596000, "fact": 5200000, "paused": false, "lat": 48.98825, "lng": 9.46467, "loc": "Баден-Вюртемберг, Німеччина"}, {"id": "6842", "name": "2", "pm": "Александров", "pct": 59, "start": "22.05.2026", "end": "07.07.2026", "tasks": 50, "done": 29, "overdue": 3, "plan": 3308968, "fact": 3308968, "paused": false, "lat": 45.55178, "lng": 15.16751, "loc": "Хорватія"}, {"id": "7068", "name": "А Remtec energy  AGM  160 TP", "pm": "Александров", "pct": 99, "start": "19.05.2026", "end": "31.07.2026", "tasks": 52, "done": 45, "overdue": 3, "plan": 5640128, "fact": 0, "paused": false}, {"id": "8188", "name": "Фундамент Ужгород Стефанія", "pm": "Александров", "pct": 31, "start": "26.05.2026", "end": "18.07.2026", "tasks": 51, "done": 20, "overdue": 0, "plan": 281926, "fact": 208000, "paused": true}, {"id": "8438", "name": "GS", "pm": "Александров", "pct": 79, "start": "19.05.2026", "end": "20.06.2026", "tasks": 51, "done": 42, "overdue": 3, "plan": 758160, "fact": 758160, "paused": false, "lat": 50.61052, "lng": 6.29892, "loc": "Simmerath, Німеччина"}, {"id": "8644", "name": "Solars ГШ 1,7+надставки 3,5", "pm": "Александров", "pct": 0, "start": "08.06.2026", "end": "20.09.2026", "tasks": 51, "done": 0, "overdue": 3, "plan": 415900, "fact": 0, "paused": false}];
+const PROJECTS = [{"id": "5870", "name": "Carport Airport Munich", "pm": "Александров", "pct": 93, "start": "19.05.2026", "end": "10.07.2026", "tasks": 51, "done": 42, "overdue": 1, "plan": 10400000, "fact": 2600000, "paused": false, "lat": 48.35631, "lng": 11.76392, "loc": "Аеропорт Мюнхен, Німеччина"},
+  {"id": "6406", "name": "Максим Яловий Чинадієво", "pm": "Александров", "pct": 0, "start": "08.06.2026", "end": "20.09.2026", "tasks": 51, "done": 0, "overdue": 3, "plan": 373582, "fact": 155306.1, "paused": false, "lat": 48.4846, "lng": 22.82756, "loc": "Чинадійово, Закарпатська обл."},
+  {"id": "6704", "name": "SCP Taurus 236PS", "pm": "Александров", "pct": 94, "start": "19.05.2026", "end": "03.07.2026", "tasks": 45, "done": 39, "overdue": 0, "plan": 11596000, "fact": 5200000, "paused": false, "lat": 48.98825, "lng": 9.46467, "loc": "Баден-Вюртемберг, Німеччина"},
+  {"id": "6842", "name": "2", "pm": "Александров", "pct": 59, "start": "22.05.2026", "end": "07.07.2026", "tasks": 50, "done": 29, "overdue": 3, "plan": 3308968, "fact": 3308968, "paused": false, "lat": 45.55178, "lng": 15.16751, "loc": "Хорватія"},
+  {"id": "7068", "name": "А Remtec energy  AGM  160 TP", "pm": "Александров", "pct": 99, "start": "19.05.2026", "end": "31.07.2026", "tasks": 52, "done": 45, "overdue": 3, "plan": 5640128, "fact": 0, "paused": false},
+  {"id": "8188", "name": "Фундамент Ужгород Стефанія", "pm": "Александров", "pct": 31, "start": "26.05.2026", "end": "18.07.2026", "tasks": 51, "done": 20, "overdue": 0, "plan": 281926, "fact": 208000, "paused": true},
+  {"id": "8438", "name": "GS", "pm": "Александров", "pct": 79, "start": "19.05.2026", "end": "20.06.2026", "tasks": 51, "done": 42, "overdue": 3, "plan": 758160, "fact": 758160, "paused": false, "lat": 50.61052, "lng": 6.29892, "loc": "Simmerath, Німеччина"},
+  {"id": "8644", "name": "Solars ГШ 1,7+надставки 3,5", "pm": "Александров", "pct": 0, "start": "08.06.2026", "end": "20.09.2026", "tasks": 51, "done": 0, "overdue": 3, "plan": 415900, "fact": 0, "paused": false}];
 
 const PM_CONFIG = {
   'Донська':       {initials:'НД', color:'#9B5DE5'},
@@ -256,7 +264,16 @@ PM_ORDER.forEach(pm=>{
   const a=document.createElement('a');
   a.className='nav-btn';a.href='#pm-'+pm;
   a.innerHTML=pm+' <span class="nc">'+ps.length+'</span>'+(pov>0?'<span class="nl">&#9888; '+pov+'</span>':'');
-  a.addEventListener('click',e=>{e.preventDefault();document.querySelector('#pm-'+pm).scrollIntoView({behavior:'smooth',block:'start'})});
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    document.querySelector('#pm-'+pm).scrollIntoView({behavior:'smooth',block:'start'});
+    if(window.setMapPM){
+      var nv=(window.__mapPM===pm)?null:pm;
+      window.setMapPM(nv);
+      document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('map-active'));
+      if(nv)a.classList.add('map-active');
+    }
+  });
   nav.appendChild(a);
 });
 
@@ -363,13 +380,29 @@ document.addEventListener('click',function(e){if(!e.target.closest('.psearch')){
   document.getElementById('mapSection').style.display='block';
   var map=L.map('projMap').setView([pts[0].lat,pts[0].lng],6);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(map);
-  var coords=[];
+  var markers=[];
   pts.forEach(function(p){
     var m=L.marker([p.lat,p.lng]).addTo(map);
     m.bindPopup('<b>&#8470; '+p.id+' '+p.name+'</b><br>ПМ: '+p.pm+(p.loc?'<br>'+p.loc:'')+'<br><a href="pillar_dashboard_'+p.id+'.html">Деталі &#8594;</a>');
-    coords.push([p.lat,p.lng]);
+    markers.push({m:m,pm:p.pm,ll:[p.lat,p.lng]});
   });
-  if(coords.length>1)map.fitBounds(coords,{padding:[40,40]});
+  function refit(){
+    var cs=markers.filter(function(x){return !window.__mapPM||x.pm===window.__mapPM;}).map(function(x){return x.ll;});
+    if(cs.length>1)map.fitBounds(cs,{padding:[40,40]});
+    else if(cs.length===1)map.setView(cs[0],10);
+  }
+  window.__mapPM=null;
+  window.setMapPM=function(pm){
+    window.__mapPM=pm;
+    markers.forEach(function(x){
+      if(!pm||x.pm===pm){x.m.addTo(map);}else{map.removeLayer(x.m);}
+    });
+    var head=document.querySelector('#mapSection .map-head');
+    if(head)head.innerHTML='&#128506; Карта проєктів'+(pm?' — '+pm:'');
+    refit();
+    setTimeout(function(){map.invalidateSize();},150);
+  };
+  refit();
   setTimeout(function(){map.invalidateSize();},200);
 })();
 </script>

@@ -34,6 +34,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .quick-nav::-webkit-scrollbar{display:none}
 .nav-btn{display:flex;align-items:center;gap:7px;padding:5px 14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:20px;color:rgba(255,255,255,.8);font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;white-space:nowrap;transition:all .15s;flex-shrink:0}
 .nav-btn:hover{background:rgba(255,255,255,.18);color:#fff}
+.nav-btn.map-active{background:var(--brand-orange,#E85D1A);border-color:var(--brand-orange,#E85D1A);color:#fff}
 .nc{background:rgba(255,255,255,.15);border-radius:10px;padding:1px 7px;font-size:11px}
 .nl{background:rgba(216,48,37,.7);border-radius:10px;padding:1px 7px;font-size:11px;color:#fff}
 
@@ -260,7 +261,16 @@ PM_ORDER.forEach(pm=>{
   const a=document.createElement('a');
   a.className='nav-btn';a.href='#pm-'+pm;
   a.innerHTML=pm+' <span class="nc">'+ps.length+'</span>'+(pov>0?'<span class="nl">&#9888; '+pov+'</span>':'');
-  a.addEventListener('click',e=>{e.preventDefault();document.querySelector('#pm-'+pm).scrollIntoView({behavior:'smooth',block:'start'})});
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    document.querySelector('#pm-'+pm).scrollIntoView({behavior:'smooth',block:'start'});
+    if(window.setMapPM){
+      var nv=(window.__mapPM===pm)?null:pm;
+      window.setMapPM(nv);
+      document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('map-active'));
+      if(nv)a.classList.add('map-active');
+    }
+  });
   nav.appendChild(a);
 });
 
@@ -367,13 +377,29 @@ document.addEventListener('click',function(e){if(!e.target.closest('.psearch')){
   document.getElementById('mapSection').style.display='block';
   var map=L.map('projMap').setView([pts[0].lat,pts[0].lng],6);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(map);
-  var coords=[];
+  var markers=[];
   pts.forEach(function(p){
     var m=L.marker([p.lat,p.lng]).addTo(map);
     m.bindPopup('<b>&#8470; '+p.id+' '+p.name+'</b><br>ПМ: '+p.pm+(p.loc?'<br>'+p.loc:'')+'<br><a href="pillar_dashboard_'+p.id+'.html">Деталі &#8594;</a>');
-    coords.push([p.lat,p.lng]);
+    markers.push({m:m,pm:p.pm,ll:[p.lat,p.lng]});
   });
-  if(coords.length>1)map.fitBounds(coords,{padding:[40,40]});
+  function refit(){
+    var cs=markers.filter(function(x){return !window.__mapPM||x.pm===window.__mapPM;}).map(function(x){return x.ll;});
+    if(cs.length>1)map.fitBounds(cs,{padding:[40,40]});
+    else if(cs.length===1)map.setView(cs[0],10);
+  }
+  window.__mapPM=null;
+  window.setMapPM=function(pm){
+    window.__mapPM=pm;
+    markers.forEach(function(x){
+      if(!pm||x.pm===pm){x.m.addTo(map);}else{map.removeLayer(x.m);}
+    });
+    var head=document.querySelector('#mapSection .map-head');
+    if(head)head.innerHTML='&#128506; Карта проєктів'+(pm?' — '+pm:'');
+    refit();
+    setTimeout(function(){map.invalidateSize();},150);
+  };
+  refit();
   setTimeout(function(){map.invalidateSize();},200);
 })();
 </script>
