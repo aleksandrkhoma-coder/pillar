@@ -40,7 +40,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 .page{max-width:1320px;margin:0 auto;padding:20px 24px}
 
-.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px}
+.kpi-row{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:24px}
 .kpi{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
 .kpi-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);margin-bottom:6px}
 .kpi-value{font-size:28px;font-weight:800;color:var(--brand-dark);line-height:1}
@@ -174,7 +174,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="kpi-row">
     <div class="kpi">
       <div class="kpi-label">Активних проєктів</div>
-      <div class="kpi-value">10</div>
+      <div class="kpi-value" id="kpiActive">24</div>
       <div class="kpi-sub">1 ПМ у портфелі</div>
     </div>
     <div class="kpi">
@@ -199,6 +199,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <div class="kb-item"><div class="kbl">Факт</div><div class="kbv fact" id="kpiFact">—</div></div>
       </div>
     </div>
+    <div class="kpi">
+      <div class="kpi-label">Втрачена вигода</div>
+      <div class="kpi-value red" id="kpiLost">—</div>
+      <div class="kpi-sub" id="kpiLostSub">втрачені проєкти</div>
+    </div>
   </div>
   <div class="filter-banner" id="filterBanner">
     <span id="filterLabel"></span>
@@ -214,16 +219,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <script>
 const TODAY = new Date('2026-06-15');
 
-const PROJECTS = [{"id": "3456", "name": "А Підселання фундаменту", "pm": "Донська", "pct": 64, "start": "19.05.2026", "end": "24.07.2026", "tasks": 45, "done": 26, "overdue": 8, "plan": 1541883, "fact": 1205908, "paused": false, "lat": 50.42551, "lng": 30.51821, "loc": "Київ, Велика Васильківська"},
-  {"id": "5438", "name": "Stonava. Cz. SGM 100 MW", "pm": "Донська", "pct": 22, "start": "19.05.2026", "end": "22.08.2026", "tasks": 48, "done": 20, "overdue": 0, "plan": 260000000, "fact": 78000000, "paused": true, "lat": 49.8211, "lng": 18.5061, "loc": "Stonava, Чехія (≈ центр)"},
-  {"id": "5910", "name": "А   AGM 2V", "pm": "Донська", "pct": 2, "start": "19.05.2026", "end": "07.08.2026", "tasks": 51, "done": 4, "overdue": 10, "plan": 28962388, "fact": 0, "paused": false, "lat": 45.871, "lng": 15.76493, "loc": "Brdovec, Хорватія"},
-  {"id": "7002", "name": "А Фора  SCP W 24PS V1", "pm": "Донська", "pct": 30, "start": "19.05.2026", "end": "22.08.2026", "tasks": 51, "done": 19, "overdue": 3, "plan": 2416856, "fact": 1015173, "paused": false, "lat": 50.33997, "lng": 30.62302, "loc": "Київ (ур. Млиново)"},
-  {"id": "7894", "name": "А Фора  SCP  32PS", "pm": "Донська", "pct": 9, "start": "04.06.2026", "end": "18.09.2026", "tasks": 50, "done": 14, "overdue": 2, "plan": 3334874, "fact": 1487743, "paused": false, "lat": 50.33023, "lng": 30.4506, "loc": "Хотів, Київська обл."},
-  {"id": "8008", "name": "Модулі Григорівка", "pm": "Донська", "pct": 54, "start": "19.05.2026", "end": "30.07.2026", "tasks": 43, "done": 25, "overdue": 4, "plan": 787027, "fact": 430850, "paused": false, "lat": 49.929544, "lng": 31.405436, "loc": "Григорівка, Черкаська обл."},
-  {"id": "8185", "name": "Фундамент Hytte House Development Славське", "pm": "Донська", "pct": 23, "start": "02.06.2026", "end": "09.07.2026", "tasks": 39, "done": 17, "overdue": 4, "plan": 294650, "fact": 168024, "paused": false, "lat": 48.84511, "lng": 23.44765, "loc": "Славське, Львівська обл."},
-  {"id": "8360", "name": "Хаджет Лебедівка", "pm": "Донська", "pct": 57, "start": "19.05.2026", "end": "28.06.2026", "tasks": 44, "done": 26, "overdue": 8, "plan": 422936, "fact": 326968, "paused": false},
-  {"id": "8454", "name": "Олександр каркасний Верховина", "pm": "Донська", "pct": 30, "start": "26.05.2026", "end": "15.07.2026", "tasks": 45, "done": 20, "overdue": 4, "plan": 242938, "fact": 173272, "paused": false, "lat": 48.1525, "lng": 24.8089, "loc": "Верховина, Івано-Фр. обл. (≈ центр)"},
-  {"id": "8544", "name": "Isolar фланець Хмельницький", "pm": "Донська", "pct": 43, "start": "26.05.2026", "end": "29.08.2026", "tasks": 43, "done": 23, "overdue": 2, "plan": 261990, "fact": 261990, "paused": false}];
+const PROJECTS = [{"id": "3456", "name": "А Підселання фундаменту", "pm": "Донська", "pct": 64, "start": "19.05.2026", "end": "24.07.2026", "tasks": 45, "done": 26, "overdue": 8, "plan": 1541883, "fact": 1205908, "paused": false, "status": "active", "lost_value": 0, "lat": 50.42551, "lng": 30.51821, "loc": "Київ, Велика Васильківська"},
+  {"id": "5438", "name": "Stonava. Cz. SGM 100 MW", "pm": "Донська", "pct": 22, "start": "19.05.2026", "end": "22.08.2026", "tasks": 48, "done": 20, "overdue": 0, "plan": 260000000, "fact": 78000000, "paused": true, "status": "paused", "lost_value": 0, "lat": 49.8211, "lng": 18.5061, "loc": "Stonava, Чехія (≈ центр)"},
+  {"id": "5910", "name": "А   AGM 2V", "pm": "Донська", "pct": 2, "start": "19.05.2026", "end": "07.08.2026", "tasks": 51, "done": 4, "overdue": 10, "plan": 28962388, "fact": 0, "paused": false, "status": "active", "lost_value": 0, "lat": 45.871, "lng": 15.76493, "loc": "Brdovec, Хорватія"},
+  {"id": "7002", "name": "А Фора  SCP W 24PS V1", "pm": "Донська", "pct": 30, "start": "19.05.2026", "end": "22.08.2026", "tasks": 51, "done": 19, "overdue": 3, "plan": 2416856, "fact": 1015173, "paused": false, "status": "active", "lost_value": 0, "lat": 50.33997, "lng": 30.62302, "loc": "Київ (ур. Млиново)"},
+  {"id": "7894", "name": "А Фора  SCP  32PS", "pm": "Донська", "pct": 9, "start": "04.06.2026", "end": "18.09.2026", "tasks": 50, "done": 14, "overdue": 2, "plan": 3334874, "fact": 1487743, "paused": false, "status": "active", "lost_value": 0, "lat": 50.33023, "lng": 30.4506, "loc": "Хотів, Київська обл."},
+  {"id": "8008", "name": "Модулі Григорівка", "pm": "Донська", "pct": 54, "start": "19.05.2026", "end": "30.07.2026", "tasks": 43, "done": 25, "overdue": 4, "plan": 787027, "fact": 430850, "paused": false, "status": "active", "lost_value": 0, "lat": 49.929544, "lng": 31.405436, "loc": "Григорівка, Черкаська обл."},
+  {"id": "8185", "name": "Фундамент Hytte House Development Славське", "pm": "Донська", "pct": 23, "start": "02.06.2026", "end": "09.07.2026", "tasks": 39, "done": 17, "overdue": 4, "plan": 294650, "fact": 168024, "paused": false, "status": "active", "lost_value": 0, "lat": 48.84511, "lng": 23.44765, "loc": "Славське, Львівська обл."},
+  {"id": "8360", "name": "Хаджет Лебедівка", "pm": "Донська", "pct": 57, "start": "19.05.2026", "end": "28.06.2026", "tasks": 44, "done": 26, "overdue": 8, "plan": 422936, "fact": 326968, "paused": false, "status": "active", "lost_value": 0},
+  {"id": "8454", "name": "Олександр каркасний Верховина", "pm": "Донська", "pct": 30, "start": "26.05.2026", "end": "15.07.2026", "tasks": 45, "done": 20, "overdue": 4, "plan": 242938, "fact": 173272, "paused": false, "status": "active", "lost_value": 0, "lat": 48.1525, "lng": 24.8089, "loc": "Верховина, Івано-Фр. обл. (≈ центр)"},
+  {"id": "8544", "name": "Isolar фланець Хмельницький", "pm": "Донська", "pct": 43, "start": "26.05.2026", "end": "29.08.2026", "tasks": 43, "done": 23, "overdue": 2, "plan": 261990, "fact": 261990, "paused": false, "status": "active", "lost_value": 0}];
 
 const PM_CONFIG = {
   'Донська':       {initials:'НД', color:'#9B5DE5'},
@@ -245,18 +250,28 @@ function riskClass(p){if(p.overdue>5)return 'rc-red';if(p.overdue>0)return 'rc-o
 function pctFill(p){if(p.pct>=80)return 'pf-green';if(p.overdue>0&&p.pct<30)return 'pf-red';if(p.overdue>0)return 'pf-orange';return 'pf-blue'}
 function pctClr(p){if(p.pct>=80)return 'var(--green)';if(p.overdue>0&&p.pct<30)return 'var(--red)';if(p.overdue>0)return 'var(--brand-orange)';return 'var(--accent-blue)'}
 
-// KPI
+// статуси проєктів
+function isClosed(p){return p.status==='done'||p.status==='lost';}
+const ACTIVE=PROJECTS.filter(p=>!isClosed(p));
+const LOST=PROJECTS.filter(p=>p.status==='lost');
+const DONE=PROJECTS.filter(p=>p.status==='done');
+
+// KPI (рахуємо лише активні)
 let sp=0,risk=0,ov=0,splan=0,sfact=0;
-PROJECTS.forEach(p=>{sp+=p.pct;if(isRisk(p))risk++;ov+=p.overdue;splan+=p.plan||0;sfact+=p.fact||0});
-document.getElementById('kpiAvg').textContent=Math.round(sp/PROJECTS.length)+'%';
+ACTIVE.forEach(p=>{sp+=p.pct;if(isRisk(p))risk++;ov+=p.overdue;splan+=p.plan||0;sfact+=p.fact||0});
+const _act=document.getElementById('kpiActive');if(_act)_act.textContent=ACTIVE.length;
+document.getElementById('kpiAvg').textContent=(ACTIVE.length?Math.round(sp/ACTIVE.length):0)+'%';
 document.getElementById('kpiRisk').textContent=risk;
 document.getElementById('kpiOverdue').textContent=ov+'+';
 document.getElementById('kpiPlan').textContent=fmtM(splan);
 document.getElementById('kpiFact').textContent=fmtM(sfact);
+const lostSum=LOST.reduce((a,p)=>a+(p.lost_value||p.plan||0),0);
+const _lost=document.getElementById('kpiLost');if(_lost)_lost.textContent=fmtM(lostSum);
+const _lsub=document.getElementById('kpiLostSub');if(_lsub)_lsub.textContent=LOST.length+' втрачено · '+DONE.length+' завершено';
 
-// Group
+// Group (тільки активні)
 const byPm={};PM_ORDER.forEach(pm=>byPm[pm]=[]);
-PROJECTS.forEach(p=>{if(byPm[p.pm])byPm[p.pm].push(p)});
+ACTIVE.forEach(p=>{if(byPm[p.pm])byPm[p.pm].push(p)});
 
 // Nav
 const nav=document.getElementById('quickNav');
@@ -327,6 +342,30 @@ PM_ORDER.forEach(pm=>{
   html+='</div></div>';
 });
 
+// Архів: завершені (✓) та втрачені (✗)
+const archived=PROJECTS.filter(isClosed);
+if(archived.length){
+  html+='<div class="pm-section" id="pm-archive"><div class="pm-header" style="background:#4B5563">'
+    +'<div style="display:flex;align-items:center;gap:10px"><div class="pm-avatar" style="background:#6B7280">&#128193;</div>'
+    +'<div><div class="pm-name">Архів</div><div class="pm-stats">'
+    +'<span>&#10003; Завершено: <strong>'+DONE.length+'</strong></span>'
+    +'<span class="sr">&#10007; Втрачено: '+LOST.length+'</span>'
+    +(lostSum>0?'<span>Втрачена вигода: <strong>'+fmtM(lostSum)+'</strong></span>':'')
+    +'</div></div></div></div><div class="proj-grid">';
+  archived.forEach(p=>{
+    const lost=p.status==='lost';
+    html+='<div class="proj-card '+(lost?'rc-red':'rc-green')+'" data-id="'+p.id+'" data-overdue="0" data-pct="'+p.pct+'" data-risk="0" style="opacity:.78">'
+      +'<div class="proj-top"><div><div class="proj-id">&#8470; '+p.id+' &nbsp;&#183;&nbsp; ПМ: '+p.pm+'</div><div class="proj-name">'+p.name+'</div></div>'
+      +'<div class="late-badge" style="background:'+(lost?'var(--red)':'var(--green)')+';color:#fff">'+(lost?'&#10007; Втрачено':'&#10003; Завершено')+'</div></div>'
+      +(lost
+        ?'<div class="brow"><span class="bl">Втрачена вигода: </span><span class="bvp" style="color:var(--red)">'+fmtM(p.lost_value||p.plan)+'</span></div>'
+        :'<div class="brow"><span class="bl">Бюджет: </span><span class="bvp">'+fmtM(p.plan)+'</span></div>')
+      +'<a class="detail-btn" href="pillar_dashboard_'+p.id+'.html">Деталі &#8594;</a>'
+      +'</div>';
+  });
+  html+='</div></div>';
+}
+
 document.getElementById('pmSections').innerHTML=html;
 
 // Filter logic
@@ -377,7 +416,7 @@ document.addEventListener('click',function(e){if(!e.target.closest('.psearch')){
 // ---- Карта проєктів ----
 (function(){
   if(typeof L==='undefined')return;
-  var pts=PROJECTS.filter(function(p){return p.lat&&p.lng;});
+  var pts=PROJECTS.filter(function(p){return p.lat&&p.lng&&p.status!=='done'&&p.status!=='lost';});
   if(!pts.length)return;
   document.getElementById('mapSection').style.display='block';
   var map=L.map('projMap').setView([pts[0].lat,pts[0].lng],6);

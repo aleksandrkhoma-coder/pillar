@@ -40,7 +40,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 .page{max-width:1320px;margin:0 auto;padding:20px 24px}
 
-.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px}
+.kpi-row{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:24px}
 .kpi{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
 .kpi-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);margin-bottom:6px}
 .kpi-value{font-size:28px;font-weight:800;color:var(--brand-dark);line-height:1}
@@ -174,7 +174,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="kpi-row">
     <div class="kpi">
       <div class="kpi-label">Активних проєктів</div>
-      <div class="kpi-value">8</div>
+      <div class="kpi-value" id="kpiActive">24</div>
       <div class="kpi-sub">1 ПМ у портфелі</div>
     </div>
     <div class="kpi">
@@ -199,6 +199,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <div class="kb-item"><div class="kbl">Факт</div><div class="kbv fact" id="kpiFact">—</div></div>
       </div>
     </div>
+    <div class="kpi">
+      <div class="kpi-label">Втрачена вигода</div>
+      <div class="kpi-value red" id="kpiLost">—</div>
+      <div class="kpi-sub" id="kpiLostSub">втрачені проєкти</div>
+    </div>
   </div>
   <div class="filter-banner" id="filterBanner">
     <span id="filterLabel"></span>
@@ -214,14 +219,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <script>
 const TODAY = new Date('2026-06-15');
 
-const PROJECTS = [{"id": "5870", "name": "Carport Airport Munich", "pm": "Александров", "pct": 93, "start": "19.05.2026", "end": "10.07.2026", "tasks": 51, "done": 42, "overdue": 1, "plan": 10400000, "fact": 2600000, "paused": false, "lat": 48.35631, "lng": 11.76392, "loc": "Аеропорт Мюнхен, Німеччина"},
-  {"id": "6406", "name": "Максим Яловий Чинадієво", "pm": "Александров", "pct": 0, "start": "08.06.2026", "end": "20.09.2026", "tasks": 51, "done": 0, "overdue": 3, "plan": 373582, "fact": 155306, "paused": false, "lat": 48.4846, "lng": 22.82756, "loc": "Чинадійово, Закарпатська обл."},
-  {"id": "6704", "name": "SCP Taurus 236PS", "pm": "Александров", "pct": 94, "start": "19.05.2026", "end": "03.07.2026", "tasks": 45, "done": 39, "overdue": 0, "plan": 11596000, "fact": 5200000, "paused": false, "lat": 48.98825, "lng": 9.46467, "loc": "Баден-Вюртемберг, Німеччина"},
-  {"id": "6842", "name": "2", "pm": "Александров", "pct": 59, "start": "22.05.2026", "end": "07.07.2026", "tasks": 50, "done": 29, "overdue": 3, "plan": 3308968, "fact": 3308968, "paused": false, "lat": 45.55178, "lng": 15.16751, "loc": "Хорватія"},
-  {"id": "7068", "name": "А Remtec energy  AGM  160 TP", "pm": "Александров", "pct": 99, "start": "19.05.2026", "end": "31.07.2026", "tasks": 52, "done": 45, "overdue": 3, "plan": 5640128, "fact": 0, "paused": false},
-  {"id": "8188", "name": "Фундамент Ужгород Стефанія", "pm": "Александров", "pct": 31, "start": "26.05.2026", "end": "18.07.2026", "tasks": 51, "done": 20, "overdue": 4, "plan": 281926, "fact": 208000, "paused": false},
-  {"id": "8438", "name": "GS", "pm": "Александров", "pct": 79, "start": "19.05.2026", "end": "20.06.2026", "tasks": 51, "done": 42, "overdue": 4, "plan": 758160, "fact": 758160, "paused": false, "lat": 50.61052, "lng": 6.29892, "loc": "Simmerath, Німеччина"},
-  {"id": "8644", "name": "Solars ГШ 1,7+надставки 3,5", "pm": "Александров", "pct": 0, "start": "08.06.2026", "end": "20.09.2026", "tasks": 51, "done": 0, "overdue": 3, "plan": 415900, "fact": 0, "paused": false}];
+const PROJECTS = [{"id": "5870", "name": "Carport Airport Munich", "pm": "Александров", "pct": 93, "start": "19.05.2026", "end": "10.07.2026", "tasks": 51, "done": 42, "overdue": 1, "plan": 10400000, "fact": 2600000, "paused": false, "status": "active", "lost_value": 0, "lat": 48.35631, "lng": 11.76392, "loc": "Аеропорт Мюнхен, Німеччина"},
+  {"id": "6406", "name": "Максим Яловий Чинадієво", "pm": "Александров", "pct": 0, "start": "08.06.2026", "end": "20.09.2026", "tasks": 51, "done": 0, "overdue": 3, "plan": 373582, "fact": 155306, "paused": false, "status": "active", "lost_value": 0, "lat": 48.4846, "lng": 22.82756, "loc": "Чинадійово, Закарпатська обл."},
+  {"id": "6704", "name": "SCP Taurus 236PS", "pm": "Александров", "pct": 94, "start": "19.05.2026", "end": "03.07.2026", "tasks": 45, "done": 39, "overdue": 0, "plan": 11596000, "fact": 5200000, "paused": false, "status": "active", "lost_value": 0, "lat": 48.98825, "lng": 9.46467, "loc": "Баден-Вюртемберг, Німеччина"},
+  {"id": "6842", "name": "2", "pm": "Александров", "pct": 59, "start": "22.05.2026", "end": "07.07.2026", "tasks": 50, "done": 29, "overdue": 3, "plan": 3308968, "fact": 3308968, "paused": false, "status": "active", "lost_value": 0, "lat": 45.55178, "lng": 15.16751, "loc": "Хорватія"},
+  {"id": "7068", "name": "А Remtec energy  AGM  160 TP", "pm": "Александров", "pct": 99, "start": "19.05.2026", "end": "31.07.2026", "tasks": 52, "done": 45, "overdue": 3, "plan": 5640128, "fact": 0, "paused": false, "status": "active", "lost_value": 0},
+  {"id": "8188", "name": "Фундамент Ужгород Стефанія", "pm": "Александров", "pct": 31, "start": "26.05.2026", "end": "18.07.2026", "tasks": 51, "done": 20, "overdue": 4, "plan": 281926, "fact": 208000, "paused": false, "status": "active", "lost_value": 0},
+  {"id": "8438", "name": "GS", "pm": "Александров", "pct": 79, "start": "19.05.2026", "end": "20.06.2026", "tasks": 51, "done": 42, "overdue": 4, "plan": 758160, "fact": 758160, "paused": false, "status": "active", "lost_value": 0, "lat": 50.61052, "lng": 6.29892, "loc": "Simmerath, Німеччина"},
+  {"id": "8644", "name": "Solars ГШ 1,7+надставки 3,5", "pm": "Александров", "pct": 0, "start": "08.06.2026", "end": "20.09.2026", "tasks": 51, "done": 0, "overdue": 3, "plan": 415900, "fact": 0, "paused": false, "status": "active", "lost_value": 0}];
 
 const PM_CONFIG = {
   'Донська':       {initials:'НД', color:'#9B5DE5'},
@@ -243,18 +248,28 @@ function riskClass(p){if(p.overdue>5)return 'rc-red';if(p.overdue>0)return 'rc-o
 function pctFill(p){if(p.pct>=80)return 'pf-green';if(p.overdue>0&&p.pct<30)return 'pf-red';if(p.overdue>0)return 'pf-orange';return 'pf-blue'}
 function pctClr(p){if(p.pct>=80)return 'var(--green)';if(p.overdue>0&&p.pct<30)return 'var(--red)';if(p.overdue>0)return 'var(--brand-orange)';return 'var(--accent-blue)'}
 
-// KPI
+// статуси проєктів
+function isClosed(p){return p.status==='done'||p.status==='lost';}
+const ACTIVE=PROJECTS.filter(p=>!isClosed(p));
+const LOST=PROJECTS.filter(p=>p.status==='lost');
+const DONE=PROJECTS.filter(p=>p.status==='done');
+
+// KPI (рахуємо лише активні)
 let sp=0,risk=0,ov=0,splan=0,sfact=0;
-PROJECTS.forEach(p=>{sp+=p.pct;if(isRisk(p))risk++;ov+=p.overdue;splan+=p.plan||0;sfact+=p.fact||0});
-document.getElementById('kpiAvg').textContent=Math.round(sp/PROJECTS.length)+'%';
+ACTIVE.forEach(p=>{sp+=p.pct;if(isRisk(p))risk++;ov+=p.overdue;splan+=p.plan||0;sfact+=p.fact||0});
+const _act=document.getElementById('kpiActive');if(_act)_act.textContent=ACTIVE.length;
+document.getElementById('kpiAvg').textContent=(ACTIVE.length?Math.round(sp/ACTIVE.length):0)+'%';
 document.getElementById('kpiRisk').textContent=risk;
 document.getElementById('kpiOverdue').textContent=ov+'+';
 document.getElementById('kpiPlan').textContent=fmtM(splan);
 document.getElementById('kpiFact').textContent=fmtM(sfact);
+const lostSum=LOST.reduce((a,p)=>a+(p.lost_value||p.plan||0),0);
+const _lost=document.getElementById('kpiLost');if(_lost)_lost.textContent=fmtM(lostSum);
+const _lsub=document.getElementById('kpiLostSub');if(_lsub)_lsub.textContent=LOST.length+' втрачено · '+DONE.length+' завершено';
 
-// Group
+// Group (тільки активні)
 const byPm={};PM_ORDER.forEach(pm=>byPm[pm]=[]);
-PROJECTS.forEach(p=>{if(byPm[p.pm])byPm[p.pm].push(p)});
+ACTIVE.forEach(p=>{if(byPm[p.pm])byPm[p.pm].push(p)});
 
 // Nav
 const nav=document.getElementById('quickNav');
@@ -325,6 +340,30 @@ PM_ORDER.forEach(pm=>{
   html+='</div></div>';
 });
 
+// Архів: завершені (✓) та втрачені (✗)
+const archived=PROJECTS.filter(isClosed);
+if(archived.length){
+  html+='<div class="pm-section" id="pm-archive"><div class="pm-header" style="background:#4B5563">'
+    +'<div style="display:flex;align-items:center;gap:10px"><div class="pm-avatar" style="background:#6B7280">&#128193;</div>'
+    +'<div><div class="pm-name">Архів</div><div class="pm-stats">'
+    +'<span>&#10003; Завершено: <strong>'+DONE.length+'</strong></span>'
+    +'<span class="sr">&#10007; Втрачено: '+LOST.length+'</span>'
+    +(lostSum>0?'<span>Втрачена вигода: <strong>'+fmtM(lostSum)+'</strong></span>':'')
+    +'</div></div></div></div><div class="proj-grid">';
+  archived.forEach(p=>{
+    const lost=p.status==='lost';
+    html+='<div class="proj-card '+(lost?'rc-red':'rc-green')+'" data-id="'+p.id+'" data-overdue="0" data-pct="'+p.pct+'" data-risk="0" style="opacity:.78">'
+      +'<div class="proj-top"><div><div class="proj-id">&#8470; '+p.id+' &nbsp;&#183;&nbsp; ПМ: '+p.pm+'</div><div class="proj-name">'+p.name+'</div></div>'
+      +'<div class="late-badge" style="background:'+(lost?'var(--red)':'var(--green)')+';color:#fff">'+(lost?'&#10007; Втрачено':'&#10003; Завершено')+'</div></div>'
+      +(lost
+        ?'<div class="brow"><span class="bl">Втрачена вигода: </span><span class="bvp" style="color:var(--red)">'+fmtM(p.lost_value||p.plan)+'</span></div>'
+        :'<div class="brow"><span class="bl">Бюджет: </span><span class="bvp">'+fmtM(p.plan)+'</span></div>')
+      +'<a class="detail-btn" href="pillar_dashboard_'+p.id+'.html">Деталі &#8594;</a>'
+      +'</div>';
+  });
+  html+='</div></div>';
+}
+
 document.getElementById('pmSections').innerHTML=html;
 
 // Filter logic
@@ -375,7 +414,7 @@ document.addEventListener('click',function(e){if(!e.target.closest('.psearch')){
 // ---- Карта проєктів ----
 (function(){
   if(typeof L==='undefined')return;
-  var pts=PROJECTS.filter(function(p){return p.lat&&p.lng;});
+  var pts=PROJECTS.filter(function(p){return p.lat&&p.lng&&p.status!=='done'&&p.status!=='lost';});
   if(!pts.length)return;
   document.getElementById('mapSection').style.display='block';
   var map=L.map('projMap').setView([pts[0].lat,pts[0].lng],6);
