@@ -342,29 +342,22 @@ if(archived.length){
   const balTotal=doneSum+lostSum;
   const realizedPct=balTotal>0?Math.round(doneSum/balTotal*100):0;
   const lostPct=100-realizedPct;
-  const donut='<div style="display:flex;align-items:center;gap:16px">'
-    +'<div style="position:relative;width:84px;height:84px">'
-    +'<svg width="84" height="84" viewBox="0 0 36 36" role="img" aria-label="Пропорція: дохід '+realizedPct+' відсотків, втрачено '+lostPct+' відсотків">'
-    +'<circle cx="18" cy="18" r="15.9155" fill="none" stroke="#D93025" stroke-width="3.8"></circle>'
-    +'<circle cx="18" cy="18" r="15.9155" fill="none" stroke="#1E9E5A" stroke-width="3.8" stroke-dasharray="'+realizedPct+' '+lostPct+'" stroke-dashoffset="25"></circle>'
-    +'</svg>'
-    +'<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1">'
-    +'<span style="color:#46c98a;font-size:13px;font-weight:700">'+realizedPct+'%</span>'
-    +'<span style="width:22px;height:1px;background:rgba(255,255,255,.25);margin:2px 0"></span>'
-    +'<span style="color:#f1736a;font-size:13px;font-weight:700">'+lostPct+'%</span>'
-    +'</div></div>'
-    +'<div style="font-size:12px;line-height:1.9;white-space:nowrap">'
-    +'<div style="color:#fff;display:flex;align-items:center;gap:7px"><span style="width:9px;height:9px;border-radius:2px;background:#1E9E5A"></span>Дохід <strong>'+fmtM(doneSum)+'</strong></div>'
-    +'<div style="color:#fff;display:flex;align-items:center;gap:7px"><span style="width:9px;height:9px;border-radius:2px;background:#D93025"></span>Втрачено <strong>'+fmtM(lostSum)+'</strong></div>'
+  const bar='<div style="flex:1;margin-left:24px;max-width:560px">'
+    +'<div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px">'
+    +'<span style="color:#67d6a0">Дохід <strong style="color:#fff">'+fmtM(doneSum)+'</strong></span>'
+    +'<span style="color:#f1736a">Втрачено <strong style="color:#fff">'+fmtM(lostSum)+'</strong></span>'
+    +'</div>'
+    +'<div style="display:flex;height:24px;border-radius:6px;overflow:hidden">'
+    +'<div style="width:'+realizedPct+'%;background:#1E9E5A;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:500">'+realizedPct+'%</div>'
+    +'<div style="width:'+lostPct+'%;background:#D93025;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:500">'+lostPct+'%</div>'
     +'</div></div>';
   html+='<div class="pm-section" id="pm-archive"><div class="pm-header" style="background:#4B5563">'
     +'<div style="display:flex;align-items:center;gap:10px"><div class="pm-avatar" style="background:#6B7280">&#128193;</div>'
     +'<div><div class="pm-name">Архів</div><div class="pm-stats">'
     +'<span>&#10003; Завершено: <strong>'+DONE.length+'</strong></span>'
     +'<span class="sr">&#10007; Втрачено: '+LOST.length+'</span>'
-    +(lostSum>0?'<span>Втрачена вигода: <strong>'+fmtM(lostSum)+'</strong></span>':'')
     +'</div></div></div>'
-    +(balTotal>0?donut:'')
+    +(balTotal>0?bar:'')
     +'</div><div class="proj-grid">';
   archived.forEach(p=>{
     const lost=p.status==='lost';
