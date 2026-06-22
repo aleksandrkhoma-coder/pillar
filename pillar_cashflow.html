@@ -9,7 +9,9 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--te
 .logo{font-size:20px;font-weight:700;color:var(--accent);letter-spacing:1px;text-decoration:none}
 .logo span{color:var(--text2);font-weight:400;font-size:13px;margin-left:8px}
 .gen{margin-left:auto;font-size:11px;color:var(--text2)}
-.back-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 14px;background:rgba(29,111,164,.18);border:1px solid rgba(29,111,164,.45);border-radius:20px;color:#5BB3E0;font-size:12px;font-weight:600;text-decoration:none;margin-left:16px}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600;text-decoration:none;margin-left:12px}
+.btn-blue{background:rgba(29,111,164,.18);border:1px solid rgba(29,111,164,.45);color:#5BB3E0}
+.btn-green{background:rgba(30,158,90,.18);border:1px solid rgba(30,158,90,.45);color:#4DC98A}
 .main{padding:22px 28px;max-width:1100px;margin:0 auto}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px}
 .kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
@@ -32,7 +34,8 @@ a{color:#5BB3E0;text-decoration:none}
 <body>
 <div class="header">
   <a href="pillar_portfolio.html" class="logo">PILLAR<span>Грошовий потік</span></a>
-  <a class="back-btn" href="pillar_portfolio.html">&larr; Проєкти</a>
+  <a class="btn btn-blue" href="pillar_portfolio.html">&larr; Проєкти</a>
+  <a class="btn btn-green" href="pillar_cashflow.xlsx" download>&#11015; Excel</a>
   <span class="gen">Дані: 22.06.2026 &middot; 26 проєктів &middot; без пауз/втрачених</span>
 </div>
 <div class="main">
