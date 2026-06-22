@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="uk"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Грошовий потік | Pillar</title>
+<style>
+:root{--bg:#1A2332;--bg2:#223047;--bg3:#2c3d56;--accent:#E85D1A;--blue:#1D6FA4;--green:#1E9E5A;--red:#D93025;--amber:#E9A23B;--text:#E8EDF5;--text2:#9aafc8;--border:#2e4060;--card:#1e2d42}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.header{background:var(--bg2);border-bottom:2px solid var(--accent);padding:14px 28px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:100}
+.logo{font-size:20px;font-weight:700;color:var(--accent);letter-spacing:1px;text-decoration:none}
+.logo span{color:var(--text2);font-weight:400;font-size:13px;margin-left:8px}
+.gen{margin-left:auto;font-size:11px;color:var(--text2)}
+.back-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 14px;background:rgba(29,111,164,.18);border:1px solid rgba(29,111,164,.45);border-radius:20px;color:#5BB3E0;font-size:12px;font-weight:600;text-decoration:none;margin-left:16px}
+.main{padding:22px 28px;max-width:1100px;margin:0 auto}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.kpi .l{font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.5px}
+.kpi .v{font-size:24px;font-weight:800;margin-top:4px}
+.chart-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:22px}
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:10px;font-size:12px;color:var(--text2)}
+.legend span{display:flex;align-items:center;gap:5px}
+.sw{width:11px;height:11px;border-radius:2px;display:inline-block}
+h2{font-size:15px;font-weight:700;margin-bottom:12px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;color:var(--text2);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.4px;padding:8px 10px;border-bottom:1px solid var(--border)}
+td{padding:8px 10px;border-bottom:1px solid var(--border)}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+.green{color:#46c98a}.red{color:#ef7a72}.amber{color:var(--amber)}.muted{color:var(--text2)}
+a{color:#5BB3E0;text-decoration:none}
+.two{display:grid;grid-template-columns:1fr;gap:22px}
+@media(min-width:900px){.two{grid-template-columns:1fr 1fr}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
+.over-h{color:#ef7a72}
+</style></head>
+<body>
+<div class="header">
+  <a href="pillar_portfolio.html" class="logo">PILLAR<span>Грошовий потік</span></a>
+  <a class="back-btn" href="pillar_portfolio.html">&larr; Проєкти</a>
+  <span class="gen">Дані: 22.06.2026 &middot; 28 проєктів</span>
+</div>
+<div class="main">
+  <div class="kpis">
+    <div class="kpi"><div class="l">План усього</div><div class="v" style="color:#5BB3E0">343.2 млн ₴</div></div>
+    <div class="kpi"><div class="l">Отримано (факт)</div><div class="v" style="color:#46c98a">101.9 млн ₴</div></div>
+    <div class="kpi"><div class="l">Очікується</div><div class="v" style="color:#E9A23B">241.4 млн ₴</div></div>
+    <div class="kpi"><div class="l">Отримано, %</div><div class="v">30%</div></div>
+    <div class="kpi"><div class="l">Прострочені надходження</div><div class="v" style="color:#ef7a72">197.6 млн ₴</div><div class="l" style="margin-top:3px">12 платежів</div></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="legend">
+      <span><span class="sw" style="background:#85B7EB"></span>План / міс</span>
+      <span><span class="sw" style="background:#1E9E5A"></span>Факт / міс</span>
+      <span><span class="sw" style="background:#1D6FA4;height:2px;border-radius:0"></span>План накоп.</span>
+      <span><span class="sw" style="background:#46c98a;height:2px;border-radius:0"></span>Факт накоп.</span>
+    </div>
+    <div style="position:relative;width:100%;height:340px"><canvas id="cf" role="img" aria-label="Грошовий потік: план і факт по місяцях з накопиченням"></canvas></div>
+  </div>
+
+  <div class="two">
+    <div class="card">
+      <h2>По місяцях</h2>
+      <table><thead><tr><th>Місяць</th><th class="num">План</th><th class="num">Факт</th><th class="num">Різниця</th><th class="num">%</th></tr></thead>
+      <tbody><tr><td>лют 26</td><td class="num">78.0 млн ₴</td><td class="num green">78.0 млн ₴</td><td class="num muted">—</td><td class="num">100%</td></tr><tr><td>кві 26</td><td class="num">6.4 млн ₴</td><td class="num green">2.5 млн ₴</td><td class="num red">3.9 млн ₴</td><td class="num">39%</td></tr><tr><td>тра 26</td><td class="num">17.2 млн ₴</td><td class="num green">17.2 млн ₴</td><td class="num muted">—</td><td class="num">100%</td></tr><tr><td>чер 26</td><td class="num">214.4 млн ₴</td><td class="num green">4.0 млн ₴</td><td class="num red">210.4 млн ₴</td><td class="num">2%</td></tr><tr><td>лип 26</td><td class="num">17.9 млн ₴</td><td class="num green">178к ₴</td><td class="num red">17.8 млн ₴</td><td class="num">1%</td></tr><tr><td>сер 26</td><td class="num">3.7 млн ₴</td><td class="num green">0 ₴</td><td class="num red">3.7 млн ₴</td><td class="num">0%</td></tr><tr><td>вер 26</td><td class="num">5.6 млн ₴</td><td class="num green">0 ₴</td><td class="num red">5.6 млн ₴</td><td class="num">0%</td></tr></tbody></table>
+    </div>
+    <div class="card">
+      <h2 class="over-h">&#9888; Прострочені надходження</h2>
+      <table><thead><tr><th>Проєкт</th><th>Платіж</th><th>План. дата</th><th class="num">План</th><th class="num">Факт</th><th class="num">Борг</th></tr></thead>
+      <tbody><tr><td><a href="pillar_dashboard_5438 Stonava. Cz. SGM 100 MW..xlsx.html">№5438 Stonava. Cz. SGM 100 MW..xlsx</a> <span class="muted"></span></td><td>Другий платіж</td><td>12.06.2026</td><td class="num">182.0 млн ₴</td><td class="num green">0 ₴</td><td class="num red">182.0 млн ₴</td></tr><tr><td><a href="pillar_dashboard_5870 Carport Airport Munich.xlsx.html">№5870 Carport Airport Munich.xlsx</a> <span class="muted"></span></td><td>Другий платіж</td><td>16.06.2026</td><td class="num">7.8 млн ₴</td><td class="num green">0 ₴</td><td class="num red">7.8 млн ₴</td></tr><tr><td><a href="pillar_dashboard_7068_А_Remtec energy_ AGM__160 TP.xlsx.html">№7068_А_Remtec energy_ AGM__160 TP.xlsx</a> <span class="muted"></span></td><td>Авансовий платіж</td><td>01.04.2026</td><td class="num">5.6 млн ₴</td><td class="num green">1.7 млн ₴</td><td class="num red">3.9 млн ₴</td></tr><tr><td><a href="pillar_dashboard_7474_А_Головне управління Національної поліції в Одеській області_ SCP__15PS.xlsx.html">№7474_А_Головне управління Національної поліції в Одеській області_ SCP__15PS.xlsx</a> <span class="muted"></span></td><td>П'ятий платіж</td><td>12.06.2026</td><td class="num">1.7 млн ₴</td><td class="num green">0 ₴</td><td class="num red">1.7 млн ₴</td></tr><tr><td><a href="pillar_dashboard_7002_А_Фора_ SCP_W_24PS V1.xlsx.html">№7002_А_Фора_ SCP_W_24PS V1.xlsx</a> <span class="muted"></span></td><td>Четвертий платіж</td><td>15.06.2026</td><td class="num">574к ₴</td><td class="num green">0 ₴</td><td class="num red">574к ₴</td></tr><tr><td><a href="pillar_dashboard_8644 Solars ГШ 1,7+надставки 3,5.xlsx.html">№8644 Solars ГШ 1,7+надставки 3,5.xlsx</a> <span class="muted"></span></td><td>Авансовий платіж</td><td>22.06.2026</td><td class="num">416к ₴</td><td class="num green">0 ₴</td><td class="num red">416к ₴</td></tr><tr><td><a href="pillar_dashboard_8432 Олександр 12 мод. буд. с.Вільшанка Полт.обл..xlsx.html">№8432 Олександр 12 мод. буд. с.Вільшанка Полт.обл..xlsx</a> <span class="muted"></span></td><td>Авансовий платіж</td><td>11.06.2026</td><td class="num">411к ₴</td><td class="num green">0 ₴</td><td class="num red">411к ₴</td></tr><tr><td><a href="pillar_dashboard_6406 Максим Яловий Чинадієво.xlsx.html">№6406 Максим Яловий Чинадієво.xlsx</a> <span class="muted"></span></td><td>Авансовий платіж</td><td>15.06.2026</td><td class="num">374к ₴</td><td class="num green">155к ₴</td><td class="num red">218к ₴</td></tr><tr><td><a href="pillar_dashboard_7244 В Модулекс модульна будівля Чернігів.xlsx.html">№7244 В Модулекс модульна будівля Чернігів.xlsx</a> <span class="muted"></span></td><td>П'ятий платіж</td><td>12.06.2026</td><td class="num">133к ₴</td><td class="num green">0 ₴</td><td class="num red">133к ₴</td></tr><tr><td><a href="pillar_dashboard_8432 Олександр 12 мод. буд. с.Вільшанка Полт.обл..xlsx.html">№8432 Олександр 12 мод. буд. с.Вільшанка Полт.обл..xlsx</a> <span class="muted"></span></td><td>Другий платіж</td><td>02.06.2026</td><td class="num">132к ₴</td><td class="num green">0 ₴</td><td class="num red">132к ₴</td></tr><tr><td><a href="pillar_dashboard_8432 Олександр 12 мод. буд. с.Вільшанка Полт.обл..xlsx.html">№8432 Олександр 12 мод. буд. с.Вільшанка Полт.обл..xlsx</a> <span class="muted"></span></td><td>Третій платіж</td><td>02.06.2026</td><td class="num">132к ₴</td><td class="num green">0 ₴</td><td class="num red">132к ₴</td></tr><tr><td><a href="pillar_dashboard_4766 ALTECO_Carport_Model Taurus_280кВт.xlsx.html">№4766 ALTECO_Carport_Model Taurus_280кВт.xlsx</a> <span class="muted"></span></td><td>Авансовий платіж</td><td>22.06.2026</td><td class="num">120к ₴</td><td class="num green">0 ₴</td><td class="num red">120к ₴</td></tr></tbody></table>
+    </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const D={"labels": ["лют 26", "кві 26", "тра 26", "чер 26", "лип 26", "сер 26", "вер 26"], "plan": [78.0, 6.44, 17.19, 214.4, 17.94, 3.66, 5.62], "fact": [78.0, 2.49, 17.19, 4.02, 0.18, 0.0, 0.0], "cplan": [78.0, 84.44, 101.63, 316.03, 333.96, 337.62, 343.24], "cfact": [78.0, 80.49, 97.68, 101.7, 101.88, 101.88, 101.88]};
+new Chart(document.getElementById('cf'),{data:{labels:D.labels,datasets:[
+ {type:'bar',label:'План/міс',data:D.plan,backgroundColor:'#85B7EB',order:3},
+ {type:'bar',label:'Факт/міс',data:D.fact,backgroundColor:'#1E9E5A',order:2},
+ {type:'line',label:'План накоп.',data:D.cplan,borderColor:'#1D6FA4',borderDash:[6,4],pointRadius:0,borderWidth:2,order:1},
+ {type:'line',label:'Факт накоп.',data:D.cfact,borderColor:'#46c98a',pointRadius:0,borderWidth:2,order:0}
+]},options:{responsive:true,maintainAspectRatio:false,
+ plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.raw+' млн ₴'}}},
+ scales:{y:{ticks:{color:'#9aafc8',callback:v=>v+' млн'},grid:{color:'rgba(255,255,255,.06)'}},x:{ticks:{color:'#9aafc8'},grid:{display:false}}}}});
+</script>
+</body></html>
