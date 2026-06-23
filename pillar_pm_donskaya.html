@@ -323,9 +323,10 @@ PM_ORDER.forEach(pm=>{
 
   ps.forEach(p=>{
     const dp=dateProg(p.start,p.end).toFixed(0);
-    html+='<div class="proj-card '+riskClass(p)+(p.status==='cr'?' cr-card':'')+'" data-id="'+p.id+'" data-overdue="'+p.overdue+'" data-pct="'+p.pct+'" data-risk="'+(isRisk(p)?1:0)+'"'+((p.paused||p.status==='cr')?' style="opacity:.82"':'')+'>'
+    var ribbon=(p.status==='cr')?'<div style="margin:-13px -15px 0;padding:5px 14px;background:#D89A1A;color:#fff;font-size:11px;font-weight:700;letter-spacing:.4px">&#9998; ЗАПИТ НА ЗМІНИ</div>':(p.paused?'<div style="margin:-13px -15px 0;padding:5px 14px;background:#6B7280;color:#fff;font-size:11px;font-weight:700;letter-spacing:.4px">&#9208; ПАУЗА</div>':'');
+    html+='<div class="proj-card '+riskClass(p)+(p.status==='cr'?' cr-card':'')+'" data-id="'+p.id+'" data-overdue="'+p.overdue+'" data-pct="'+p.pct+'" data-risk="'+(isRisk(p)?1:0)+'">'+ribbon
       +'<div class="proj-top"><div><div class="proj-id">&#8470; '+p.id+' &nbsp;&#183;&nbsp; '+p.start+' &#8594; '+p.end+'</div><div class="proj-name">'+p.name+'</div></div>'
-      +(p.status==='cr'?'<div class="late-badge" style="background:#D89A1A;color:#fff">&#9998; Запит на зміни</div>':(p.paused?'<div class="late-badge" style="background:var(--gray-100);color:var(--text-muted)">&#9208; Пауза</div>':(p.overdue>0?'<div class="late-badge">&#9888; '+p.overdue+'</div>':'')))+'</div>'
+      +(p.overdue>0?'<div class="late-badge">&#9888; '+p.overdue+'</div>':'')+'</div>'
       +'<div class="prog-row"><div class="prog-bar"><div class="prog-fill '+pctFill(p)+'" style="width:'+p.pct+'%"></div></div>'
       +'<span class="prog-pct" style="color:'+pctClr(p)+'">'+p.pct+'%</span></div>'
       +'<div class="task-stats"><span>Задач: <strong>'+p.tasks+'</strong></span><span>Готово: <strong>'+p.done+'</strong></span>'
