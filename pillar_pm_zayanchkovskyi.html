@@ -159,14 +159,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель ПМ — Заянчковський</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 25.06.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 26.06.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <a href="lessons_learned.html" style="display:inline-flex;align-items:center;gap:6px;padding:7px 16px;background:rgba(30,158,90,.2);border:1px solid rgba(30,158,90,.45);border-radius:20px;color:#4DC98A;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap;transition:all .15s;flex-shrink:0" onmouseover="this.style.background='rgba(30,158,90,.35)'" onmouseout="this.style.background='rgba(30,158,90,.2)'">&#128218; Lessons Learned</a>
     <a href="pillar_cashflow.html" style="display:inline-flex;align-items:center;gap:6px;padding:7px 16px;background:rgba(29,111,164,.2);border:1px solid rgba(29,111,164,.45);border-radius:20px;color:#5BB3E0;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap;flex-shrink:0" onmouseover="this.style.background='rgba(29,111,164,.35)'" onmouseout="this.style.background='rgba(29,111,164,.2)'">&#128181; Грошовий потік</a>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 25.06.2026</div>
+      <div>Оновлено: 26.06.2026</div>
       <div>5 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
     </div>
   </div>
@@ -215,11 +215,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
 
 <script>
-const TODAY = new Date('2026-06-25');
+const TODAY = new Date('2026-06-26');
 
 const PROJECTS = [{"id": "4766", "name": "ALTECO Carport Model Taurus 280кВт", "pm": "Заянчковський", "pct": 12, "start": "01.05.2026", "end": "13.09.2026", "tasks": 50, "done": 10, "overdue": 0, "plan": 5000000, "fact": 0, "paused": false, "status": "active", "lost_value": 0, "lat": 48.58919, "lng": 22.97573, "loc": "Закарпатська обл. (Carport Taurus)"},
   {"id": "7244", "name": "В Модулекс модульна будівля Чернігів", "pm": "Заянчковський", "pct": 63, "start": "19.05.2026", "end": "09.07.2026", "tasks": 42, "done": 32, "overdue": 0, "plan": 210308, "fact": 77600, "paused": false, "status": "active", "lost_value": 0, "lat": 51.48585, "lng": 31.30891, "loc": "Чернігів, вул. Підвальна 19"},
-  {"id": "7508", "name": "8602 Євген Весільна тераса Подорожнє", "pm": "Заянчковський", "pct": 24, "start": "26.05.2026", "end": "02.09.2026", "tasks": 48, "done": 14, "overdue": 3, "plan": 2747999, "fact": 1997000, "paused": false, "status": "active", "lost_value": 0, "lat": 49.05967, "lng": 33.07001, "loc": "Подорожнє, Кіровоградська обл. (MAXX Premium Resort)"},
+  {"id": "7508", "name": "8602 Євген Весільна тераса Подорожнє", "pm": "Заянчковський", "pct": 32, "start": "26.05.2026", "end": "04.09.2026", "tasks": 48, "done": 16, "overdue": 0, "plan": 2747999, "fact": 1997000, "paused": false, "status": "active", "lost_value": 0, "lat": 49.05967, "lng": 33.07001, "loc": "Подорожнє, Кіровоградська обл. (MAXX Premium Resort)"},
   {"id": "8140", "name": "В Газинвестпроект фундамент Киев", "pm": "Заянчковський", "pct": 100, "start": "19.05.2026", "end": "14.06.2026", "tasks": 40, "done": 40, "overdue": 0, "plan": 236041, "fact": 236041, "paused": false, "status": "done", "lost_value": 0, "lat": 50.433316, "lng": 30.635755, "loc": "Київ, вул. Сосницька 5"},
   {"id": "8432", "name": "Олександр 12 мод. буд. с.Вільшанка Полт.обл", "pm": "Заянчковський", "pct": 47, "start": "19.05.2026", "end": "02.07.2026", "tasks": 35, "done": 21, "overdue": 7, "plan": 674264, "fact": 0, "paused": false, "status": "lost", "lost_value": 674264, "lat": 50.03804, "lng": 33.02955, "loc": "Вільшанка, Полтавська обл."}];
 
