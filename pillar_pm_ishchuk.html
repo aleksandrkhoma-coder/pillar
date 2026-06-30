@@ -217,12 +217,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <script>
 const TODAY = new Date('2026-06-30');
 
-const PROJECTS = [{"id": "5682", "name": "А Сцена Корчин", "pm": "Іщук", "pct": 74, "start": "26.05.2026", "end": "06.07.2026", "tasks": 35, "done": 25, "overdue": 0, "plan": 457134, "fact": 457134, "paused": false, "status": "active", "lost_value": 0},
-  {"id": "7474", "name": "А Головне управління Національної поліції в Одеській області  SCP  15PS", "pm": "Іщук", "pct": 99, "start": "19.05.2026", "end": "15.06.2026", "tasks": 51, "done": 48, "overdue": 3, "plan": 1749999, "fact": 1749999, "paused": false, "status": "active", "lost_value": 0, "lat": 46.4825, "lng": 30.7233, "loc": "Одеса"},
-  {"id": "7536", "name": "А Ранчо “Едельвейс”  AGM  171PV", "pm": "Іщук", "pct": 90, "start": "19.05.2026", "end": "01.07.2026", "tasks": 51, "done": 45, "overdue": 5, "plan": 912346, "fact": 912346, "paused": false, "status": "active", "lost_value": 0, "lat": 49.08974, "lng": 23.55644, "loc": "Ранчо Едельвейс, Львівська обл."},
-  {"id": "7960", "name": "Сірокко Sirocco вітрова ел ст Львів", "pm": "Іщук", "pct": 96, "start": "26.05.2026", "end": "24.06.2026", "tasks": 38, "done": 27, "overdue": 11, "plan": 99610, "fact": 99610, "paused": false, "status": "active", "lost_value": 0, "lat": 49.8397, "lng": 24.0297, "loc": "Львів"},
-  {"id": "8070", "name": "А Карпорты B2C  SCP", "pm": "Іщук", "pct": 76, "start": "19.05.2026", "end": "15.06.2026", "tasks": 44, "done": 42, "overdue": 2, "plan": 126641, "fact": 126641, "paused": false, "status": "active", "lost_value": 0, "lat": 48.56038, "lng": 35.04316, "loc": "Дніпро (карпорт)"},
-  {"id": "8238", "name": "А UTEM SOLAR  SCP Taurus 190PV", "pm": "Іщук", "pct": 70, "start": "26.05.2026", "end": "28.07.2026", "tasks": 51, "done": 28, "overdue": 12, "plan": 2011000, "fact": 2011000, "paused": false, "status": "active", "lost_value": 0, "lat": 50.3536, "lng": 30.5066, "loc": "Пирогово, Київ"}];
+const PROJECTS = [{"id": "5682", "name": "А Сцена Корчин", "pm": "Іщук", "pct": 74, "start": "26.05.2026", "end": "06.07.2026", "tasks": 35, "done": 25, "overdue": 0, "plan": 457134, "fact": 457134, "paused": false, "risk": null, "status": "active", "lost_value": 0},
+  {"id": "7474", "name": "А Головне управління Національної поліції в Одеській області  SCP  15PS", "pm": "Іщук", "pct": 99, "start": "19.05.2026", "end": "15.06.2026", "tasks": 51, "done": 48, "overdue": 3, "plan": 1749999, "fact": 1749999, "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 46.4825, "lng": 30.7233, "loc": "Одеса"},
+  {"id": "7536", "name": "А Ранчо “Едельвейс”  AGM  171PV", "pm": "Іщук", "pct": 90, "start": "19.05.2026", "end": "01.07.2026", "tasks": 51, "done": 45, "overdue": 5, "plan": 912346, "fact": 912346, "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 49.08974, "lng": 23.55644, "loc": "Ранчо Едельвейс, Львівська обл."},
+  {"id": "7960", "name": "Сірокко Sirocco вітрова ел ст Львів", "pm": "Іщук", "pct": 96, "start": "26.05.2026", "end": "24.06.2026", "tasks": 38, "done": 27, "overdue": 11, "plan": 99610, "fact": 99610, "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 49.8397, "lng": 24.0297, "loc": "Львів"},
+  {"id": "8070", "name": "А Карпорты B2C  SCP", "pm": "Іщук", "pct": 76, "start": "19.05.2026", "end": "15.06.2026", "tasks": 44, "done": 42, "overdue": 2, "plan": 126641, "fact": 126641, "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.56038, "lng": 35.04316, "loc": "Дніпро (карпорт)"},
+  {"id": "8238", "name": "А UTEM SOLAR  SCP Taurus 190PV", "pm": "Іщук", "pct": 70, "start": "26.05.2026", "end": "28.07.2026", "tasks": 51, "done": 28, "overdue": 12, "plan": 2011000, "fact": 2011000, "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 50.3536, "lng": 30.5066, "loc": "Пирогово, Київ"}];
 
 const PM_CONFIG = {
   'Донська':       {initials:'НД', color:'#9B5DE5'},
@@ -237,7 +237,7 @@ const PM_ORDER = ['Донська','Александров','Іщук','Заян
 function parseDate(s){if(!s)return null;const[d,m,y]=s.split('.');return new Date(+y,+m-1,+d)}
 function expectedPct(p){const s=parseDate(p.start),e=parseDate(p.end);if(!s||!e||e<=s)return 0;return Math.max(0,Math.min(100,(TODAY-s)/(e-s)*100));}
 const RISK_LAG=15; // поріг відставання від графіка, пунктів
-function isRisk(p){if(p.paused||p.status==='cr')return true;if(p.overdue>0)return true;const st=parseDate(p.start);if(st&&TODAY>=st&&p.pct===0)return true;if(p.pct<expectedPct(p)-RISK_LAG)return true;return false;}
+function isRisk(p){if(p.paused||p.status==='cr')return true;if(p.risk)return true;if(p.overdue>0)return true;const st=parseDate(p.start);if(st&&TODAY>=st&&p.pct===0)return true;if(p.pct<expectedPct(p)-RISK_LAG)return true;return false;}
 function fmtM(n){if(!n||n===0)return '—';if(n>=1000000)return (n/1000000).toFixed(1)+' млн ₴';return (n/1000).toFixed(0)+'к ₴'}
 function dateProg(s,e){const sd=parseDate(s),ed=parseDate(e);if(!sd||!ed)return 0;return Math.max(0,Math.min(100,(TODAY-sd)/(ed-sd)*100))}
 function riskClass(p){if(p.overdue>5)return 'rc-red';if(p.overdue>0)return 'rc-orange';if(p.pct>=80)return 'rc-green';if(p.pct>=40)return 'rc-yellow';return 'rc-gray'}
@@ -319,7 +319,7 @@ PM_ORDER.forEach(pm=>{
 
   ps.forEach(p=>{
     const dp=dateProg(p.start,p.end).toFixed(0);
-    var ribbon=(p.status==='cr')?'<div style="margin:-13px -15px 0;padding:5px 14px;background:#D89A1A;color:#fff;font-size:11px;font-weight:700;letter-spacing:.4px">&#9998; ЗАПИТ НА ЗМІНИ</div>':(p.paused?'<div style="margin:-13px -15px 0;padding:5px 14px;background:#6B7280;color:#fff;font-size:11px;font-weight:700;letter-spacing:.4px">&#9208; ПАУЗА</div>':'');
+    var ribbon=(p.status==='cr')?'<div style="margin:-13px -15px 0;padding:5px 14px;background:#D89A1A;color:#fff;font-size:11px;font-weight:700;letter-spacing:.4px">&#9998; ЗАПИТ НА ЗМІНИ</div>':(p.paused?'<div style="margin:-13px -15px 0;padding:5px 14px;background:#6B7280;color:#fff;font-size:11px;font-weight:700;letter-spacing:.4px">&#9208; ПАУЗА</div>':(p.risk==='fired'?'<div style="margin:-13px -15px 0;padding:5px 14px;background:#D93025;color:#fff;font-size:11px;font-weight:700;letter-spacing:.4px">&#128293; РИЗИК СПРАЦЮВАВ</div>':(p.risk==='watch'?'<div style="margin:-13px -15px 0;padding:5px 14px;background:#E9A23B;color:#412402;font-size:11px;font-weight:700;letter-spacing:.4px">&#9888; ПІД РИЗИКОМ</div>':'')));
     html+='<div class="proj-card '+riskClass(p)+(p.status==='cr'?' cr-card':'')+'" data-id="'+p.id+'" data-overdue="'+p.overdue+'" data-pct="'+p.pct+'" data-risk="'+(isRisk(p)?1:0)+'">'+ribbon
       +'<div class="proj-top"><div><div class="proj-id">&#8470; '+p.id+' &nbsp;&#183;&nbsp; '+p.start+' &#8594; '+p.end+'</div><div class="proj-name">'+p.name+'</div></div>'
       +(p.overdue>0?'<div class="late-badge">&#9888; '+p.overdue+'</div>':'')+'</div>'
