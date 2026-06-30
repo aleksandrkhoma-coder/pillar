@@ -188,7 +188,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="kpi clickable" id="kpiRiskCard" onclick="applyFilter('risk')" title="Натисни щоб відфільтрувати">
       <div class="kpi-label">Під ризиком</div>
       <div class="kpi-value red" id="kpiRisk">—</div>
-      <div class="kpi-sub">відставання &gt;15% або прострочені</div>
+      <div class="kpi-sub">позначені ПМ</div>
     </div>
     <div class="kpi clickable" id="kpiOverdueCard" onclick="applyFilter('overdue')" title="Натисни щоб відфільтрувати">
       <div class="kpi-label">Прострочених завдань</div>
@@ -276,7 +276,7 @@ const DONE=PROJECTS.filter(p=>p.status==='done');
 
 // KPI (рахуємо лише активні)
 let sp=0,risk=0,ov=0,splan=0,sfact=0;
-ACTIVE.forEach(p=>{sp+=p.pct;if(isRisk(p))risk++;ov+=p.overdue;splan+=p.plan||0;sfact+=p.fact||0});
+ACTIVE.forEach(p=>{sp+=p.pct;if(p.risk)risk++;ov+=p.overdue;splan+=p.plan||0;sfact+=p.fact||0});
 const _act=document.getElementById('kpiActive');if(_act)_act.textContent=ACTIVE.length;
 document.getElementById('kpiAvg').textContent=(ACTIVE.length?Math.round(sp/ACTIVE.length):0)+'%';
 document.getElementById('kpiRisk').textContent=risk;
@@ -344,7 +344,7 @@ PM_ORDER.forEach(pm=>{
   ps.forEach(p=>{
     const dp=dateProg(p.start,p.end).toFixed(0);
     var ribbon=(p.status==='cr')?'<div style="margin:-13px -15px 0;padding:5px 14px;background:#D89A1A;color:#fff;font-size:11px;font-weight:700;letter-spacing:.4px">&#9998; ЗАПИТ НА ЗМІНИ</div>':(p.paused?'<div style="margin:-13px -15px 0;padding:5px 14px;background:#6B7280;color:#fff;font-size:11px;font-weight:700;letter-spacing:.4px">&#9208; ПАУЗА</div>':(p.risk==='fired'?'<div style="margin:-13px -15px 0;padding:5px 14px;background:#D93025;color:#fff;font-size:11px;font-weight:700;letter-spacing:.4px">&#128293; РИЗИК СПРАЦЮВАВ</div>':(p.risk==='watch'?'<div style="margin:-13px -15px 0;padding:5px 14px;background:#E9A23B;color:#412402;font-size:11px;font-weight:700;letter-spacing:.4px">&#9888; ПІД РИЗИКОМ</div>':'')));
-    html+='<div class="proj-card '+riskClass(p)+(p.status==='cr'?' cr-card':'')+'" data-id="'+p.id+'" data-overdue="'+p.overdue+'" data-pct="'+p.pct+'" data-risk="'+(isRisk(p)?1:0)+'">'+ribbon
+    html+='<div class="proj-card '+riskClass(p)+(p.status==='cr'?' cr-card':'')+'" data-id="'+p.id+'" data-overdue="'+p.overdue+'" data-pct="'+p.pct+'" data-risk="'+(p.risk?1:0)+'">'+ribbon
       +'<div class="proj-top"><div><div class="proj-id">&#8470; '+p.id+' &nbsp;&#183;&nbsp; '+p.start+' &#8594; '+p.end+'</div><div class="proj-name">'+p.name+'</div></div>'
       +(p.overdue>0?'<div class="late-badge">&#9888; '+p.overdue+'</div>':'')+'</div>'
       +'<div class="prog-row"><div class="prog-bar"><div class="prog-fill '+pctFill(p)+'" style="width:'+p.pct+'%"></div></div>'
