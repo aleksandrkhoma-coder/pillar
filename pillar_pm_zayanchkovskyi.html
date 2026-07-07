@@ -149,7 +149,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-</head>
+<meta name="robots" content="noindex,nofollow"></head>
 <body>
 
 <div class="header">
@@ -455,5 +455,20 @@ document.addEventListener('click',function(e){if(!e.target.closest('.psearch')){
   setTimeout(function(){map.invalidateSize();},200);
 })();
 </script>
-</body>
+<script>
+(function(){
+  if(localStorage.getItem('pl_ok')==='1')return;
+  var HASH="6c572826d2ee2da4d3918be50a0e2c0819aff221dd1319e8e4bc513cde0bbba4";
+  var ov=document.createElement('div');ov.id='pl-gate';
+  ov.style.cssText='position:fixed;inset:0;z-index:99999;background:#1A2332;display:flex;align-items:center;justify-content:center;font-family:Segoe UI,Arial,sans-serif';
+  ov.innerHTML='<div style="text-align:center;color:#E8EDF5"><div style="font-size:26px;font-weight:800;color:#E85D1A;letter-spacing:1px">PILLAR</div><div style="color:#9aafc8;font-size:13px;margin:6px 0 18px">Введіть код доступу</div><input id="pl-pin" type="password" inputmode="numeric" autocomplete="off" style="padding:11px 14px;font-size:16px;border-radius:8px;border:1px solid #2e4060;background:#22304a;color:#fff;text-align:center;width:200px;outline:none"><div id="pl-err" style="color:#ef7a72;font-size:12px;height:16px;margin-top:8px"></div><button id="pl-go" style="margin-top:6px;padding:10px 26px;border:none;border-radius:8px;background:#E85D1A;color:#fff;font-weight:600;font-size:14px;cursor:pointer">Увійти</button></div>';
+  document.documentElement.appendChild(ov);
+  var b=document.body;if(b)b.style.overflow='hidden';
+  async function sha(s){var d=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(d)).map(x=>x.toString(16).padStart(2,'0')).join('');}
+  async function go(){var v=document.getElementById('pl-pin').value.trim();if(await sha(v)===HASH){localStorage.setItem('pl_ok','1');ov.remove();if(b)b.style.overflow='';}else{document.getElementById('pl-err').textContent='Невірний код';}}
+  document.getElementById('pl-go').onclick=go;
+  document.getElementById('pl-pin').addEventListener('keydown',function(e){if(e.key==='Enter')go();});
+  setTimeout(function(){document.getElementById('pl-pin').focus();},50);
+})();
+</script></body>
 </html>
