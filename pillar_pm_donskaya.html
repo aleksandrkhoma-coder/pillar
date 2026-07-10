@@ -159,14 +159,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель ПМ — Донська</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 09.07.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 10.07.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <a href="lessons_learned.html" style="display:inline-flex;align-items:center;gap:6px;padding:7px 16px;background:rgba(30,158,90,.2);border:1px solid rgba(30,158,90,.45);border-radius:20px;color:#4DC98A;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap;transition:all .15s;flex-shrink:0" onmouseover="this.style.background='rgba(30,158,90,.35)'" onmouseout="this.style.background='rgba(30,158,90,.2)'">&#128218; Lessons Learned</a>
     <a href="pillar_cashflow.html" style="display:inline-flex;align-items:center;gap:6px;padding:7px 16px;background:rgba(29,111,164,.2);border:1px solid rgba(29,111,164,.45);border-radius:20px;color:#5BB3E0;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap;flex-shrink:0" onmouseover="this.style.background='rgba(29,111,164,.35)'" onmouseout="this.style.background='rgba(29,111,164,.2)'">&#128181; Грошовий потік</a>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 09.07.2026</div>
+      <div>Оновлено: 10.07.2026</div>
       <div>10 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
     </div>
   </div>
@@ -215,12 +215,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
 
 <script>
-const TODAY = new Date('2026-07-09');
+const TODAY = new Date('2026-07-10');
 
 const PROJECTS = [{"id": "3456", "name": "А Підселання фундаменту", "pm": "Донська", "pct": 62, "start": "19.05.2026", "end": "07.08.2026", "tasks": 43, "done": 33, "overdue": 0, "plan": 1541883, "fact": 1205908, "cur": "UAH", "paused": true, "risk": null, "status": "cr", "lost_value": 0, "lat": 50.42551, "lng": 30.51821, "loc": "Київ, Велика Васильківська"},
   {"id": "5438", "name": "Stonava. Cz. SGM 100 MW", "pm": "Донська", "pct": 22, "start": "19.05.2026", "end": "22.08.2026", "tasks": 48, "done": 20, "overdue": 0, "plan": 260000000, "fact": 78000000, "cur": "UAH", "paused": true, "risk": null, "status": "paused", "lost_value": 0, "lat": 49.8211, "lng": 18.5061, "loc": "Stonava, Чехія (≈ центр)"},
   {"id": "5910", "name": "А   AGM 2V", "pm": "Донська", "pct": 2, "start": "19.05.2026", "end": "30.08.2026", "tasks": 51, "done": 4, "overdue": 0, "plan": 28450138, "fact": 0, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 45.871, "lng": 15.76493, "loc": "Brdovec, Хорватія"},
-  {"id": "7002", "name": "А Фора  SCP W 24PS V1", "pm": "Донська", "pct": 73, "start": "19.05.2026", "end": "27.08.2026", "tasks": 50, "done": 26, "overdue": 0, "plan": 2416856, "fact": 1015173, "cur": "UAH", "paused": false, "risk": "watch", "status": "active", "lost_value": 0, "lat": 50.33997, "lng": 30.62302, "loc": "Київ (ур. Млиново)"},
+  {"id": "7002", "name": "А Фора  SCP W 24PS V1", "pm": "Донська", "pct": 73, "start": "19.05.2026", "end": "27.08.2026", "tasks": 50, "done": 26, "overdue": 2, "plan": 2416856, "fact": 1015173, "cur": "UAH", "paused": false, "risk": "watch", "status": "active", "lost_value": 0, "lat": 50.33997, "lng": 30.62302, "loc": "Київ (ур. Млиново)"},
   {"id": "7894", "name": "А Фора  SCP  32PS", "pm": "Донська", "pct": 48, "start": "04.06.2026", "end": "18.09.2026", "tasks": 50, "done": 23, "overdue": 1, "plan": 3334874, "fact": 1487743, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 50.33023, "lng": 30.4506, "loc": "Хотів, Київська обл."},
   {"id": "8008", "name": "Модулі Григорівка", "pm": "Донська", "pct": 99, "start": "19.05.2026", "end": "30.07.2026", "tasks": 43, "done": 42, "overdue": 0, "plan": 787027, "fact": 608939, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 49.929544, "lng": 31.405436, "loc": "Григорівка, Черкаська обл."},
   {"id": "8185", "name": "Фундамент Hytte House Development Славське", "pm": "Донська", "pct": 56, "start": "02.06.2026", "end": "22.07.2026", "tasks": 38, "done": 25, "overdue": 0, "plan": 294650, "fact": 168024, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.84511, "lng": 23.44765, "loc": "Славське, Львівська обл."},
