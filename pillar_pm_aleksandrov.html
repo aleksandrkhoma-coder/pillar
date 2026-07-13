@@ -239,14 +239,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <script>
 const TODAY = new Date('2026-07-13');
 
-const PROJECTS = [{"id": "5870", "name": "Carport Airport Munich", "pm": "Александров", "pct": 99, "start": "19.05.2026", "end": "10.07.2026", "tasks": 49, "done": 47, "overdue": 2, "plan": 10400000, "fact": 2600000, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.35631, "lng": 11.76392, "loc": "Аеропорт Мюнхен, Німеччина"},
-  {"id": "6406", "name": "Максим Яловий Чинадієво", "pm": "Александров", "pct": 68, "start": "08.06.2026", "end": "22.07.2026", "tasks": 51, "done": 34, "overdue": 8, "plan": 373582, "fact": 154980, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.4846, "lng": 22.82756, "loc": "Чинадійово, Закарпатська обл."},
-  {"id": "6704", "name": "SCP Taurus 236PS", "pm": "Александров", "pct": 99, "start": "19.05.2026", "end": "03.07.2026", "tasks": 45, "done": 44, "overdue": 1, "plan": 11596000, "fact": 7072000, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.98825, "lng": 9.46467, "loc": "Баден-Вюртемберг, Німеччина"},
-  {"id": "6842", "name": "2", "pm": "Александров", "pct": 100, "start": "22.05.2026", "end": "07.07.2026", "tasks": 50, "done": 50, "overdue": 0, "plan": 3308968, "fact": 3308968, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 45.55178, "lng": 15.16751, "loc": "Хорватія"},
-  {"id": "7068", "name": "А Remtec energy  AGM  160 TP", "pm": "Александров", "pct": 100, "start": "19.05.2026", "end": "31.07.2026", "tasks": 52, "done": 52, "overdue": 0, "plan": 5640128, "fact": 5640128, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0},
-  {"id": "8188", "name": "Фундамент Ужгород Стефанія", "pm": "Александров", "pct": 62, "start": "26.05.2026", "end": "18.07.2026", "tasks": 51, "done": 31, "overdue": 11, "plan": 280126, "fact": 206200, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0},
-  {"id": "8438", "name": "GS", "pm": "Александров", "pct": 100, "start": "19.05.2026", "end": "24.06.2026", "tasks": 51, "done": 51, "overdue": 0, "plan": 758160, "fact": 758160, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 50.61052, "lng": 6.29892, "loc": "Simmerath, Німеччина"},
-  {"id": "8644", "name": "Solars ГШ 1,7+надставки 3,5", "pm": "Александров", "pct": 86, "start": "08.06.2026", "end": "05.08.2026", "tasks": 51, "done": 44, "overdue": 4, "plan": 415900, "fact": 415900, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0}];
+const PROJECTS = [{"id": "5870", "name": "Carport Airport Munich", "pm": "Александров", "pct": 99, "start": "19.05.2026", "end": "10.07.2026", "tasks": 49, "done": 47, "overdue": 2, "plan": 10400000, "fact": 2600000, "plan_cur": 10400000, "fact_cur": 2600000, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.35631, "lng": 11.76392, "loc": "Аеропорт Мюнхен, Німеччина"},
+  {"id": "6406", "name": "Максим Яловий Чинадієво", "pm": "Александров", "pct": 68, "start": "08.06.2026", "end": "22.07.2026", "tasks": 51, "done": 34, "overdue": 8, "plan": 373582, "fact": 154980, "plan_cur": 373582, "fact_cur": 154980, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.4846, "lng": 22.82756, "loc": "Чинадійово, Закарпатська обл."},
+  {"id": "6704", "name": "SCP Taurus 236PS", "pm": "Александров", "pct": 99, "start": "19.05.2026", "end": "03.07.2026", "tasks": 45, "done": 44, "overdue": 1, "plan": 11596000, "fact": 7072000, "plan_cur": 11596000, "fact_cur": 7072000, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.98825, "lng": 9.46467, "loc": "Баден-Вюртемберг, Німеччина"},
+  {"id": "6842", "name": "2", "pm": "Александров", "pct": 100, "start": "22.05.2026", "end": "07.07.2026", "tasks": 50, "done": 50, "overdue": 0, "plan": 3308968, "fact": 3308968, "plan_cur": 3308968, "fact_cur": 3308968, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 45.55178, "lng": 15.16751, "loc": "Хорватія"},
+  {"id": "7068", "name": "А Remtec energy  AGM  160 TP", "pm": "Александров", "pct": 100, "start": "19.05.2026", "end": "31.07.2026", "tasks": 52, "done": 52, "overdue": 0, "plan": 5640128, "fact": 5640128, "plan_cur": 5640128, "fact_cur": 5640128, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0},
+  {"id": "8188", "name": "Фундамент Ужгород Стефанія", "pm": "Александров", "pct": 62, "start": "26.05.2026", "end": "18.07.2026", "tasks": 51, "done": 31, "overdue": 11, "plan": 280126, "fact": 206200, "plan_cur": 280126, "fact_cur": 206200, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0},
+  {"id": "8438", "name": "GS", "pm": "Александров", "pct": 100, "start": "19.05.2026", "end": "24.06.2026", "tasks": 51, "done": 51, "overdue": 0, "plan": 758160, "fact": 758160, "plan_cur": 758160, "fact_cur": 758160, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 50.61052, "lng": 6.29892, "loc": "Simmerath, Німеччина"},
+  {"id": "8644", "name": "Solars ГШ 1,7+надставки 3,5", "pm": "Александров", "pct": 86, "start": "08.06.2026", "end": "05.08.2026", "tasks": 51, "done": 44, "overdue": 4, "plan": 415900, "fact": 415900, "plan_cur": 415900, "fact_cur": 415900, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0}];
 
 const PM_CONFIG = {
   'Донська':       {initials:'НД', color:'#9B5DE5'},
@@ -263,6 +263,7 @@ function expectedPct(p){const s=parseDate(p.start),e=parseDate(p.end);if(!s||!e|
 const RISK_LAG=15; // поріг відставання від графіка, пунктів
 function isRisk(p){if(p.paused||p.status==='cr')return true;if(p.risk)return true;if(p.overdue>0)return true;const st=parseDate(p.start);if(st&&TODAY>=st&&p.pct===0)return true;if(p.pct<expectedPct(p)-RISK_LAG)return true;return false;}
 function fmtM(n){if(!n||n===0)return '—';if(n>=1000000)return (n/1000000).toFixed(1)+' млн ₴';return (n/1000).toFixed(0)+'к ₴'}
+function fmtB(p,key){const v=p[key];if(!v)return '—';if(p.cur&&p.cur!=='UAH'&&p[key+'_cur']!=null){const sym=p.cur==='EUR'?'€':'$';const n=p[key+'_cur'];const t=n>=1000000?sym+(n/1000000).toFixed(1)+'M':sym+Math.round(n).toLocaleString('uk-UA');return '<span title="≈ '+fmtM(v)+' за курсом НБУ">'+t+'</span>'}return fmtM(v)}
 function dateProg(s,e){const sd=parseDate(s),ed=parseDate(e);if(!sd||!ed)return 0;return Math.max(0,Math.min(100,(TODAY-sd)/(ed-sd)*100))}
 function riskClass(p){if(p.overdue>5)return 'rc-red';if(p.overdue>0)return 'rc-orange';if(p.pct>=80)return 'rc-green';if(p.pct>=40)return 'rc-yellow';return 'rc-gray'}
 function pctFill(p){if(p.pct>=80)return 'pf-green';if(p.overdue>0&&p.pct<30)return 'pf-red';if(p.overdue>0)return 'pf-orange';return 'pf-blue'}
@@ -351,8 +352,8 @@ PM_ORDER.forEach(pm=>{
       +'<span class="prog-pct" style="color:'+pctClr(p)+'">'+p.pct+'%</span></div>'
       +'<div class="task-stats"><span>Задач: <strong>'+p.tasks+'</strong></span><span>Готово: <strong>'+p.done+'</strong></span>'
       +(p.overdue>0?'<span class="tr">Простр.: <strong>'+p.overdue+'</strong></span>':'')+'</div>'
-      +(p.plan?'<div class="brow"><span class="bl">План: </span><span class="bvp">'+fmtM(p.plan)+'</span>'
-        +(p.fact?'<span class="bl" style="margin-left:8px">Факт: </span><span class="bvf">'+fmtM(p.fact)+'</span>':'')+'</div>'
+      +(p.plan?'<div class="brow"><span class="bl">План: </span><span class="bvp">'+fmtB(p,'plan')+'</span>'
+        +(p.fact?'<span class="bl" style="margin-left:8px">Факт: </span><span class="bvf">'+fmtB(p,'fact')+'</span>':'')+'</div>'
         :'<div class="no-data">Бюджет не внесено</div>')
       +'<a class="detail-btn" href="pillar_dashboard_'+p.id+'.html">Деталі &#8594;</a>'
       +'</div>';
@@ -392,7 +393,7 @@ if(archived.length){
       +'<div class="late-badge" style="background:'+(lost?'var(--red)':'var(--green)')+';color:#fff">'+(lost?'&#10007; Втрачено':'&#10003; Завершено')+'</div></div>'
       +(lost
         ?'<div class="brow"><span class="bl">Втрачена вигода: </span><span class="bvp" style="color:var(--red)">'+fmtM(p.lost_value||p.plan)+'</span></div>'
-        :'<div class="brow"><span class="bl">Бюджет: </span><span class="bvp">'+fmtM(p.plan)+'</span></div>')
+        :'<div class="brow"><span class="bl">Бюджет: </span><span class="bvp">'+fmtB(p,'plan')+'</span></div>')
       +'<a class="detail-btn" href="pillar_dashboard_'+p.id+'.html">Деталі &#8594;</a>'
       +'</div>';
   });
