@@ -147,6 +147,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   #projMap{height:420px;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
   .map-head{font-size:15px;font-weight:700;margin:24px 0 12px;color:var(--brand-dark)}
   @media (max-width:680px){#projMap{height:300px}}
+
+.pl-nav{display:flex;gap:2px;margin-top:8px;border-bottom:1px solid rgba(255,255,255,.08);overflow-x:auto;scrollbar-width:none}
+.pl-nav::-webkit-scrollbar{display:none}
+.pl-tab{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;font-size:12.5px;font-weight:600;color:rgba(255,255,255,.55);text-decoration:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:color .15s}
+.pl-tab:hover{color:#fff}
+.pl-tab.active{color:#fff;border-bottom-color:#E85D1A}
+.pl-more{position:relative}
+.pl-menu{display:none;position:absolute;top:100%;left:0;background:#232F42;border:1px solid rgba(255,255,255,.14);border-radius:8px;min-width:200px;padding:6px 0;z-index:1500;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+.pl-menu a{display:block;padding:8px 14px;color:rgba(255,255,255,.85);font-size:12.5px;font-weight:600;text-decoration:none;white-space:nowrap}
+.pl-menu a:hover{background:rgba(255,255,255,.08)}
+.pl-menu.open{display:block}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -164,11 +175,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
-    <a href="lessons_learned.html" style="display:inline-flex;align-items:center;gap:6px;padding:7px 16px;background:rgba(30,158,90,.2);border:1px solid rgba(30,158,90,.45);border-radius:20px;color:#4DC98A;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap;transition:all .15s;flex-shrink:0" onmouseover="this.style.background='rgba(30,158,90,.35)'" onmouseout="this.style.background='rgba(30,158,90,.2)'">&#128218; Lessons Learned</a>
-    <a href="pillar_cashflow.html" style="display:inline-flex;align-items:center;gap:6px;padding:7px 16px;background:rgba(29,111,164,.2);border:1px solid rgba(29,111,164,.45);border-radius:20px;color:#5BB3E0;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap;flex-shrink:0" onmouseover="this.style.background='rgba(29,111,164,.35)'" onmouseout="this.style.background='rgba(29,111,164,.2)'">&#128181; Грошовий потік</a>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
       <div>Оновлено: 13.07.2026</div>
       <div>32 проєкти &nbsp;&middot;&nbsp; 5 ПМ</div>
+    </div>
+  </div>
+  <div class="pl-nav">
+    <a class="pl-tab active" href="pillar_portfolio.html">&#128202; Портфель</a>
+    <a class="pl-tab" href="pillar_cashflow.html">&#128181; Грошовий потік</a>
+    <a class="pl-tab" href="lessons_learned.html">&#128218; Lessons Learned</a>
+    <div class="pl-more">
+      <span class="pl-tab" id="plMoreBtn" onclick="plMore(event)">Ще &#9662;</span>
+      <div class="pl-menu" id="plMenu">
+        <a href="#" onclick="document.querySelector('.map-head').scrollIntoView({behavior:'smooth'});plClose();return false">&#128506; Карта проєктів</a>
+        <a href="pillar_cashflow.xlsx">&#11015; Кеш-фло Excel</a>
+      </div>
     </div>
   </div>
   <nav class="quick-nav" id="quickNav"></nav>
@@ -178,7 +199,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="kpi-row">
     <div class="kpi">
       <div class="kpi-label">Активних проєктів</div>
-      <div class="kpi-value" id="kpiActive">24</div>
+      <div class="kpi-value" id="kpiActive">&mdash;</div>
       <div class="kpi-sub">5 ПМ у портфелі</div>
     </div>
     <div class="kpi">
@@ -482,6 +503,11 @@ document.addEventListener('click',function(e){if(!e.target.closest('.psearch')){
   refit();
   setTimeout(function(){map.invalidateSize();},200);
 })();
+</script>
+<script>
+function plMore(e){e.stopPropagation();document.getElementById('plMenu').classList.toggle('open')}
+function plClose(){document.getElementById('plMenu').classList.remove('open')}
+document.addEventListener('click',function(e){if(!e.target.closest('.pl-more'))plClose()});
 </script>
 <script>
 (function(){

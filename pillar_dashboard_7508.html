@@ -106,6 +106,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     .pay-row .pamount{min-width:0}
     .filters{flex-wrap:wrap}
   }
+.pl-navbar{background:var(--brand-dark);display:flex;gap:2px;padding:0 24px;border-top:1px solid rgba(255,255,255,.07);overflow-x:auto;scrollbar-width:none}
+.pl-navbar::-webkit-scrollbar{display:none}
+.pl-tab{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;font-size:12.5px;font-weight:600;color:rgba(255,255,255,.55);text-decoration:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:color .15s}
+.pl-tab:hover{color:#fff}
+.pl-more{position:relative}
+.pl-menu{display:none;position:absolute;top:100%;left:0;background:#232F42;border:1px solid rgba(255,255,255,.14);border-radius:8px;min-width:200px;padding:6px 0;z-index:1500;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+.pl-menu a{display:block;padding:8px 14px;color:rgba(255,255,255,.85);font-size:12.5px;font-weight:600;text-decoration:none;white-space:nowrap}
+.pl-menu a:hover{background:rgba(255,255,255,.08)}
+.pl-menu.open{display:block}
 </style>
 </head>
 <body>
