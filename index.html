@@ -148,6 +148,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   .map-head{font-size:15px;font-weight:700;margin:24px 0 12px;color:var(--brand-dark)}
   @media (max-width:680px){#projMap{height:300px}}
 
+.ctb{padding:0 7px;border:1px solid #d5d9e0;border-radius:10px;font-size:11px;line-height:17px;color:#8a94a6;font-weight:700}
+.ctb.on{background:#1D6FA4;color:#fff;border-color:#1D6FA4}
 .pl-nav{display:flex;gap:2px;margin-top:8px;border-bottom:1px solid rgba(255,255,255,.08);overflow-x:auto;scrollbar-width:none}
 .pl-nav::-webkit-scrollbar{display:none}
 .pl-tab{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;font-size:12.5px;font-weight:600;color:rgba(255,255,255,.55);text-decoration:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:color .15s}
@@ -218,7 +220,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="kpi-sub">по всьому портфелю</div>
     </div>
     <div class="kpi">
-      <div class="kpi-label">Бюджет портфелю</div>
+      <div class="kpi-label">Бюджет портфелю <span id="curTgl" style="float:right;display:inline-flex;gap:3px;cursor:pointer;user-select:none"><span class="ctb on" data-c="UAH">₴</span><span class="ctb" data-c="EUR">€</span></span></div>
       <div class="kpi-budget">
         <div class="kb-item"><div class="kbl">План</div><div class="kbv plan" id="kpiPlan">—</div></div>
         <div class="kb-item"><div class="kbl">Факт</div><div class="kbv fact" id="kpiFact">—</div></div>
@@ -306,8 +308,12 @@ const _act=document.getElementById('kpiActive');if(_act)_act.textContent=ACTIVE.
 document.getElementById('kpiAvg').textContent=(ACTIVE.length?Math.round(sp/ACTIVE.length):0)+'%';
 document.getElementById('kpiRisk').textContent=risk;
 document.getElementById('kpiOverdue').textContent=ov+'+';
-document.getElementById('kpiPlan').textContent=fmtM(splan);
-document.getElementById('kpiFact').textContent=fmtM(sfact);
+const NBU_EUR=50.86;
+function kpiBud(c){const f=v=>!v?'—':(c==='EUR'?(v/NBU_EUR/1e6).toFixed(2)+' млн €':fmtM(v));
+document.getElementById('kpiPlan').textContent=f(splan);document.getElementById('kpiFact').textContent=f(sfact);
+document.querySelectorAll('#curTgl .ctb').forEach(b=>b.classList.toggle('on',b.dataset.c===c))}
+kpiBud('UAH');
+document.querySelectorAll('#curTgl .ctb').forEach(b=>b.onclick=e=>{e.stopPropagation();kpiBud(b.dataset.c)});
 const lostSum=LOST.reduce((a,p)=>a+(p.lost_value||p.plan||0),0);
 const _lost=document.getElementById('kpiLost');if(_lost)_lost.textContent=fmtM(lostSum);
 const _lsub=document.getElementById('kpiLostSub');if(_lsub)_lsub.textContent=LOST.length+' втрачено · '+DONE.length+' завершено';
