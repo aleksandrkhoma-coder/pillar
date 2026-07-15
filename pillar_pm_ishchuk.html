@@ -173,12 +173,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель ПМ — Іщук</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 13.07.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 15.07.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 13.07.2026</div>
+      <div>Оновлено: 15.07.2026</div>
       <div>7 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
     </div>
   </div>
@@ -239,15 +239,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
 
 <script>
-const TODAY = new Date('2026-07-13');
+const TODAY = new Date('2026-07-15');
 
-const PROJECTS = [{"id": "5682", "name": "А Сцена Корчин", "pm": "Іщук", "pct": 90, "start": "26.05.2026", "end": "06.07.2026", "tasks": 33, "done": 25, "overdue": 8, "plan": 457134, "fact": 457134, "plan_cur": 457134, "fact_cur": 457134, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0},
+const PROJECTS = [{"id": "5682", "name": "А Сцена Корчин", "pm": "Іщук", "pct": 93, "start": "26.05.2026", "end": "06.07.2026", "tasks": 33, "done": 29, "overdue": 4, "plan": 457134, "fact": 457134, "plan_cur": 457134, "fact_cur": 457134, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0},
   {"id": "7474", "name": "А Головне управління Національної поліції в Одеській області  SCP  15PS", "pm": "Іщук", "pct": 100, "start": "19.05.2026", "end": "15.06.2026", "tasks": 51, "done": 51, "overdue": 0, "plan": 1749999, "fact": 1749999, "plan_cur": 1749999, "fact_cur": 1749999, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 46.4825, "lng": 30.7233, "loc": "Одеса"},
-  {"id": "7536", "name": "А Ранчо “Едельвейс”  AGM  171PV", "pm": "Іщук", "pct": 97, "start": "19.05.2026", "end": "01.07.2026", "tasks": 51, "done": 47, "overdue": 4, "plan": 912346, "fact": 912346, "plan_cur": 912346, "fact_cur": 912346, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 49.08974, "lng": 23.55644, "loc": "Ранчо Едельвейс, Львівська обл."},
+  {"id": "7536", "name": "А Ранчо “Едельвейс”  AGM  171PV", "pm": "Іщук", "pct": 100, "start": "19.05.2026", "end": "01.07.2026", "tasks": 51, "done": 51, "overdue": 0, "plan": 912346, "fact": 912346, "plan_cur": 912346, "fact_cur": 912346, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 49.08974, "lng": 23.55644, "loc": "Ранчо Едельвейс, Львівська обл."},
   {"id": "7960", "name": "Сірокко Sirocco вітрова ел ст Львів", "pm": "Іщук", "pct": 99, "start": "26.05.2026", "end": "24.06.2026", "tasks": 33, "done": 29, "overdue": 4, "plan": 99610, "fact": 99610, "plan_cur": 99610, "fact_cur": 99610, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 49.8397, "lng": 24.0297, "loc": "Львів"},
   {"id": "8070", "name": "А Карпорты B2C  SCP", "pm": "Іщук", "pct": 100, "start": "19.05.2026", "end": "15.06.2026", "tasks": 44, "done": 44, "overdue": 0, "plan": 126641, "fact": 126641, "plan_cur": 126641, "fact_cur": 126641, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 48.56038, "lng": 35.04316, "loc": "Дніпро (карпорт)"},
-  {"id": "8238", "name": "А UTEM SOLAR  SCP Taurus 190PV", "pm": "Іщук", "pct": 84, "start": "26.05.2026", "end": "28.07.2026", "tasks": 50, "done": 33, "overdue": 10, "plan": 2011000, "fact": 2011000, "plan_cur": 2011000, "fact_cur": 2011000, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 50.3536, "lng": 30.5066, "loc": "Пирогово, Київ"},
-  {"id": "8496", "name": "А Greensource  SGM  110MWp", "pm": "Іщук", "pct": 91, "start": "26.05.2026", "end": "26.08.2026", "tasks": 41, "done": 28, "overdue": 0, "plan": 447568, "fact": 447568, "plan_cur": 8800, "fact_cur": 8800, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0}];
+  {"id": "8238", "name": "А UTEM SOLAR  SCP Taurus 190PV", "pm": "Іщук", "pct": 93, "start": "26.05.2026", "end": "28.07.2026", "tasks": 50, "done": 42, "overdue": 1, "plan": 2011000, "fact": 2011000, "plan_cur": 2011000, "fact_cur": 2011000, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 50.3536, "lng": 30.5066, "loc": "Пирогово, Київ"},
+  {"id": "8496", "name": "А Greensource  SGM  110MWp", "pm": "Іщук", "pct": 90, "start": "26.05.2026", "end": "26.08.2026", "tasks": 41, "done": 29, "overdue": 0, "plan": 450545, "fact": 450545, "plan_cur": 8800, "fact_cur": 8800, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0}];
 
 const PM_CONFIG = {
   'Донська':       {initials:'НД', color:'#9B5DE5'},
@@ -283,7 +283,7 @@ const _act=document.getElementById('kpiActive');if(_act)_act.textContent=ACTIVE.
 document.getElementById('kpiAvg').textContent=(ACTIVE.length?Math.round(sp/ACTIVE.length):0)+'%';
 document.getElementById('kpiRisk').textContent=risk;
 document.getElementById('kpiOverdue').textContent=ov+'+';
-const NBU_EUR=50.86;
+const NBU_EUR=51.1984;
 function kpiBud(c){const f=v=>!v?'—':(c==='EUR'?(v/NBU_EUR/1e6).toFixed(2)+' млн €':fmtM(v));
 document.getElementById('kpiPlan').textContent=f(splan);document.getElementById('kpiFact').textContent=f(sfact);
 document.querySelectorAll('#curTgl .ctb').forEach(b=>b.classList.toggle('on',b.dataset.c===c))}
