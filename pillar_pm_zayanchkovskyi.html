@@ -389,18 +389,36 @@ if(archived.length){
     +'<span class="sr">&#10007; Втрачено: '+LOST.length+'</span>'
     +'</div></div></div>'
     +(balTotal>0?bar:'')
-    +'</div><div class="proj-grid">';
-  archived.forEach(p=>{
-    const lost=p.status==='lost';
-    html+='<div class="proj-card '+(lost?'rc-red':'rc-green')+'" data-id="'+p.id+'" data-overdue="0" data-pct="'+p.pct+'" data-risk="0" style="opacity:.78">'
-      +'<div class="proj-top"><div><div class="proj-id">&#8470; '+p.id+' &nbsp;&#183;&nbsp; ПМ: '+p.pm+'</div><div class="proj-name">'+p.name+'</div></div>'
-      +'<div class="late-badge" style="background:'+(lost?'var(--red)':'var(--green)')+';color:#fff">'+(lost?'&#10007; Втрачено':'&#10003; Завершено')+'</div></div>'
-      +(lost
-        ?'<div class="brow"><span class="bl">Втрачена вигода: </span><span class="bvp" style="color:var(--red)">'+fmtM(p.lost_value||p.plan)+'</span></div>'
-        :'<div class="brow"><span class="bl">Бюджет: </span><span class="bvp">'+fmtB(p,'plan')+'</span></div>')
-      +'<a class="detail-btn" href="pillar_dashboard_'+p.id+'.html">Деталі &#8594;</a>'
-      +'</div>';
-  });
+    +'</div><div style="padding:14px 16px">';
+  const byPm={};
+  DONE.forEach(p=>{(byPm[p.pm]=byPm[p.pm]||[]).push(p)});
+  const pmSum=pm=>byPm[pm].reduce((s,p)=>s+(p.plan||0),0);
+  const pmOrder=Object.keys(byPm).sort((a,b)=>pmSum(b)-pmSum(a));
+  if(pmOrder.length){
+    html+='<div style="font-size:12px;color:#5F6B7A;font-weight:700;margin:0 0 8px 2px">&#10003; РЕАЛІЗОВАНО — ПО ПМ</div>'
+      +'<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin-bottom:16px">';
+    pmOrder.forEach(pm=>{
+      const arr=byPm[pm].slice().sort((a,b)=>(b.plan||0)-(a.plan||0));
+      html+='<div style="background:#fff;border:1px solid #e5e9ef;border-radius:10px;overflow:hidden">'
+        +'<div style="padding:8px 12px;border-bottom:2px solid #1E9E5A;font-weight:700;font-size:13px">'+pm
+        +'<span style="float:right;color:#8a94a6;font-size:11px;font-weight:600">'+arr.length+' &middot; '+fmtM(pmSum(pm))+'</span></div>';
+      arr.forEach((p,i)=>{
+        html+='<a href="pillar_dashboard_'+p.id+'.html" style="display:block;padding:7px 12px;text-decoration:none;color:inherit'+(i<arr.length-1?';border-bottom:1px solid #eef1f5':'')+'" onmouseover="this.style.background=\'#f5f8fb\'" onmouseout="this.style.background=\'\'">'
+          +'<span style="color:#8a94a6;font-size:11px">&#8470;'+p.id+'</span> <span style="font-size:12.5px">'+p.name+'</span>'
+          +'<div style="font-size:11px;color:#1D6FA4;font-weight:600;margin-top:1px">'+fmtB(p,'plan')+'</div></a>';
+      });
+      html+='</div>';
+    });
+    html+='</div>';
+  }
+  if(LOST.length){
+    html+='<div style="font-size:12px;color:#A32D2D;font-weight:700;margin:0 0 8px 2px">&#10007; ВТРАЧЕНІ</div>';
+    LOST.forEach(p=>{
+      html+='<a href="pillar_dashboard_'+p.id+'.html" style="display:block;background:#fff;border:1px solid #e5e9ef;border-left:3px solid #D93025;border-radius:0 10px 10px 0;padding:8px 12px;margin-bottom:8px;max-width:520px;text-decoration:none;color:inherit">'
+        +'<span style="color:#8a94a6;font-size:11px">&#8470;'+p.id+' &middot; '+p.pm+'</span> <span style="font-size:12.5px">'+p.name+'</span>'
+        +'<div style="font-size:11px;color:#A32D2D;font-weight:600;margin-top:1px">Втрачена вигода: '+fmtM(p.lost_value||p.plan)+'</div></a>';
+    });
+  }
   html+='</div></div>';
 }
 
