@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pillar — Портфель проєктів ОУП</title>
+<meta name="robots" content="noindex,nofollow">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#1A2332">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="robots" content="noindex,nofollow">
 <style>
 :root {
   --brand-dark: #1A2332;
@@ -178,13 +178,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель ПМ — Александров</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 15.07.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 16.07.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 15.07.2026</div>
-      <div>8 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
+      <div>Оновлено: 16.07.2026</div>
+      <div>3 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
     </div>
   </div>
   <div class="pl-nav">
@@ -244,16 +244,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
 
 <script>
-const TODAY = new Date('2026-07-15');
+const TODAY = new Date('2026-07-16');
 
-const PROJECTS = [{"id": "5870", "name": "Carport Airport Munich", "pm": "Александров", "pct": 99, "start": "19.05.2026", "end": "10.07.2026", "tasks": 48, "done": 47, "overdue": 1, "plan": 10400000, "fact": 2600000, "plan_cur": 10400000, "fact_cur": 2600000, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.35631, "lng": 11.76392, "loc": "Аеропорт Мюнхен, Німеччина"},
-  {"id": "6406", "name": "Максим Яловий Чинадієво", "pm": "Александров", "pct": 68, "start": "08.06.2026", "end": "22.07.2026", "tasks": 48, "done": 34, "overdue": 7, "plan": 373582, "fact": 154980, "plan_cur": 373582, "fact_cur": 154980, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.4846, "lng": 22.82756, "loc": "Чинадійово, Закарпатська обл."},
-  {"id": "6704", "name": "SCP Taurus 236PS", "pm": "Александров", "pct": 99, "start": "19.05.2026", "end": "03.07.2026", "tasks": 43, "done": 42, "overdue": 1, "plan": 11596000, "fact": 7072000, "plan_cur": 11596000, "fact_cur": 7072000, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.98825, "lng": 9.46467, "loc": "Баден-Вюртемберг, Німеччина"},
-  {"id": "6842", "name": "2", "pm": "Александров", "pct": 100, "start": "22.05.2026", "end": "07.07.2026", "tasks": 50, "done": 50, "overdue": 0, "plan": 3308968, "fact": 3308968, "plan_cur": 3308968, "fact_cur": 3308968, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 45.55178, "lng": 15.16751, "loc": "Хорватія"},
+const PROJECTS = [{"id": "6842", "name": "2", "pm": "Александров", "pct": 100, "start": "22.05.2026", "end": "07.07.2026", "tasks": 50, "done": 50, "overdue": 0, "plan": 3308968, "fact": 3308968, "plan_cur": 3308968, "fact_cur": 3308968, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 45.55178, "lng": 15.16751, "loc": "Хорватія"},
   {"id": "7068", "name": "А Remtec energy  AGM  160 TP", "pm": "Александров", "pct": 100, "start": "19.05.2026", "end": "31.07.2026", "tasks": 52, "done": 52, "overdue": 0, "plan": 5640128, "fact": 5640128, "plan_cur": 5640128, "fact_cur": 5640128, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0},
-  {"id": "8188", "name": "Фундамент Ужгород Стефанія", "pm": "Александров", "pct": 65, "start": "26.05.2026", "end": "18.07.2026", "tasks": 48, "done": 28, "overdue": 12, "plan": 280126, "fact": 206200, "plan_cur": 280126, "fact_cur": 206200, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0},
-  {"id": "8438", "name": "GS", "pm": "Александров", "pct": 100, "start": "19.05.2026", "end": "24.06.2026", "tasks": 51, "done": 51, "overdue": 0, "plan": 758160, "fact": 758160, "plan_cur": 758160, "fact_cur": 758160, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 50.61052, "lng": 6.29892, "loc": "Simmerath, Німеччина"},
-  {"id": "8644", "name": "Solars ГШ 1,7+надставки 3,5", "pm": "Александров", "pct": 86, "start": "08.06.2026", "end": "05.08.2026", "tasks": 51, "done": 44, "overdue": 4, "plan": 415900, "fact": 415900, "plan_cur": 415900, "fact_cur": 415900, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0}];
+  {"id": "8438", "name": "GS", "pm": "Александров", "pct": 100, "start": "19.05.2026", "end": "24.06.2026", "tasks": 51, "done": 51, "overdue": 0, "plan": 758160, "fact": 758160, "plan_cur": 758160, "fact_cur": 758160, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 50.61052, "lng": 6.29892, "loc": "Simmerath, Німеччина"}];
 
 const PM_CONFIG = {
   'Донська':       {initials:'НД', color:'#9B5DE5'},
@@ -289,7 +284,7 @@ const _act=document.getElementById('kpiActive');if(_act)_act.textContent=ACTIVE.
 document.getElementById('kpiAvg').textContent=(ACTIVE.length?Math.round(sp/ACTIVE.length):0)+'%';
 document.getElementById('kpiRisk').textContent=risk;
 document.getElementById('kpiOverdue').textContent=ov+'+';
-const NBU_EUR=51.1984;
+const NBU_EUR=51.06;
 function kpiBud(c){const f=v=>!v?'—':(c==='EUR'?(v/NBU_EUR/1e6).toFixed(2)+' млн €':fmtM(v));
 document.getElementById('kpiPlan').textContent=f(splan);document.getElementById('kpiFact').textContent=f(sfact);
 document.querySelectorAll('#curTgl .ctb').forEach(b=>b.classList.toggle('on',b.dataset.c===c))}

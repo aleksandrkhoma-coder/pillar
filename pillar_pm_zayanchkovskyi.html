@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pillar — Портфель проєктів ОУП</title>
+<meta name="robots" content="noindex,nofollow">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#1A2332">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="robots" content="noindex,nofollow">
 <style>
 :root {
   --brand-dark: #1A2332;
@@ -178,12 +178,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель ПМ — Заянчковський</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 15.07.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 16.07.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 15.07.2026</div>
+      <div>Оновлено: 16.07.2026</div>
       <div>6 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
     </div>
   </div>
@@ -244,9 +244,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
 
 <script>
-const TODAY = new Date('2026-07-15');
+const TODAY = new Date('2026-07-16');
 
-const PROJECTS = [{"id": "4766", "name": "ALTECO Carport Model Taurus 280кВт", "pm": "Заянчковський", "pct": 11, "start": "01.05.2026", "end": "23.09.2026", "tasks": 48, "done": 8, "overdue": 0, "plan": 5000000, "fact": 120000, "plan_cur": 5000000, "fact_cur": 120000, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.58919, "lng": 22.97573, "loc": "Закарпатська обл. (Carport Taurus)"},
+const PROJECTS = [{"id": "4766", "name": "ALTECO Carport Model Taurus 280кВт", "pm": "Заянчковський", "pct": 31, "start": "01.05.2026", "end": "01.10.2026", "tasks": 44, "done": 9, "overdue": 0, "plan": 5815976, "fact": 120000, "plan_cur": 5815976, "fact_cur": 120000, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.58919, "lng": 22.97573, "loc": "Закарпатська обл. (Carport Taurus)"},
   {"id": "7244", "name": "В Модулекс модульна будівля Чернігів", "pm": "Заянчковський", "pct": 45, "start": "19.05.2026", "end": "09.08.2026", "tasks": 42, "done": 32, "overdue": 0, "plan": 210308, "fact": 77600, "plan_cur": 210308, "fact_cur": 77600, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 51.48585, "lng": 31.30891, "loc": "Чернігів, вул. Підвальна 19"},
   {"id": "7508", "name": "8602 Євген Весільна тераса Подорожнє", "pm": "Заянчковський", "pct": 70, "start": "26.05.2026", "end": "04.09.2026", "tasks": 42, "done": 28, "overdue": 0, "plan": 2747999, "fact": 1997000, "plan_cur": 2747999, "fact_cur": 1997000, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 49.05967, "lng": 33.07001, "loc": "Подорожнє, Кіровоградська обл. (MAXX Premium Resort)"},
   {"id": "8140", "name": "В Газинвестпроект фундамент Киев", "pm": "Заянчковський", "pct": 100, "start": "19.05.2026", "end": "14.06.2026", "tasks": 40, "done": 40, "overdue": 0, "plan": 236041, "fact": 236041, "plan_cur": 236041, "fact_cur": 236041, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 50.433316, "lng": 30.635755, "loc": "Київ, вул. Сосницька 5"},
@@ -287,7 +287,7 @@ const _act=document.getElementById('kpiActive');if(_act)_act.textContent=ACTIVE.
 document.getElementById('kpiAvg').textContent=(ACTIVE.length?Math.round(sp/ACTIVE.length):0)+'%';
 document.getElementById('kpiRisk').textContent=risk;
 document.getElementById('kpiOverdue').textContent=ov+'+';
-const NBU_EUR=51.1984;
+const NBU_EUR=51.06;
 function kpiBud(c){const f=v=>!v?'—':(c==='EUR'?(v/NBU_EUR/1e6).toFixed(2)+' млн €':fmtM(v));
 document.getElementById('kpiPlan').textContent=f(splan);document.getElementById('kpiFact').textContent=f(sfact);
 document.querySelectorAll('#curTgl .ctb').forEach(b=>b.classList.toggle('on',b.dataset.c===c))}
