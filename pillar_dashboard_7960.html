@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pillar — Проєкт № 7960</title>
 <meta name="robots" content="noindex,nofollow">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#1A2332">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pillar — Проєкт № 7960</title>
 <style>
 :root{--brand-dark:#1A2332;--brand-orange:#E85D1A;--accent-blue:#1D6FA4;--accent-blue-light:#E8F3FA;--green:#1E9E5A;--green-light:#E6F7EE;--red:#D93025;--red-light:#FDECEA;--yellow:#E6A817;--gray-50:#F8F9FA;--gray-100:#F1F3F5;--gray-200:#E5E7EB;--gray-400:#9CA3AF;--text:#1A2332;--text-muted:#6B7280;--border:#E5E7EB;--radius:8px;--shadow:0 1px 4px rgba(0,0,0,.08)}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -129,7 +129,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div style="width:1px;height:28px;background:rgba(255,255,255,.2)"></div>
     <div>
       <div style="font-size:15px;font-weight:600">Проєкт № 7960</div>
-      <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">ПМ: Іщук &nbsp;&middot;&nbsp; 26.05.2026 &rarr; 24.06.2026 &nbsp;&middot;&nbsp; Дані: 16.07.2026</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">ПМ: Іщук &nbsp;&middot;&nbsp; 26.05.2026 &rarr; 24.06.2026 &nbsp;&middot;&nbsp; Дані: 21.07.2026</div>
     </div>
   </div>
   <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
@@ -143,7 +143,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="kpi"><div class="kpi-label">Загальний прогрес</div><div class="kpi-value orange">99%</div><div class="kpi-sub" id="activePhase">—</div></div>
     <div class="kpi"><div class="kpi-label">Терміни проєкту</div><div style="display:flex;align-items:baseline;gap:5px;margin-top:4px"><span style="font-size:17px;font-weight:800">26.05.2026</span><span style="font-size:13px;color:var(--text-muted)">&rarr;</span><span style="font-size:17px;font-weight:800">24.06.2026</span></div><div class="kpi-sub" id="kpiDur">—</div></div>
     <div class="kpi"><div class="kpi-label">Завдань</div><div class="kpi-value" id="kpiTasks">—</div><div class="kpi-sub" id="kpiTaskSub">—</div></div>
-    <div class="kpi"><div class="kpi-label">Прострочених</div><div class="kpi-value red" id="kpiOverdue">—</div><div class="kpi-sub">відносно 16.07.2026</div></div>
+    <div class="kpi"><div class="kpi-label">Прострочених</div><div class="kpi-value red" id="kpiOverdue">—</div><div class="kpi-sub">відносно 21.07.2026</div></div>
   </div>
 <div class="card"><h2>&#128176; Бюджет проєкту</h2><div class="budget-grid"><div><div class="bl">План (сума платежів)</div><div class="bv plan">100к ₴</div></div><div><div class="bl">Факт (отримано)</div><div class="bv fact">100к ₴</div></div><div><div class="bl">Оплачено</div><div class="bv pct">100%</div></div></div><div class="bbar"><div class="bfill" style="width:100%"></div></div><div style="display:flex;justify-content:space-between;margin-top:5px;font-size:11px;color:var(--text-muted)"><span>0</span><span style="color:var(--green);font-weight:600">100к ₴ отримано</span><span>100к ₴</span></div></div>
 <div class="section-title">&#128179; Платіжний графік</div><div class="card pay-list"><div class="pay-row"><div class="pdot" style="background:var(--green)"></div><div class="pname">Авансовий платіж</div><div class="pdate">27.05.2026</div><span class="pamount">план: 100к ₴</span><span class="pamount fact-val">факт: 100к ₴</span><div class="pst"><span class="sb s-done">&#10003; Отримано</span></div></div><div class="pay-row" style="opacity:.6"><div class="pdot" style="background:var(--gray-200)"></div><div class="pname" style="text-decoration:line-through">Другий платіж</div><div class="pdate">24.06.2026</div><span class="pamount fact-empty" style="flex:1">не застосовується</span><div class="pst"><span class="sb s-none">&mdash;</span></div></div><div class="pay-row" style="opacity:.6"><div class="pdot" style="background:var(--gray-200)"></div><div class="pname" style="text-decoration:line-through">Третій платіж</div><div class="pdate">24.06.2026</div><span class="pamount fact-empty" style="flex:1">не застосовується</span><div class="pst"><span class="sb s-none">&mdash;</span></div></div><div class="pay-row" style="opacity:.6"><div class="pdot" style="background:var(--gray-200)"></div><div class="pname" style="text-decoration:line-through">Четвертий платіж</div><div class="pdate">24.06.2026</div><span class="pamount fact-empty" style="flex:1">не застосовується</span><div class="pst"><span class="sb s-none">&mdash;</span></div></div><div class="pay-row" style="opacity:.6"><div class="pdot" style="background:var(--gray-200)"></div><div class="pname" style="text-decoration:line-through">П'ятий платіж</div><div class="pdate">24.06.2026</div><span class="pamount fact-empty" style="flex:1">не застосовується</span><div class="pst"><span class="sb s-none">&mdash;</span></div></div></div>
