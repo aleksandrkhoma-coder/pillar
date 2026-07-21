@@ -114,10 +114,9 @@ document.querySelectorAll('#cfTgl .ctb').forEach(b=>b.onclick=()=>cfCur(b.datase
   var over=document.getElementById('overBody');
   var allBtn=document.getElementById('cfToggleAll');
   if(!sched) return;
-  var LS='pillar_cf_collapsed', collapsed={};
-  try{collapsed=JSON.parse(localStorage.getItem(LS)||'{}')||{};}catch(e){}
-  function save(){try{localStorage.setItem(LS,JSON.stringify(collapsed));}catch(e){}}
+  var CUR='2026-07', collapsed={};
   function monthKeys(){var a=[];for(var i=0;i<sched.rows.length;i++){var r=sched.rows[i];if(r.classList.contains('mhead'))a.push(r.getAttribute('data-k'));}return a;}
+  monthKeys().forEach(function(k){collapsed[k]=(k!==CUR);}); // за замовчуванням відкритий лише поточний місяць
   function updAll(){if(!allBtn)return;var anyOpen=monthKeys().some(function(k){return !collapsed[k];});allBtn.textContent=anyOpen?'Згорнути всі':'Розгорнути всі';}
   function apply(){
     var q=(inp?inp.value.trim().toLowerCase():''), shown=0;
@@ -145,11 +144,11 @@ document.querySelectorAll('#cfTgl .ctb').forEach(b=>b.onclick=()=>cfCur(b.datase
   sched.addEventListener('click',function(e){
     var tr=e.target.closest('tr.mhead'); if(!tr) return;
     if(inp && inp.value.trim()) return; // під час пошуку не згортати
-    var k=tr.getAttribute('data-k'); collapsed[k]=!collapsed[k]; save(); apply();
+    var k=tr.getAttribute('data-k'); collapsed[k]=!collapsed[k]; apply();
   });
   if(allBtn) allBtn.addEventListener('click',function(){
     var keys=monthKeys(), anyOpen=keys.some(function(k){return !collapsed[k];});
-    keys.forEach(function(k){collapsed[k]=anyOpen;}); save();
+    keys.forEach(function(k){collapsed[k]=anyOpen;});
     if(inp) inp.value=''; apply();
   });
   if(inp){ inp.addEventListener('input',apply); inp.addEventListener('keydown',function(e){if(e.key==='Escape'){inp.value='';apply();}}); }
