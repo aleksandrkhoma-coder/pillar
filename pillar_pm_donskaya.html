@@ -178,12 +178,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель ПМ — Донська</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 21.07.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 22.07.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 21.07.2026</div>
+      <div>Оновлено: 22.07.2026</div>
       <div>10 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
     </div>
   </div>
@@ -244,12 +244,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
 
 <script>
-const TODAY = new Date('2026-07-21');
+const TODAY = new Date('2026-07-22');
 
 const PROJECTS = [{"id": "3456", "name": "А Підселання фундаменту", "pm": "Донська", "pct": 59, "start": "19.05.2026", "end": "15.08.2026", "tasks": 43, "done": 33, "overdue": 0, "plan": 1541883, "fact": 1205908, "plan_cur": 1541883, "fact_cur": 1205908, "cur": "UAH", "paused": true, "risk": null, "status": "cr", "lost_value": 0, "lat": 50.42551, "lng": 30.51821, "loc": "Київ, Велика Васильківська"},
   {"id": "5438", "name": "Stonava. Cz. SGM 100 MW", "pm": "Донська", "pct": 22, "start": "19.05.2026", "end": "22.08.2026", "tasks": 48, "done": 20, "overdue": 0, "plan": 260000000, "fact": 78000000, "plan_cur": 260000000, "fact_cur": 78000000, "cur": "UAH", "paused": true, "risk": null, "status": "paused", "lost_value": 0, "lat": 49.8211, "lng": 18.5061, "loc": "Stonava, Чехія (≈ центр)"},
-  {"id": "5910", "name": "А   AGM 2V", "pm": "Донська", "pct": 1, "start": "19.05.2026", "end": "10.09.2026", "tasks": 51, "done": 4, "overdue": 0, "plan": 28455546, "fact": 0, "plan_cur": 556969, "fact_cur": 0, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 45.871, "lng": 15.76493, "loc": "Brdovec, Хорватія"},
-  {"id": "7002", "name": "А Фора  SCP W 24PS V1", "pm": "Донська", "pct": 83, "start": "19.05.2026", "end": "27.08.2026", "tasks": 50, "done": 40, "overdue": 0, "plan": 2416856, "fact": 1842911, "plan_cur": 2416856, "fact_cur": 1842911, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 50.33997, "lng": 30.62302, "loc": "Київ (ур. Млиново)"},
+  {"id": "5910", "name": "А   AGM 2V", "pm": "Донська", "pct": 1, "start": "19.05.2026", "end": "11.09.2026", "tasks": 51, "done": 4, "overdue": 1, "plan": 28455546, "fact": 0, "plan_cur": 556969, "fact_cur": 0, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 45.871, "lng": 15.76493, "loc": "Brdovec, Хорватія"},
+  {"id": "7002", "name": "А Фора  SCP W 24PS V1", "pm": "Донська", "pct": 83, "start": "19.05.2026", "end": "27.08.2026", "tasks": 50, "done": 40, "overdue": 0, "plan": 2416856, "fact": 1842911, "plan_cur": 2416856, "fact_cur": 1842911, "cur": "UAH", "paused": false, "risk": "watch", "status": "active", "lost_value": 0, "lat": 50.33997, "lng": 30.62302, "loc": "Київ (ур. Млиново)"},
   {"id": "7894", "name": "А Фора  SCP  32PS", "pm": "Донська", "pct": 51, "start": "04.06.2026", "end": "18.09.2026", "tasks": 50, "done": 24, "overdue": 0, "plan": 3334874, "fact": 1487743, "plan_cur": 3334874, "fact_cur": 1487743, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 50.33023, "lng": 30.4506, "loc": "Хотів, Київська обл."},
   {"id": "8008", "name": "Модулі Григорівка", "pm": "Донська", "pct": 100, "start": "19.05.2026", "end": "07.07.2026", "tasks": 43, "done": 43, "overdue": 0, "plan": 787027, "fact": 787027, "plan_cur": 787027, "fact_cur": 787027, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 49.929544, "lng": 31.405436, "loc": "Григорівка, Черкаська обл."},
   {"id": "8185", "name": "Фундамент Hytte House Development Славське", "pm": "Донська", "pct": 100, "start": "02.06.2026", "end": "15.07.2026", "tasks": 38, "done": 38, "overdue": 0, "plan": 294650, "fact": 294650, "plan_cur": 294650, "fact_cur": 294650, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 48.84511, "lng": 23.44765, "loc": "Славське, Львівська обл."},
