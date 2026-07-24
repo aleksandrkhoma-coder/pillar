@@ -178,12 +178,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель ПМ — Хома</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 23.07.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 24.07.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 23.07.2026</div>
+      <div>Оновлено: 24.07.2026</div>
       <div>4 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
     </div>
   </div>
@@ -244,11 +244,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
 
 <script>
-const TODAY = new Date('2026-07-23');
+const TODAY = new Date('2026-07-24');
 
-const PROJECTS = [{"id": "5870", "name": "Carport Airport Munich", "pm": "Хома", "pct": 99, "start": "19.05.2026", "end": "10.07.2026", "tasks": 48, "done": 47, "overdue": 1, "plan": 10212000, "fact": 2553000, "plan_cur": 200000, "fact_cur": 50000, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.35631, "lng": 11.76392, "loc": "Аеропорт Мюнхен, Німеччина"},
-  {"id": "6704", "name": "SCP Taurus 236PS", "pm": "Хома", "pct": 99, "start": "19.05.2026", "end": "03.07.2026", "tasks": 43, "done": 42, "overdue": 1, "plan": 11386380, "fact": 6944160, "plan_cur": 223000, "fact_cur": 136000, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.98825, "lng": 9.46467, "loc": "Баден-Вюртемберг, Німеччина"},
-  {"id": "8604", "name": "МілТек", "pm": "Хома", "pct": 53, "start": "25.05.2026", "end": "23.07.2026", "tasks": 37, "done": 35, "overdue": 0, "plan": 0, "fact": 0, "plan_cur": 0, "fact_cur": 0, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0},
+const PROJECTS = [{"id": "5870", "name": "Carport Airport Munich", "pm": "Хома", "pct": 99, "start": "19.05.2026", "end": "10.07.2026", "tasks": 48, "done": 47, "overdue": 1, "plan": 10329182, "fact": 2582308, "plan_cur": 202295, "fact_cur": 50574, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.35631, "lng": 11.76392, "loc": "Аеропорт Мюнхен, Німеччина"},
+  {"id": "6704", "name": "SCP Taurus 236PS", "pm": "Хома", "pct": 99, "start": "19.05.2026", "end": "03.07.2026", "tasks": 43, "done": 42, "overdue": 1, "plan": 11704892, "fact": 7138341, "plan_cur": 229238, "fact_cur": 139803, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.98825, "lng": 9.46467, "loc": "Баден-Вюртемберг, Німеччина"},
+  {"id": "8604", "name": "МілТек", "pm": "Хома", "pct": 48, "start": "25.05.2026", "end": "30.07.2026", "tasks": 37, "done": 35, "overdue": 0, "plan": 0, "fact": 0, "plan_cur": 0, "fact_cur": 0, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0},
   {"id": "8644", "name": "Solars ГШ 1,7+надставки 3,5", "pm": "Хома", "pct": 86, "start": "08.06.2026", "end": "05.08.2026", "tasks": 51, "done": 44, "overdue": 4, "plan": 415900, "fact": 415900, "plan_cur": 415900, "fact_cur": 415900, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0}];
 
 const PM_CONFIG = {
