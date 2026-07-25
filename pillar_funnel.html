@@ -5,7 +5,7 @@
 <meta name="theme-color" content="#1A2332">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Воронка ЗЕД | Pillar</title>
 <style>
 :root{--bg:#1A2332;--bg2:#223047;--accent:#E85D1A;--blue:#1D6FA4;--green:#1E9E5A;--red:#D93025;--amber:#E9A23B;--text:#E8EDF5;--text2:#9aafc8;--border:#2e4060;--card:#1e2d42}
@@ -50,10 +50,10 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--te
 </div>
 <div class="main">
   <div class="kpis">
-    <div class="kpi"><div class="l">Виграно / очікує оплату</div><div class="v" style="color:#4DC98A">&euro;6.08M</div><div class="s">у т.ч. Станава &euro;5M</div></div>
-    <div class="kpi"><div class="l">Активна воронка 2026</div><div class="v" style="color:#5BB3E0">&euro;17.9M</div><div class="s">зважено &asymp; &euro;5.8M</div></div>
-    <div class="kpi"><div class="l">Горизонт &le; 90 днів</div><div class="v" style="color:#E9A23B">&euro;7.6M</div><div class="s">зважено &asymp; &euro;4.1M</div></div>
-    <div class="kpi"><div class="l">Категорія B (&ge; 70%)</div><div class="v">12 угод</div><div class="s">&asymp; &euro;4.1M</div></div>
+    <div class="kpi"><div class="l">Угод у фокусі (&ge; <span id="kThr">75</span>%)</div><div class="v" id="kN">&mdash;</div><div class="s">із 21 угоди розділу 8</div></div>
+    <div class="kpi"><div class="l">Бюджет воронки (номінал)</div><div class="v" id="kNom" style="color:#5BB3E0">&mdash;</div><div class="s">&Sigma; сума угод &ge; порогу</div></div>
+    <div class="kpi"><div class="l">Зважено за ймовірністю</div><div class="v" id="kWgt" style="color:#4DC98A">&mdash;</div><div class="s">&Sigma; сума &times; ймовірність</div></div>
+    <div class="kpi"><div class="l">У горизонті &le; 90 днів</div><div class="v" id="k90" style="color:#E9A23B">&mdash;</div><div class="s">Q3&ndash;Q4 2026, &ge; порогу</div></div>
   </div>
   <div class="ctrl">
     <label style="display:flex;align-items:center;gap:10px">
@@ -103,6 +103,12 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--te
   var board=document.getElementById('board'),thr=document.getElementById('thr'),thrv=document.getElementById('thrv'),hide=document.getElementById('hide');
   function render(){
     var T=+thr.value;thrv.textContent=T+'%';var H=hide.checked;
+    var _ap=D.filter(function(d){return d.p!=null&&d.p>=T;});
+    document.getElementById('kThr').textContent=T;
+    document.getElementById('kN').textContent=_ap.length;
+    document.getElementById('kNom').textContent=fmt(_ap.reduce(function(a,d){return a+(d.s||0);},0));
+    document.getElementById('kWgt').textContent=fmt(_ap.reduce(function(a,d){return a+((d.s||0)*d.p/100);},0));
+    document.getElementById('k90').textContent=fmt(_ap.filter(function(d){return d.h<3;}).reduce(function(a,d){return a+(d.s||0);},0));
     board.innerHTML=COLS.map(function(col,ci){
       var items=D.filter(function(d){return d.h===ci;});
       var pass=items.filter(function(d){return d.p!=null&&d.p>=T;});
