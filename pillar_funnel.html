@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="uk"><head>
+<meta name="robots" content="noindex,nofollow">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1A2332">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Воронка ЗЕД | Pillar</title>
+<style>
+:root{--bg:#1A2332;--bg2:#223047;--accent:#E85D1A;--blue:#1D6FA4;--green:#1E9E5A;--red:#D93025;--amber:#E9A23B;--text:#E8EDF5;--text2:#9aafc8;--border:#2e4060;--card:#1e2d42}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.header{background:var(--bg2);border-bottom:2px solid var(--accent);padding:14px 28px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100;flex-wrap:wrap}
+.logo{font-size:20px;font-weight:700;color:var(--accent);letter-spacing:1px;text-decoration:none}
+.logo span{color:var(--text2);font-weight:400;font-size:13px;margin-left:8px}
+.gen{margin-left:auto;font-size:11px;color:var(--text2)}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600;text-decoration:none;margin-left:8px}
+.btn-blue{background:rgba(29,111,164,.18);border:1px solid rgba(29,111,164,.45);color:#5BB3E0}
+.btn-amber{background:rgba(233,162,59,.18);border:1px solid rgba(233,162,59,.45);color:#E9A23B}
+.main{padding:22px 28px;max-width:1180px;margin:0 auto}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+.kpi .l{font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.5px}
+.kpi .v{font-size:23px;font-weight:800;margin-top:4px}
+.kpi .s{font-size:12px;color:var(--text2);margin-top:2px}
+.ctrl{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 16px;margin-bottom:16px}
+.ctrl input[type=range]{width:200px;accent-color:var(--accent);vertical-align:middle}
+.leg{margin-left:auto;display:flex;gap:14px;font-size:12px;color:var(--text2);flex-wrap:wrap}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:4px;vertical-align:middle}
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:start}
+.col-h{border-bottom:2px solid var(--border);padding:0 2px 7px;margin-bottom:10px}
+.col-h .t{font-weight:700;font-size:14px}
+.col-h .sub{font-size:11px;color:var(--text2)}
+.col-h .n{font-size:12px;color:var(--text2);margin-top:2px}
+.card{border:1px solid var(--border);border-radius:12px;padding:10px 12px;margin-bottom:8px;transition:opacity .15s}
+.card .cli{font-size:12.5px;margin:3px 0 6px}
+.card .sum{font-size:15px;font-weight:700;font-variant-numeric:tabular-nums}
+.card .mgr{font-size:11.5px;color:var(--text2)}
+.card .cond{font-size:11.5px;color:var(--text2);margin-top:4px}
+.badge{font-size:11px;white-space:nowrap;padding:1px 9px;border-radius:20px;font-weight:600}
+@media(max-width:900px){.kpis,.board{grid-template-columns:repeat(2,1fr)}}
+</style></head>
+<body>
+<div class="header">
+  <a href="pillar_portfolio.html" class="logo">PILLAR<span>Воронка ЗЕД</span></a>
+  <a class="btn btn-blue" href="pillar_portfolio.html">&larr; Проєкти</a>
+  <a class="btn btn-amber" href="pillar_cashflow.html">&#128181; Грошовий потік</a>
+  <span class="gen">Джерело: протокол наради продажів 07.2026 &middot; станом на 23.07.2026</span>
+</div>
+<div class="main">
+  <div class="kpis">
+    <div class="kpi"><div class="l">Виграно / очікує оплату</div><div class="v" style="color:#4DC98A">&euro;6.08M</div><div class="s">у т.ч. Станава &euro;5M</div></div>
+    <div class="kpi"><div class="l">Активна воронка 2026</div><div class="v" style="color:#5BB3E0">&euro;17.9M</div><div class="s">зважено &asymp; &euro;5.8M</div></div>
+    <div class="kpi"><div class="l">Горизонт &le; 90 днів</div><div class="v" style="color:#E9A23B">&euro;7.6M</div><div class="s">зважено &asymp; &euro;4.1M</div></div>
+    <div class="kpi"><div class="l">Категорія B (&ge; 70%)</div><div class="v">12 угод</div><div class="s">&asymp; &euro;4.1M</div></div>
+  </div>
+  <div class="ctrl">
+    <label style="display:flex;align-items:center;gap:10px">
+      <span style="color:var(--text2)">Поріг ймовірності</span>
+      <input id="thr" type="range" min="0" max="100" step="5" value="75" aria-label="Поріг ймовірності">
+      <span id="thrv" style="min-width:42px;font-weight:700">75%</span>
+    </label>
+    <label style="display:flex;align-items:center;gap:6px;color:var(--text2);cursor:pointer"><input id="hide" type="checkbox"> ховати нижче порогу</label>
+    <span class="leg">
+      <span><span class="dot" style="background:#4DC98A"></span>&ge;90%</span>
+      <span><span class="dot" style="background:#F2894E"></span>75&ndash;89%</span>
+      <span><span class="dot" style="background:#E9A23B"></span>50&ndash;74%</span>
+      <span><span class="dot" style="background:#9aafc8"></span>&lt;50% / н.д.</span>
+    </span>
+  </div>
+  <div class="board" id="board"></div>
+</div>
+<script>
+(function(){
+  var D=[
+    {h:0,id:'5438',c:'Станава — SGM 100 МВт',m:'Богдан',s:5000000,p:99,won:1,cond:'аванс €1.5M отримано'},
+    {h:0,id:'8958',c:'PBS — фундамент BESS',m:'Богдан',s:null,p:90,cond:'КП сьогодні, запуск наступного тижня'},
+    {h:0,id:'8664',c:'Electrix — 2.1 МВт (BG)',m:'Олександра',s:171398,p:85,cond:'рішення інженера до кінця тижня'},
+    {h:0,id:'8832',c:'Greenergy — карпорт 94 п/м (IT)',m:'Олександра',s:172754,p:50,cond:'відповідь техвідділу чт–пт'},
+    {h:1,id:'7224',c:'Станківці — ГШ',m:'Богдан',s:546416,p:70,cond:'ціль 99%, дзвінок Кучері'},
+    {h:1,id:'8576',c:'Жижев — 3.5 МВт',m:'Богдан',s:170377,p:90,cond:'практично виграна'},
+    {h:1,id:'8908',c:'Румунія — ГШ ~35 тис. шт.',m:'Богдан/Андрій',s:1539000,p:70,cond:'успішні польові тести'},
+    {h:1,id:'8882',c:'Sol Sol — GMS 3 МВт',m:'Олександра',s:145444,p:50,cond:'результат тендера в понеділок'},
+    {h:1,id:'—',c:'Литва — відвантаження карпортів',m:'Павло',s:null,p:60,cond:'склад Україна чи Прага'},
+    {h:1,id:'—',c:'Основне випробування (Юрій)',m:'Ірина',s:null,p:null,cond:'результати в серпні'},
+    {h:2,id:'8330+8328',c:'Enprotech — 4 + 3.5 МВт (SK)',m:'Олександра',s:596747,p:80,cond:'банківське фінансування'},
+    {h:2,id:'8254',c:'JB-Energija — Порторож',m:'Ірина',s:540000,p:80,cond:'старт з вересня'},
+    {h:2,id:'7220',c:'AP Energy — 911 кВт',m:'Богдан',s:50755,p:90,cond:'лише дозвіл на будівництво'},
+    {h:2,id:'7130',c:'SPL / DHL — карпорт 161 п/м',m:'Олександра',s:446800,p:70,cond:'нове КП → дозвіл'},
+    {h:2,id:'3666',c:'SolarEnergia — Taurus 174 п/м',m:'Богдан',s:572513,p:60,cond:'отримання дозволів'},
+    {h:2,id:'6002',c:'CJR — ГШ під BESS (RO)',m:'Ірина',s:1000000,p:40,cond:'ТЕО проти бетону'},
+    {h:2,id:'5666',c:'Lendava — 9.3 МВт',m:'Ірина',s:400000,p:40,cond:'умова: розкладка ≥9 МВт'},
+    {h:3,id:'Woodburn',c:'40 МВт (схил, узбережжя)',m:'Богдан',s:null,p:90,cond:'будівництво з березня 2027'},
+    {h:3,id:'8880',c:'Sunlux / Wolter — 149 п/м',m:'Богдан',s:236000,p:null,cond:'реалізація наступного року'},
+    {h:3,id:'7944',c:'Unica — автодром 1 МВт',m:'Павло',s:400001,p:null,cond:'вимога: 2–3 роки'},
+    {h:3,id:'6144',c:'HSE — карпорт 1600 п/м',m:'Ірина',s:1700000,p:null,cond:'етап бюджетування'}
+  ];
+  var COLS=[{t:'≤ 14 днів',s:'найближче'},{t:'15–30 днів',s:'серпень'},{t:'31–90 днів',s:'Q3–Q4 2026'},{t:'2027',s:'ризик переносу'}];
+  var CLR={success:['rgba(30,158,90,.15)','rgba(30,158,90,.45)','#4DC98A'],accent:['rgba(232,93,26,.15)','rgba(232,93,26,.5)','#F2894E'],warning:['rgba(233,162,59,.13)','rgba(233,162,59,.4)','#E9A23B'],muted:['var(--card)','var(--border)','#9aafc8']};
+  function role(p){if(p==null)return 'muted';if(p>=90)return 'success';if(p>=75)return 'accent';if(p>=50)return 'warning';return 'muted';}
+  function fmt(n){if(n==null)return '—';if(n>=1e6)return '€'+(n/1e6).toFixed(1)+'M';return '€'+Math.round(n/1e3)+'k';}
+  var board=document.getElementById('board'),thr=document.getElementById('thr'),thrv=document.getElementById('thrv'),hide=document.getElementById('hide');
+  function render(){
+    var T=+thr.value;thrv.textContent=T+'%';var H=hide.checked;
+    board.innerHTML=COLS.map(function(col,ci){
+      var items=D.filter(function(d){return d.h===ci;});
+      var pass=items.filter(function(d){return d.p!=null&&d.p>=T;});
+      var nom=pass.reduce(function(a,d){return a+(d.s||0);},0);
+      var wgt=pass.reduce(function(a,d){return a+((d.s||0)*d.p/100);},0);
+      var cards=items.map(function(d){
+        var on=d.p!=null&&d.p>=T;if(H&&!on)return '';
+        var cl=CLR[role(d.p)];
+        var bg=on?cl[0]:'var(--card)',bd=on?cl[1]:'var(--border)';
+        var bt=d.won?d.p+'% · виграно':(d.p!=null?d.p+'%':'н.д.');
+        return '<div class="card" style="background:'+bg+';border-color:'+bd+';opacity:'+(on?1:.42)+'">'+
+          '<div style="display:flex;justify-content:space-between;gap:8px;align-items:flex-start">'+
+            '<span style="font-weight:700;font-size:13px">'+(d.id!=='—'?'№'+d.id:'лід')+'</span>'+
+            '<span class="badge" style="background:'+cl[0]+';color:'+cl[2]+';border:1px solid '+cl[1]+'">'+bt+'</span>'+
+          '</div>'+
+          '<div class="cli">'+d.c+'</div>'+
+          '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px">'+
+            '<span class="sum">'+fmt(d.s)+'</span><span class="mgr">'+d.m+'</span></div>'+
+          '<div class="cond">'+d.cond+'</div></div>';
+      }).join('');
+      return '<div><div class="col-h"><div style="display:flex;justify-content:space-between;align-items:baseline"><span class="t">'+col.t+'</span><span class="sub">'+col.s+'</span></div>'+
+        '<div class="n">'+pass.length+' угод · '+fmt(nom)+' <span style="opacity:.7">(зваж. '+fmt(wgt)+')</span></div></div>'+
+        (cards||'<div style="font-size:12px;color:var(--text2);padding:6px 2px">немає угод ≥ порогу</div>')+'</div>';
+    }).join('');
+  }
+  thr.addEventListener('input',render);hide.addEventListener('change',render);render();
+})();
+</script>
+<script>
+(function(){
+  if(localStorage.getItem('pl_ok')==='1')return;
+  var HASH="6c572826d2ee2da4d3918be50a0e2c0819aff221dd1319e8e4bc513cde0bbba4";
+  var ov=document.createElement('div');ov.id='pl-gate';
+  ov.style.cssText='position:fixed;inset:0;z-index:99999;background:#1A2332;display:flex;align-items:center;justify-content:center;font-family:Segoe UI,Arial,sans-serif';
+  ov.innerHTML='<div style="text-align:center;color:#E8EDF5"><div style="font-size:26px;font-weight:800;color:#E85D1A;letter-spacing:1px">PILLAR</div><div style="color:#9aafc8;font-size:13px;margin:6px 0 18px">Введіть код доступу</div><input id="pl-pin" type="password" inputmode="numeric" autocomplete="off" style="padding:11px 14px;font-size:16px;border-radius:8px;border:1px solid #2e4060;background:#22304a;color:#fff;text-align:center;width:200px;outline:none"><div id="pl-err" style="color:#ef7a72;font-size:12px;height:16px;margin-top:8px"></div><button id="pl-go" style="margin-top:6px;padding:10px 26px;border:none;border-radius:8px;background:#E85D1A;color:#fff;font-weight:600;font-size:14px;cursor:pointer">Увійти</button></div>';
+  document.documentElement.appendChild(ov);
+  var b=document.body;if(b)b.style.overflow='hidden';
+  async function sha(s){var d=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(d)).map(x=>x.toString(16).padStart(2,'0')).join('');}
+  async function go(){var v=document.getElementById('pl-pin').value.trim();if(await sha(v)===HASH){localStorage.setItem('pl_ok','1');ov.remove();if(b)b.style.overflow='';}else{document.getElementById('pl-err').textContent='Невірний код';}}
+  document.getElementById('pl-go').onclick=go;
+  document.getElementById('pl-pin').addEventListener('keydown',function(e){if(e.key==='Enter')go();});
+  setTimeout(function(){document.getElementById('pl-pin').focus();},50);
+})();
+</script>
+</body></html>
