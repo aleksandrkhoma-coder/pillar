@@ -285,7 +285,7 @@ const _act=document.getElementById('kpiActive');if(_act)_act.textContent=ACTIVE.
 document.getElementById('kpiAvg').textContent=(ACTIVE.length?Math.round(sp/ACTIVE.length):0)+'%';
 document.getElementById('kpiRisk').textContent=risk;
 document.getElementById('kpiOverdue').textContent=ov+'+';
-const NBU_EUR=51.06;
+const NBU_EUR=50.96;
 function kpiBud(c){const f=v=>!v?'—':(c==='EUR'?(v/NBU_EUR/1e6).toFixed(2)+' млн €':fmtM(v));
 document.getElementById('kpiPlan').textContent=f(splan);document.getElementById('kpiFact').textContent=f(sfact);
 document.querySelectorAll('#curTgl .ctb').forEach(b=>b.classList.toggle('on',b.dataset.c===c))}

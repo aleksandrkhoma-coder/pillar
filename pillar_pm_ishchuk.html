@@ -255,7 +255,7 @@ const PROJECTS = [{"id": "5682", "name": "А Сцена Корчин", "pm": "І
   {"id": "8070", "name": "А Карпорты B2C  SCP", "pm": "Іщук", "pct": 100, "start": "19.05.2026", "end": "15.06.2026", "tasks": 44, "done": 44, "overdue": 0, "plan": 126641, "fact": 126641, "plan_cur": 126641, "fact_cur": 126641, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 48.56038, "lng": 35.04316, "loc": "Дніпро (карпорт)"},
   {"id": "8188", "name": "Фундамент Ужгород Стефанія", "pm": "Іщук", "pct": 81, "start": "26.05.2026", "end": "18.07.2026", "tasks": 48, "done": 34, "overdue": 14, "plan": 280126, "fact": 206200, "plan_cur": 280126, "fact_cur": 206200, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0},
   {"id": "8238", "name": "А UTEM SOLAR  SCP Taurus 190PV", "pm": "Іщук", "pct": 98, "start": "26.05.2026", "end": "28.07.2026", "tasks": 50, "done": 43, "overdue": 7, "plan": 2011000, "fact": 2011000, "plan_cur": 2011000, "fact_cur": 2011000, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 50.3536, "lng": 30.5066, "loc": "Пирогово, Київ"},
-  {"id": "8496", "name": "А Greensource  SGM  110MWp", "pm": "Іщук", "pct": 98, "start": "26.05.2026", "end": "26.08.2026", "tasks": 41, "done": 36, "overdue": 2, "plan": 449328, "fact": 449328, "plan_cur": 8800, "fact_cur": 8800, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0}];
+  {"id": "8496", "name": "А Greensource  SGM  110MWp", "pm": "Іщук", "pct": 98, "start": "26.05.2026", "end": "26.08.2026", "tasks": 41, "done": 36, "overdue": 2, "plan": 448448, "fact": 448448, "plan_cur": 8800, "fact_cur": 8800, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0}];
 
 const PM_CONFIG = {
   'Донська':       {initials:'НД', color:'#9B5DE5'},
@@ -291,7 +291,7 @@ const _act=document.getElementById('kpiActive');if(_act)_act.textContent=ACTIVE.
 document.getElementById('kpiAvg').textContent=(ACTIVE.length?Math.round(sp/ACTIVE.length):0)+'%';
 document.getElementById('kpiRisk').textContent=risk;
 document.getElementById('kpiOverdue').textContent=ov+'+';
-const NBU_EUR=51.06;
+const NBU_EUR=50.96;
 function kpiBud(c){const f=v=>!v?'—':(c==='EUR'?(v/NBU_EUR/1e6).toFixed(2)+' млн €':fmtM(v));
 document.getElementById('kpiPlan').textContent=f(splan);document.getElementById('kpiFact').textContent=f(sfact);
 document.querySelectorAll('#curTgl .ctb').forEach(b=>b.classList.toggle('on',b.dataset.c===c))}
