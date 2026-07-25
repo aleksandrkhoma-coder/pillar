@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#1A2332">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pillar — Портфель проєктів ОУП</title>
@@ -165,11 +165,30 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .pl-menu a{display:block;padding:8px 14px;color:rgba(255,255,255,.85);font-size:12.5px;font-weight:600;text-decoration:none;white-space:nowrap}
 .pl-menu a:hover{background:rgba(255,255,255,.08)}
 .pl-menu.open{display:block}
+.pl-side{position:fixed;left:0;top:0;width:198px;height:100vh;background:#232F42;border-right:1px solid rgba(255,255,255,.08);padding:14px 0;display:flex;flex-direction:column;z-index:200;overflow-y:auto}
+.pl-side .pl-logo{padding:2px 18px 14px;font-size:19px;font-weight:700;color:#E85D1A;letter-spacing:1px}
+.pl-side a{display:flex;align-items:center;gap:11px;padding:10px 18px;font-size:13.5px;color:rgba(255,255,255,.62);text-decoration:none;border-left:3px solid transparent;white-space:nowrap;cursor:pointer}
+.pl-side a:hover{color:#fff;background:rgba(255,255,255,.05)}
+.pl-side a.on{color:#fff;background:rgba(232,93,26,.16);border-left-color:#E85D1A}
+.pl-side a svg{width:18px;height:18px;flex-shrink:0}
+.pl-side .foot{margin-top:auto;padding:12px 18px 4px;font-size:11px;color:rgba(255,255,255,.32)}
+body{padding-left:198px}
+@media(max-width:820px){.pl-side{width:52px}.pl-side a span,.pl-side .pl-logo span,.pl-side .foot{display:none}.pl-side .pl-logo{padding:2px 0 14px;text-align:center}.pl-side a{justify-content:center;padding:12px 0;gap:0}body{padding-left:52px}}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
+<nav class="pl-side">
+  <div class="pl-logo">P<span>ILLAR</span></div>
+  <a class="on" href="pillar_portfolio.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6" height="7" rx="1"/><rect x="4" y="15" width="6" height="5" rx="1"/><rect x="14" y="4" width="6" height="5" rx="1"/><rect x="14" y="13" width="6" height="7" rx="1"/></svg><span>Портфель</span></a>
+  <a href="pillar_cashflow.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg><span>Грошовий потік</span></a>
+  <a href="lessons_learned.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h11a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M9 4v16"/></svg><span>Lessons Learned</span></a>
+  <a href="pillar_funnel.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16l-6 8v5l-4 2v-7z"/></svg><span>Воронка ЗЕД</span></a>
+  <a href="#" onclick="var m=document.querySelector('.map-head');if(m)m.scrollIntoView({behavior:'smooth'});return false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4z"/><path d="M9 4v13"/><path d="M15 6.5v13"/></svg><span>Карта проєктів</span></a>
+  <a href="pillar_cashflow.xlsx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v10"/><path d="M8 11l4 4 4-4"/><path d="M5 19h14"/></svg><span>Excel кеш-фло</span></a>
+  <div class="foot">Дані оновлюються щоранку</div>
+</nav>
 
 <div class="header">
   <div class="header-top">
@@ -185,19 +204,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
       <div>Оновлено: 25.07.2026</div>
       <div>10 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
-    </div>
-  </div>
-  <div class="pl-nav">
-    <a class="pl-tab active" href="pillar_portfolio.html">&#128202; Портфель</a>
-    <a class="pl-tab" href="pillar_cashflow.html">&#128181; Грошовий потік</a>
-    <a class="pl-tab" href="lessons_learned.html">&#128218; Lessons Learned</a>
-    <div class="pl-more">
-      <span class="pl-tab" id="plMoreBtn" onclick="plMore(event)">Ще &#9662;</span>
-      <div class="pl-menu" id="plMenu">
-        <a href="pillar_funnel.html">&#127919; Воронка ЗЕД</a>
-        <a href="#" onclick="document.querySelector('.map-head').scrollIntoView({behavior:'smooth'});plClose();return false">&#128506; Карта проєктів</a>
-        <a href="pillar_cashflow.xlsx">&#11015; Кеш-фло Excel</a>
-      </div>
     </div>
   </div>
   <nav class="quick-nav" id="quickNav"></nav>
@@ -519,9 +525,6 @@ document.addEventListener('click',function(e){if(!e.target.closest('.psearch')){
 })();
 </script>
 <script>
-function plMore(e){e.stopPropagation();document.getElementById('plMenu').classList.toggle('open')}
-function plClose(){document.getElementById('plMenu').classList.remove('open')}
-document.addEventListener('click',function(e){if(!e.target.closest('.pl-more'))plClose()});
 </script>
 <script>
 (function(){
