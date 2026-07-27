@@ -197,12 +197,12 @@ body{padding-left:198px}
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель ПМ — Іщук</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 26.07.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 27.07.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 26.07.2026</div>
+      <div>Оновлено: 27.07.2026</div>
       <div>9 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
     </div>
   </div>
@@ -251,7 +251,7 @@ body{padding-left:198px}
 </div>
 
 <script>
-const TODAY = new Date('2026-07-26');
+const TODAY = new Date('2026-07-27');
 
 const PROJECTS = [{"id": "5682", "name": "А Сцена Корчин", "pm": "Іщук", "pct": 100, "start": "26.05.2026", "end": "06.07.2026", "tasks": 33, "done": 33, "overdue": 0, "plan": 457134, "fact": 457134, "plan_cur": 457134, "fact_cur": 457134, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0},
   {"id": "6406", "name": "Максим Яловий Чинадієво", "pm": "Іщук", "pct": 85, "start": "08.06.2026", "end": "03.08.2026", "tasks": 48, "done": 37, "overdue": 0, "plan": 373582, "fact": 154980, "plan_cur": 373582, "fact_cur": 154980, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.4846, "lng": 22.82756, "loc": "Чинадійово, Закарпатська обл."},
@@ -261,7 +261,7 @@ const PROJECTS = [{"id": "5682", "name": "А Сцена Корчин", "pm": "І
   {"id": "8070", "name": "А Карпорты B2C  SCP", "pm": "Іщук", "pct": 100, "start": "19.05.2026", "end": "15.06.2026", "tasks": 44, "done": 44, "overdue": 0, "plan": 126641, "fact": 126641, "plan_cur": 126641, "fact_cur": 126641, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 48.56038, "lng": 35.04316, "loc": "Дніпро (карпорт)"},
   {"id": "8188", "name": "Фундамент Ужгород Стефанія", "pm": "Іщук", "pct": 88, "start": "26.05.2026", "end": "31.07.2026", "tasks": 46, "done": 33, "overdue": 1, "plan": 280126, "fact": 206200, "plan_cur": 280126, "fact_cur": 206200, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0},
   {"id": "8238", "name": "А UTEM SOLAR  SCP Taurus 190PV", "pm": "Іщук", "pct": 98, "start": "26.05.2026", "end": "28.07.2026", "tasks": 50, "done": 43, "overdue": 7, "plan": 2011000, "fact": 2011000, "plan_cur": 2011000, "fact_cur": 2011000, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 50.3536, "lng": 30.5066, "loc": "Пирогово, Київ"},
-  {"id": "8496", "name": "А Greensource  SGM  110MWp", "pm": "Іщук", "pct": 92, "start": "26.05.2026", "end": "26.08.2026", "tasks": 41, "done": 36, "overdue": 1, "plan": 449328, "fact": 449328, "plan_cur": 8800, "fact_cur": 8800, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0}];
+  {"id": "8496", "name": "А Greensource  SGM  110MWp", "pm": "Іщук", "pct": 92, "start": "26.05.2026", "end": "26.08.2026", "tasks": 41, "done": 36, "overdue": 1, "plan": 448536, "fact": 448536, "plan_cur": 8800, "fact_cur": 8800, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0}];
 
 const PM_CONFIG = {
   'Донська':       {initials:'НД', color:'#9B5DE5'},
@@ -297,7 +297,7 @@ const _act=document.getElementById('kpiActive');if(_act)_act.textContent=ACTIVE.
 document.getElementById('kpiAvg').textContent=(ACTIVE.length?Math.round(sp/ACTIVE.length):0)+'%';
 document.getElementById('kpiRisk').textContent=risk;
 document.getElementById('kpiOverdue').textContent=ov+'+';
-const NBU_EUR=51.06;
+const NBU_EUR=50.97;
 function kpiBud(c){const f=v=>!v?'—':(c==='EUR'?(v/NBU_EUR/1e6).toFixed(2)+' млн €':fmtM(v));
 document.getElementById('kpiPlan').textContent=f(splan);document.getElementById('kpiFact').textContent=f(sfact);
 document.querySelectorAll('#curTgl .ctb').forEach(b=>b.classList.toggle('on',b.dataset.c===c))}
