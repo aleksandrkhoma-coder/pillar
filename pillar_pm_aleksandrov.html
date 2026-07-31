@@ -53,6 +53,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .kpi-value.orange{color:var(--brand-orange)}
 .kpi-value.red{color:var(--red)}
 .kpi-sub{font-size:11px;color:var(--text-muted);margin-top:4px}
+.kpi-gauge{text-align:center}.kpi-gauge .kpi-label{text-align:left}
+.kpi-gauge .gauge{width:100%;max-width:175px;height:auto;display:block;margin:4px auto -4px}
+.kpi-gauge .gauge-val{font-size:24px;font-weight:800;line-height:1;color:var(--brand-orange)}
+#avgNeedle{transition:x2 .5s ease,y2 .5s ease}
 .kpi.clickable{cursor:pointer;transition:all .15s}
 .kpi.clickable:hover{border-color:var(--red);box-shadow:0 2px 8px rgba(216,48,37,.15)}
 .kpi.clickable.active{border-color:var(--red);background:var(--red-light);box-shadow:0 2px 8px rgba(216,48,37,.2)}
@@ -217,10 +221,17 @@ body{padding-left:198px}
       <div class="kpi-value" id="kpiActive">&mdash;</div>
       <div class="kpi-sub">1 ПМ у портфелі</div>
     </div>
-    <div class="kpi">
+    <div class="kpi kpi-gauge">
       <div class="kpi-label">Середній прогрес</div>
-      <div class="kpi-value orange" id="kpiAvg">—</div>
-      <div class="kpi-sub">по всьому портфелю</div>
+      <svg class="gauge" viewBox="0 0 200 112" aria-hidden="true">
+        <path d="M 20.0 100.0 A 80 80 0 0 1 87.49 20.98" fill="none" stroke="#E9A23B" stroke-width="15"/>
+        <path d="M 87.49 20.98 A 80 80 0 0 1 112.51 20.98" fill="none" stroke="#1E9E5A" stroke-width="15"/>
+        <path d="M 112.51 20.98 A 80 80 0 0 1 180.0 100.0" fill="none" stroke="#D93025" stroke-width="15"/>
+        <line id="avgNeedle" x1="100" y1="100" x2="100" y2="30" stroke="#1A2332" stroke-width="3.5" stroke-linecap="round"/>
+        <circle cx="100" cy="100" r="6" fill="#1A2332"/>
+      </svg>
+      <div class="gauge-val" id="kpiAvg">—</div>
+      <div class="kpi-sub" id="avgSub">по всьому портфелю</div>
     </div>
     <div class="kpi clickable" id="kpiRiskCard" onclick="applyFilter('risk')" title="Натисни щоб відфільтрувати">
       <div class="kpi-label">Під ризиком</div>
@@ -289,7 +300,12 @@ const DONE=PROJECTS.filter(p=>p.status==='done');
 let sp=0,risk=0,ov=0,splan=0,sfact=0;
 ACTIVE.forEach(p=>{sp+=p.pct;if(p.risk)risk++;ov+=p.overdue;splan+=p.plan||0;sfact+=p.fact||0});
 const _act=document.getElementById('kpiActive');if(_act)_act.textContent=ACTIVE.length;
-document.getElementById('kpiAvg').textContent=(ACTIVE.length?Math.round(sp/ACTIVE.length):0)+'%';
+(function(){var v=ACTIVE.length?Math.round(sp/ACTIVE.length):0;
+  var th=Math.PI*(180-1.8*v)/180, nx=100+70*Math.cos(th), ny=100-70*Math.sin(th);
+  var nd=document.getElementById('avgNeedle');if(nd){nd.setAttribute('x2',nx.toFixed(1));nd.setAttribute('y2',ny.toFixed(1));}
+  var col=v<45?'#E9A23B':(v<=55?'#1E9E5A':'#D93025'), lbl=v<45?'нижче норми':(v<=55?'збалансовано':'вище норми');
+  var el=document.getElementById('kpiAvg');if(el){el.textContent=v+'%';el.style.color=col;}
+  var s=document.getElementById('avgSub');if(s)s.textContent=lbl;})();
 document.getElementById('kpiRisk').textContent=risk;
 document.getElementById('kpiOverdue').textContent=ov+'+';
 const NBU_EUR=51.27;
