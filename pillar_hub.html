@@ -1,0 +1,294 @@
+<!DOCTYPE html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>PILLAR Project Hub</title>
+<style>
+:root{--bg:#1A2332;--bg2:#223047;--card:#1e2d42;--tx:#E8EDF5;--mut:#9aafc8;--bd:#2e4060;--accent:#E85D1A;
+--green:#2FA860;--blue:#3B82C4;--red:#D93025;--grey:#5b6b82;--amber:#E9A23B;--violet:#8B7BE8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font:14px/1.45 'Segoe UI',Arial,sans-serif}
+.hd{background:var(--bg2);border-bottom:2px solid var(--accent);padding:14px 26px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;position:sticky;top:0;z-index:50}
+.hd .lg{font-size:20px;font-weight:800;color:var(--accent);letter-spacing:.5px}
+.hd .lg span{color:var(--mut);font-weight:400;font-size:13px;margin-left:8px}
+.hd .gen{font-size:11px;color:var(--mut)}
+.hd .who{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mut)}
+.hd select{background:var(--card);border:1px solid var(--bd);color:var(--tx);border-radius:8px;padding:7px 11px;font-size:13px}
+.wrap{max-width:1240px;margin:0 auto;padding:20px 26px 70px}
+.top{display:grid;grid-template-columns:214px 1fr;gap:14px;margin-bottom:18px}
+.gcard,.rmcard{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px 16px}
+.gcard{text-align:center;display:flex;flex-direction:column;justify-content:center}
+.gcard .l{font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--mut)}
+.gcard svg{width:100%;max-width:170px;margin:4px auto -4px;display:block}
+.gcard .gv{font-size:26px;font-weight:800}
+.rmcard h2{font-size:15px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.rmcard h2 .cnt{font-size:12px;color:var(--mut);font-weight:400}
+.rmstats{margin-left:auto;font-size:12px;color:var(--mut);font-weight:400;display:flex;gap:14px;flex-wrap:wrap}
+.rmstats b{color:var(--tx);font-weight:700}
+.rmstats .ovn{color:#ef7a72}
+.sec{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:15px 18px;margin-bottom:18px}
+h2{font-size:15px;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+h2 .cnt{font-size:12px;color:var(--mut);font-weight:400}
+.sub{font-size:11.5px;color:var(--mut);margin-bottom:14px}
+.rm{position:relative;margin:36px 6px 8px;height:80px}
+.rm .axis{position:absolute;left:0;right:0;top:46px;height:24px;background:#16212f;border-radius:6px;overflow:hidden;display:flex}
+.rm .seg{height:100%;border-right:2px solid #16212f;display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:#fff;overflow:hidden;white-space:nowrap;cursor:default;transition:filter .12s}
+.rm .seg:hover{filter:brightness(1.25)}
+.rm .today{position:absolute;top:40px;height:34px;width:2px;background:var(--accent);z-index:6}
+.rm .today::after{content:'сьогодні';position:absolute;top:-13px;left:-18px;font-size:9px;color:var(--accent);white-space:nowrap}
+.rm .msdot{position:absolute;width:13px;height:13px;background:var(--violet);border:1.5px solid #fff;transform:rotate(45deg);top:40px;margin-left:-6.5px;z-index:5;cursor:pointer;transition:transform .12s}
+.rm .msdot:hover{transform:rotate(45deg) scale(1.35)}
+.rm .mslab{position:absolute;font-size:9.5px;color:#c9d6ea;white-space:nowrap;transform:translateX(-50%);background:rgba(22,33,47,.9);padding:0 4px;border-radius:3px;pointer-events:none}
+.rm .msline{position:absolute;width:1px;background:rgba(139,123,232,.55);z-index:4;pointer-events:none}
+.rm .mon{position:absolute;top:72px;font-size:10px;color:var(--mut);transform:translateX(-50%)}
+#rmtip{position:fixed;z-index:200;background:#0c1420;border:1px solid var(--bd);border-radius:8px;padding:7px 10px;font-size:12px;max-width:280px;box-shadow:0 8px 24px rgba(0,0,0,.5);pointer-events:none;display:none;line-height:1.5}
+#rmtip b{color:var(--violet)}#rmtip .r{color:var(--mut)}
+.leg{display:flex;gap:13px;flex-wrap:wrap;font-size:11.5px;color:var(--mut);margin-top:8px}
+.leg b{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+.ag{border:1px solid var(--bd);border-radius:10px;margin-bottom:9px;overflow:hidden}
+.ag-h{display:flex;align-items:center;gap:9px;padding:10px 13px;cursor:pointer;background:#1a2740;user-select:none}
+.ag-h:hover{background:#1f2e4a}
+.ag-h .tg{color:var(--mut);font-size:11px;width:12px;display:inline-block;text-align:center}
+.ag-h .nm{font-weight:700;font-size:13.5px}
+.ag-h .meta{margin-left:auto;font-size:12px;color:var(--mut)}
+.ag.col .ag-b{display:none}
+.ag-b{padding:0}
+.blkrow{padding:6px 13px 6px 30px;font-size:11.5px;font-weight:700;color:#9fb2cd;background:#17222f;border-top:1px solid var(--bd);cursor:pointer;user-select:none;display:flex;align-items:center;gap:8px}
+.blkrow .tg{font-size:10px;color:var(--mut);width:10px}
+.blkrow .bm{margin-left:auto;font-weight:400;color:var(--mut)}
+.blk.col .blk-b{display:none}
+table.tl{width:100%;border-collapse:collapse;font-size:13px}
+table.tl td{padding:6px 13px 6px 42px;border-bottom:1px solid #253550;vertical-align:middle}
+table.tl td.d{padding-left:13px}
+.pbar{width:84px;height:7px;background:#2a3a52;border-radius:4px;overflow:hidden;display:inline-block;vertical-align:middle}
+.pbar>i{display:block;height:100%}
+.tag{font-size:10px;padding:1px 7px;border-radius:9px;font-weight:600}
+.tag.ov{background:rgba(217,48,37,.2);color:#ef7a72}.tag.ur{background:rgba(233,162,59,.2);color:#E9A23B}.tag.im{background:rgba(59,130,196,.2);color:#7fb3e6}
+.muted{color:var(--mut)}
+.gembed{--accent-blue:#3B82C4;--green:#2FA860;--red:#D93025;--gray-50:#223047;--gray-100:#253550;--gray-200:#33465f;--gray-400:#6b7d96;--text-muted:#9aafc8;--border:#2e4060;--radius:8px;--shadow:none;--brand-dark:#0f1722;--brand-orange:#E85D1A}
+.gembed .filters{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.gembed .fbtn,.gembed .zbtn{padding:6px 14px;border:1px solid var(--border);border-radius:20px;background:#16212f;font-size:12px;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all .15s}
+.gembed .fbtn.active{background:var(--accent-blue);border-color:var(--accent-blue);color:#fff}
+.gembed .fbtn.f-late.active{background:var(--red);border-color:var(--red)}
+.gembed .fbtn.f-green.active{background:var(--green);border-color:var(--green)}
+.gembed .zbtn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.gembed .gx-wrap{border:1px solid var(--border);border-radius:var(--radius);background:#16212f;margin-bottom:8px;max-width:100%;overflow:hidden}
+.gembed .gx-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+.gembed .gx-grid{position:relative;font-size:12px}
+.gembed .gx-head{display:flex;border-bottom:1px solid var(--border);background:var(--gray-50)}
+.gembed .gx-head-label{flex:0 0 300px;padding:9px 12px;font-weight:700;font-size:10px;text-transform:uppercase;color:var(--text-muted);border-right:1px solid var(--border);position:sticky;left:0;background:var(--gray-50);z-index:7}
+.gembed .gx-head-time{position:relative;height:34px}
+.gembed .gx-tick{position:absolute;top:0;bottom:0;border-left:1px solid var(--gray-100);font-size:10px;color:var(--text-muted);padding:6px 0 0 4px;white-space:nowrap}
+.gembed .gx-body{position:relative}
+.gembed .gx-row{display:flex;border-bottom:1px solid var(--gray-100);height:30px;align-items:center}
+.gembed .gx-row:hover{background:#1b2838}
+.gembed .gx-label{flex:0 0 300px;display:flex;align-items:center;gap:5px;border-right:1px solid var(--border);overflow:hidden;white-space:nowrap;position:sticky;left:0;background:#16212f;z-index:4;height:100%;color:var(--tx)}
+.gembed .gx-row:hover .gx-label{background:#1b2838}
+.gembed .gx-toggle{cursor:pointer;width:14px;display:inline-block;text-align:center;color:var(--text-muted);flex-shrink:0;font-size:11px;user-select:none}
+.gembed .gx-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}
+.gembed .gx-time{position:relative;height:30px;flex-shrink:0}
+.gembed .gx-bar{position:absolute;top:8px;height:14px;border-radius:3px;display:flex;align-items:center;padding:0 4px;font-size:9px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden}
+.gembed .gx-ms{position:absolute;top:8px;width:13px;height:13px;transform:rotate(45deg);border-radius:2px;border:1px solid #16212f;box-sizing:border-box}
+.gembed .gx-today{position:absolute;top:0;bottom:0;width:2px;background:var(--brand-orange);z-index:3}
+.gembed .gb-done{background:var(--green)}.gembed .gb-progress{background:var(--accent-blue)}.gembed .gb-late{background:var(--red)}.gembed .gb-none{background:var(--gray-200);color:#cdd9ec}
+.gembed .glg{padding:8px 2px 0;display:flex;gap:16px;flex-wrap:wrap;font-size:11px;color:var(--text-muted)}
+.gembed .glg b{display:inline-block;width:11px;height:11px;border-radius:2px;vertical-align:-1px;margin-right:5px}
+</style></head><body>
+<div class="hd">
+  <div class="lg">PILLAR <span>Project Hub</span></div>
+  <span class="gen" id="gen"></span>
+  <div class="who">Я — <select id="who" onchange="renderTop()"><option value="">усі учасники</option></select></div>
+</div>
+<div class="wrap">
+  <div class="top">
+    <div class="gcard"><div class="l" id="glab">Загальний прогрес</div><div id="gsvg"></div></div>
+    <div class="rmcard">
+      <h2>🗺 Роадмап <span class="cnt">10 фаз</span><span class="rmstats" id="rmstats"></span></h2>
+      <div class="rm" id="rm"></div>
+      <div class="leg"><span><b style="background:var(--green)"></b>виконано</span><span><b style="background:var(--blue)"></b>в роботі</span><span><b style="background:var(--red)"></b>прострочено</span><span><b style="background:var(--grey)"></b>не почато</span><span><b style="background:var(--violet);transform:rotate(45deg)"></b>віха</span></div>
+    </div>
+  </div>
+  <div class="sec"><h2>👥 Виконавці <span class="cnt" id="agSub"></span></h2>
+    <div class="sub">Клік на імʼя — згорнути/розгорнути (як у WBS). Усередині — по блоках, завдання з термінами й прогресом.</div>
+    <div id="assignees"></div>
+  </div>
+  <div class="sec"><h2>📊 Діаграма Ганта — декомпозиція WBS</h2>
+    <div class="gembed">
+      <div class="filters">
+        <button class="fbtn active" onclick="ft('all',this)">Всі</button>
+        <button class="fbtn f-late" onclick="ft('late',this)">⚠ Прострочені</button>
+        <button class="fbtn" onclick="ft('progress',this)">▶ В роботі</button>
+        <button class="fbtn" onclick="ft('notstarted',this)">— Не розпочато</button>
+        <button class="fbtn f-green" onclick="ft('done',this)">✓ Завершені</button>
+      </div>
+      <div class="filters" style="margin-top:-4px;align-items:center">
+        <span style="font-size:11px;color:var(--mut);margin-right:2px">Масштаб:</span>
+        <button class="zbtn" onclick="gxSetScale('day',this)">День</button>
+        <button class="zbtn active" onclick="gxSetScale('week',this)">Тиждень</button>
+        <button class="zbtn" onclick="gxSetScale('month',this)">Місяць</button>
+        <button class="zbtn" onclick="gxSetScale('year',this)">Рік</button>
+      </div>
+      <div class="gx-wrap" id="gxWrap"></div>
+      <div class="glg"><span><b style="background:#2FA860"></b>Завершено</span><span><b style="background:#3B82C4"></b>В роботі</span><span><b style="background:#D93025"></b>Прострочено</span><span><b style="background:#33465f"></b>Не розпочато</span></div>
+    </div>
+  </div>
+</div>
+<div id="rmtip"></div>
+<script>
+const TASKS=[{"wbs": "1", "name": "PILLAR Project Hub", "pct": 27, "start": "20.07.2026", "end": "17.09.2026", "dur": "60 дн.", "who": "", "block": "", "prio": "Середній", "milestone": false, "status": "progress"}, {"wbs": "1.1", "name": "Блок 1 · Ініціація та управління (ОУП)", "pct": 39, "start": "20.07.2026", "end": "06.08.2026", "dur": "18 дн.", "who": "", "block": "", "prio": "Середній", "milestone": false, "status": "progress"}, {"wbs": "1.1.1", "name": "Статут проєкту (v1.2)", "pct": 50, "start": "20.07.2026", "end": "06.08.2026", "dur": "18 дн.", "who": "Oleksandr Khoma", "block": "Блок 1 · Ініціація та управління (ОУП)", "prio": "Важливо", "milestone": false, "status": "progress"}, {"wbs": "1.1.2", "name": "Реєстр зацікавлених сторін", "pct": 50, "start": "20.07.2026", "end": "06.08.2026", "dur": "18 дн.", "who": "Oleksandr Khoma", "block": "Блок 1 · Ініціація та управління (ОУП)", "prio": "Важливо", "milestone": false, "status": "progress"}, {"wbs": "1.1.3", "name": "Матриця відстеження вимог", "pct": 25, "start": "20.07.2026", "end": "06.08.2026", "dur": "18 дн.", "who": "Oleksandr Khoma", "block": "Блок 1 · Ініціація та управління (ОУП)", "prio": "Терміново", "milestone": false, "status": "progress"}, {"wbs": "1.1.4", "name": "План/скоуп проєкту в Planner", "pct": 75, "start": "27.07.2026", "end": "06.08.2026", "dur": "11 дн.", "who": "Oleksandr Khoma", "block": "Блок 1 · Ініціація та управління (ОУП)", "prio": "Середній", "milestone": false, "status": "progress"}, {"wbs": "1.1.5", "name": "Governance: ритм зустрічей і звітність власникам (RACI)", "pct": 0, "start": "03.08.2026", "end": "06.08.2026", "dur": "4 дн.", "who": "Oleksandr Khoma", "block": "Блок 1 · Ініціація та управління (ОУП)", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.1.6", "name": "Реєстр ризиків", "pct": 25, "start": "20.07.2026", "end": "06.08.2026", "dur": "18 дн.", "who": "Oleksandr Khoma", "block": "Блок 1 · Ініціація та управління (ОУП)", "prio": "Терміново", "milestone": false, "status": "progress"}, {"wbs": "1.1.7", "name": "Процес керування змінами (CR)", "pct": 0, "start": "03.08.2026", "end": "06.08.2026", "dur": "4 дн.", "who": "Oleksandr Khoma", "block": "Блок 1 · Ініціація та управління (ОУП)", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.1.8", "name": "Проєкт запущено, план у Planner", "pct": 0, "start": "06.08.2026", "end": "06.08.2026", "dur": "0 дн.", "who": "Oleksandr Khoma", "block": "Блок 1 · Ініціація та управління (ОУП)", "prio": "Важливо", "milestone": true, "status": "notstarted"}, {"wbs": "1.2", "name": "Блок 2 · Discovery процесу лід→КП", "pct": 0, "start": "07.08.2026", "end": "23.08.2026", "dur": "17 дн.", "who": "", "block": "", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.2.1", "name": "Інтервʼю з носіями процесів (продажі/інженерія/операції)", "pct": 0, "start": "07.08.2026", "end": "11.08.2026", "dur": "5 дн.", "who": "Oleksandr Khoma", "block": "Блок 2 · Discovery процесу лід→КП", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.2.2", "name": "Опис фактичного процесу лід→КП (as-is)", "pct": 0, "start": "12.08.2026", "end": "14.08.2026", "dur": "3 дн.", "who": "Oleksandr Khoma", "block": "Блок 2 · Discovery процесу лід→КП", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.2.3", "name": "Виправлений процес лід→КП (to-be): ролі, дані, переходи", "pct": 0, "start": "15.08.2026", "end": "17.08.2026", "dur": "3 дн.", "who": "Oleksandr Khoma", "block": "Блок 2 · Discovery процесу лід→КП", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.2.4", "name": "Аналіз архітектури даних 1С", "pct": 0, "start": "18.08.2026", "end": "20.08.2026", "dur": "3 дн.", "who": "Oleksandr Khoma", "block": "Блок 2 · Discovery процесу лід→КП", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.2.5", "name": "Карта джерел даних (1С/Excel/Bitrix/Telegram)", "pct": 0, "start": "21.08.2026", "end": "23.08.2026", "dur": "3 дн.", "who": "Oleksandr Khoma", "block": "Блок 2 · Discovery процесу лід→КП", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.2.6", "name": "Процес лід→КП описаний і виправлений", "pct": 0, "start": "23.08.2026", "end": "23.08.2026", "dur": "0 дн.", "who": "Oleksandr Khoma", "block": "Блок 2 · Discovery процесу лід→КП", "prio": "Середній", "milestone": true, "status": "notstarted"}, {"wbs": "1.3", "name": "Блок 3 · Вимоги та ТЗ", "pct": 0, "start": "24.08.2026", "end": "27.08.2026", "dur": "4 дн.", "who": "", "block": "", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.3.1", "name": "Збір і формалізація вимог (матриця)", "pct": 0, "start": "24.08.2026", "end": "24.08.2026", "dur": "1 день", "who": "", "block": "Блок 3 · Вимоги та ТЗ", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.3.2", "name": "Обовʼязкові поля lead→КП", "pct": 0, "start": "25.08.2026", "end": "25.08.2026", "dur": "1 день", "who": "", "block": "Блок 3 · Вимоги та ТЗ", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.3.3", "name": "ТЗ на перший блок (поетапно)", "pct": 0, "start": "26.08.2026", "end": "26.08.2026", "dur": "1 день", "who": "", "block": "Блок 3 · Вимоги та ТЗ", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.3.4", "name": "Критерії приймання", "pct": 0, "start": "27.08.2026", "end": "27.08.2026", "dur": "1 день", "who": "", "block": "Блок 3 · Вимоги та ТЗ", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.3.5", "name": "ТЗ на beta готове", "pct": 0, "start": "27.08.2026", "end": "27.08.2026", "dur": "0 дн.", "who": "", "block": "Блок 3 · Вимоги та ТЗ", "prio": "Середній", "milestone": true, "status": "notstarted"}, {"wbs": "1.4", "name": "Блок 4 · CRM Structivio (перший блок)", "pct": 0, "start": "28.08.2026", "end": "31.08.2026", "dur": "4 дн.", "who": "", "block": "", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.4.1", "name": "Налаштування Structivio (ліди, воронка)", "pct": 0, "start": "28.08.2026", "end": "28.08.2026", "dur": "1 день", "who": "", "block": "Блок 4 · CRM Structivio (перший блок)", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.4.2", "name": "Manager Cabinet", "pct": 0, "start": "29.08.2026", "end": "29.08.2026", "dur": "1 день", "who": "", "block": "Блок 4 · CRM Structivio (перший блок)", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.4.3", "name": "CPQ / Quick Calculator (розрахунок, специфікація, КП)", "pct": 0, "start": "30.08.2026", "end": "30.08.2026", "dur": "1 день", "who": "", "block": "Блок 4 · CRM Structivio (перший блок)", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.4.4", "name": "Звʼязка розрахунок→специфікація→КП→DATA CORE", "pct": 0, "start": "31.08.2026", "end": "31.08.2026", "dur": "1 день", "who": "", "block": "Блок 4 · CRM Structivio (перший блок)", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.4.5", "name": "CRM + CPQ у роботі", "pct": 0, "start": "31.08.2026", "end": "31.08.2026", "dur": "0 дн.", "who": "", "block": "Блок 4 · CRM Structivio (перший блок)", "prio": "Середній", "milestone": true, "status": "notstarted"}, {"wbs": "1.5", "name": "Блок 5 · Інтеграція Structivio ↔ 1С", "pct": 0, "start": "01.09.2026", "end": "03.09.2026", "dur": "3 дн.", "who": "", "block": "", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.5.1", "name": "Модель обміну даними (без дублювання, не заміна)", "pct": 0, "start": "01.09.2026", "end": "01.09.2026", "dur": "1 день", "who": "", "block": "Блок 5 · Інтеграція Structivio ↔ 1С", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.5.2", "name": "Реалізація інтеграції", "pct": 0, "start": "02.09.2026", "end": "02.09.2026", "dur": "1 день", "who": "", "block": "Блок 5 · Інтеграція Structivio ↔ 1С", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.5.3", "name": "Тест інтеграції", "pct": 0, "start": "03.09.2026", "end": "03.09.2026", "dur": "1 день", "who": "", "block": "Блок 5 · Інтеграція Structivio ↔ 1С", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.5.4", "name": "Інтеграція з 1С працює", "pct": 0, "start": "03.09.2026", "end": "03.09.2026", "dur": "0 дн.", "who": "", "block": "Блок 5 · Інтеграція Structivio ↔ 1С", "prio": "Середній", "milestone": true, "status": "notstarted"}, {"wbs": "1.6", "name": "Блок 6 · DATA CORE (beta) та AI-шар", "pct": 0, "start": "04.09.2026", "end": "06.09.2026", "dur": "3 дн.", "who": "", "block": "", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.6.1", "name": "Структура даних ядра, логіка версій", "pct": 0, "start": "04.09.2026", "end": "04.09.2026", "dur": "1 день", "who": "", "block": "Блок 6 · DATA CORE (beta) та AI-шар", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.6.2", "name": "beta DATA CORE", "pct": 0, "start": "05.09.2026", "end": "05.09.2026", "dur": "1 день", "who": "", "block": "Блок 6 · DATA CORE (beta) та AI-шар", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.6.3", "name": "Перші AI-перевірки (повнота, протиріччя, ризики)", "pct": 0, "start": "06.09.2026", "end": "06.09.2026", "dur": "1 день", "who": "", "block": "Блок 6 · DATA CORE (beta) та AI-шар", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.6.4", "name": "beta DATA CORE + AI-перевірки", "pct": 0, "start": "06.09.2026", "end": "06.09.2026", "dur": "0 дн.", "who": "", "block": "Блок 6 · DATA CORE (beta) та AI-шар", "prio": "Середній", "milestone": true, "status": "notstarted"}, {"wbs": "1.7", "name": "Блок 7 · Customer Portal (прототип)", "pct": 0, "start": "07.09.2026", "end": "08.09.2026", "dur": "2 дн.", "who": "", "block": "", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.7.1", "name": "Концепція клієнтського вікна", "pct": 0, "start": "07.09.2026", "end": "07.09.2026", "dur": "1 день", "who": "", "block": "Блок 7 · Customer Portal (прототип)", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.7.2", "name": "Прототип Client Cabinet (статус, документи)", "pct": 0, "start": "08.09.2026", "end": "08.09.2026", "dur": "1 день", "who": "", "block": "Блок 7 · Customer Portal (прототип)", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.8", "name": "Блок 8 · Залучення та управління змінами", "pct": 0, "start": "09.09.2026", "end": "12.09.2026", "dur": "4 дн.", "who": "", "block": "", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.8.1", "name": "Донесення переваг команді", "pct": 0, "start": "09.09.2026", "end": "09.09.2026", "dur": "1 день", "who": "", "block": "Блок 8 · Залучення та управління змінами", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.8.2", "name": "Робота з Наталею (демонстрація вигоди 1С)", "pct": 0, "start": "10.09.2026", "end": "10.09.2026", "dur": "1 день", "who": "", "block": "Блок 8 · Залучення та управління змінами", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.8.3", "name": "Робота з топ-менеджментом (опір)", "pct": 0, "start": "11.09.2026", "end": "11.09.2026", "dur": "1 день", "who": "", "block": "Блок 8 · Залучення та управління змінами", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.8.4", "name": "Навчання користувачів (продажі)", "pct": 0, "start": "12.09.2026", "end": "12.09.2026", "dur": "1 день", "who": "", "block": "Блок 8 · Залучення та управління змінами", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.9", "name": "Блок 9 · Beta та приймання першого блоку", "pct": 0, "start": "13.09.2026", "end": "16.09.2026", "dur": "4 дн.", "who": "", "block": "", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.9.1", "name": "Beta на обмежених проєктах (тест лід→КП на реальних угодах)", "pct": 0, "start": "13.09.2026", "end": "13.09.2026", "dur": "1 день", "who": "", "block": "Блок 9 · Beta та приймання першого блоку", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.9.2", "name": "Вимір результату (метрики до/після)", "pct": 0, "start": "14.09.2026", "end": "14.09.2026", "dur": "1 день", "who": "", "block": "Блок 9 · Beta та приймання першого блоку", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.9.3", "name": "Lessons learned", "pct": 0, "start": "15.09.2026", "end": "15.09.2026", "dur": "1 день", "who": "", "block": "Блок 9 · Beta та приймання першого блоку", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.9.4", "name": "Рішення про масштаб-2027", "pct": 0, "start": "16.09.2026", "end": "16.09.2026", "dur": "1 день", "who": "", "block": "Блок 9 · Beta та приймання першого блоку", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.9.5", "name": "Перший блок прийнято; рішення про масштаб", "pct": 0, "start": "16.09.2026", "end": "16.09.2026", "dur": "0 дн.", "who": "", "block": "Блок 9 · Beta та приймання першого блоку", "prio": "Середній", "milestone": true, "status": "notstarted"}, {"wbs": "1.10", "name": "Блок 10 · Roadmap підсистем (2027+)", "pct": 0, "start": "17.09.2026", "end": "17.09.2026", "dur": "1 день", "who": "", "block": "", "prio": "Середній", "milestone": false, "status": "notstarted"}, {"wbs": "1.10.1", "name": "PLM · SRM · WMS/TMS · MES/APS · FSM · FMS · ECM — черга за результатом першого блоку", "pct": 0, "start": "17.09.2026", "end": "17.09.2026", "dur": "1 день", "who": "", "block": "Блок 10 · Roadmap підсистем (2027+)", "prio": "Середній", "milestone": false, "status": "notstarted"}], PROJ={"name": "PILLAR Project Hub", "start": "20.07.2026", "end": "17.09.2026", "pct": 27, "gen": "05.08.2026"};
+function pd(s){if(!s)return null;const p=(''+s).split('.');return new Date(+p[2],+p[1]-1,+p[0]);}
+const TODAY=pd(PROJ.gen);
+document.getElementById('gen').textContent='Дані: '+PROJ.gen;
+const T0=pd(PROJ.start),T1=pd(PROJ.end),SPAN=(T1-T0)||1;
+function pos(s){const d=pd(s);if(!d)return 0;return Math.max(0,Math.min(100,(d-T0)/SPAN*100));}
+const leaves=TASKS.filter(t=>t.wbs.split('.').length>=3);
+const blocks=TASKS.filter(t=>t.wbs.split('.').length===2);
+function statusOf(t){if(t.pct>=100)return'done';const e=pd(t.end);if(e&&e<TODAY&&t.pct<100)return'late';if(t.pct>0)return'progress';return'notstarted';}
+const SC={done:'var(--green)',progress:'var(--blue)',late:'var(--red)',notstarted:'var(--grey)'};
+function mine(t,who){return !who||(t.who||'').includes(who);}
+function whoList(){const s=new Set();leaves.forEach(t=>{if(t.who)t.who.split(';').forEach(w=>s.add(w.trim()));});return[...s].sort();}
+(function(){const sel=document.getElementById('who');whoList().forEach(w=>{const o=document.createElement('option');o.value=w;o.textContent=w;sel.appendChild(o);});})();
+function gauge(v){const th=Math.PI*(180-1.8*v)/180,nx=100+70*Math.cos(th),ny=100-70*Math.sin(th);
+ const col=v<34?'#D93025':(v<67?'#E9A23B':'#2FA860');
+ return `<svg viewBox="0 0 200 112"><path d="M 20 100 A 80 80 0 0 1 66.5 27.4" fill="none" stroke="#D93025" stroke-width="15"/><path d="M 66.5 27.4 A 80 80 0 0 1 133.5 27.4" fill="none" stroke="#E9A23B" stroke-width="15"/><path d="M 133.5 27.4 A 80 80 0 0 1 180 100" fill="none" stroke="#2FA860" stroke-width="15"/><line x1="100" y1="100" x2="${nx.toFixed(1)}" y2="${ny.toFixed(1)}" stroke="#E8EDF5" stroke-width="3.5" stroke-linecap="round"/><circle cx="100" cy="100" r="6" fill="#E8EDF5"/></svg><div class="gv" style="color:${col}">${v}%</div>`;}
+function curPhase(){const b=blocks.find(x=>x.pct>0&&x.pct<100)||blocks.find(x=>pd(x.start)<=TODAY&&x.pct<100);return b?b.name.split('·')[0].trim():'—';}
+function renderTop(){
+  const who=document.getElementById('who').value;
+  const fl=leaves.filter(t=>mine(t,who));
+  const tot=fl.length,done=fl.filter(t=>t.pct>=100).length,prog=fl.filter(t=>statusOf(t)=='progress').length,ov=fl.filter(t=>statusOf(t)=='late').length;
+  const pct=who?Math.round(fl.reduce((a,t)=>a+t.pct,0)/(tot||1)):PROJ.pct;
+  document.getElementById('glab').textContent=who?'Мій прогрес':'Загальний прогрес';
+  document.getElementById('gsvg').innerHTML=gauge(pct);
+  document.getElementById('rmstats').innerHTML=
+    `<span>завдань <b>${tot}</b></span><span>готово <b>${done}</b></span><span>в роботі <b>${prog}</b></span>`+
+    `<span>прострочено <b class="${ov?'ovn':''}">${ov}</b></span><span>фаза <b>${curPhase()}</b></span>`;
+  renderAssignees(who);
+}
+function renderRoadmap(){
+  const el=document.getElementById('rm');let h='';
+  var mm=[[T0,'']];var c=new Date(T0.getFullYear(),T0.getMonth()+1,1);while(c<=T1){mm.push([new Date(c),'']);c=new Date(c.getFullYear(),c.getMonth()+1,1);}
+  var MN=['січ','лют','бер','кві','тра','чер','лип','сер','вер','жов','лис','гру'];
+  mm.forEach(function(a){var dt=a[0];var x=Math.max(0,Math.min(100,(dt-T0)/SPAN*100));h+=`<div class="mon" style="left:${x}%">${MN[dt.getMonth()]}</div>`;});
+  h+='<div class="axis">';
+  blocks.forEach((b,i)=>{
+    const kids=leaves.filter(t=>t.block===b.name);
+    const ss=kids.map(t=>t.start).filter(Boolean).map(pd).sort((a,b)=>a-b)[0];
+    const ee=kids.map(t=>t.end).filter(Boolean).map(pd).sort((a,b)=>a-b).slice(-1)[0];
+    const l=ss?Math.max(0,Math.min(100,(ss-T0)/SPAN*100)):pos(b.start);
+    const r=ee?Math.max(0,Math.min(100,(ee-T0)/SPAN*100)):pos(b.end);
+    const w=Math.max(1.5,r-l);
+    const st=b.pct>=100?'done':(b.pct>0?'progress':'notstarted');
+    const dr=(ss?ss.toLocaleDateString('uk'):'')+'–'+(ee?ee.toLocaleDateString('uk'):'');
+    const tip=(b.name+' — '+b.pct+'% · '+dr).replace(/"/g,'&quot;');
+    h+=`<div class="seg" style="width:${w}%;background:${SC[st]}" data-tip="${tip}" onmousemove="tipMove(event)" onmouseleave="tipHide()">${w>4?('Б'+(i+1)):''}</div>`;
+  });
+  h+='</div>';
+  const tx=Math.max(0,Math.min(100,(TODAY-T0)/SPAN*100));
+  h+=`<div class="today" style="left:${tx}%"></div>`;
+  const ms=leaves.filter(t=>t.milestone).map(t=>({x:pos(t.end),d:t.end.slice(0,5),name:t.name})).sort((a,b)=>a.x-b.x);
+  let lastR=[-99,-99];
+  ms.forEach(m=>{
+    let row=0; if(m.x-lastR[0]<7){row=1; if(m.x-lastR[1]<7)row=0;}
+    lastR[row]=m.x;
+    const top=row===0?0:18,lineTop=row===0?12:30,lineH=row===0?28:10;
+    const tip=(m.name+' — віха · '+m.d).replace(/"/g,'&quot;');
+    h+=`<div class="msdot" style="left:${m.x}%" data-tip="${tip}" onmousemove="tipMove(event)" onmouseleave="tipHide()"></div>`;
+    h+=`<div class="msline" style="left:${m.x}%;top:${lineTop}px;height:${lineH}px"></div>`;
+    h+=`<div class="mslab" style="left:${m.x}%;top:${top}px">${m.d}</div>`;
+  });
+  el.innerHTML=h;
+}
+function tipMove(e){const t=document.getElementById('rmtip');const tx=e.target.getAttribute('data-tip');if(!tx)return;
+  var parts=tx.split(' — ');t.innerHTML='<b>'+parts[0]+'</b>'+(parts[1]?'<br><span class="r">'+parts.slice(1).join(' — ')+'</span>':'');
+  t.style.display='block';let x=e.clientX+14,y=e.clientY+14;if(x+290>innerWidth)x=e.clientX-290;t.style.left=x+'px';t.style.top=y+'px';}
+function tipHide(){document.getElementById('rmtip').style.display='none';}
+function pbar(t){return `<span class="pbar"><i style="width:${t.pct}%;background:${SC[statusOf(t)]}"></i></span> <span class="muted">${t.pct}%</span>`;}
+function renderAssignees(who){
+  const box=document.getElementById('assignees');
+  const people=whoList(); const groups=(people.length?people:['—']).filter(p=>leaves.some(t=>(t.who||'').includes(p)));
+  let h='';
+  groups.forEach((p)=>{
+    const items=leaves.filter(t=>(t.who||'').includes(p));
+    const dn=items.filter(t=>t.pct>=100).length, ov=items.filter(t=>statusOf(t)=='late').length;
+    const collapsed=who&&who!==p;
+    const byBlock={}; items.forEach(t=>{(byBlock[t.block]=byBlock[t.block]||[]).push(t);});
+    let inner='';
+    Object.keys(byBlock).forEach(bn=>{
+      const bi=byBlock[bn].sort((a,b)=>pd(a.end)-pd(b.end));
+      const bdone=bi.filter(t=>t.pct>=100).length;
+      inner+=`<div class="blk"><div class="blkrow" onclick="this.parentNode.classList.toggle('col')"><span class="tg">▾</span>${bn.split('·')[0]}${bn.split('·')[1]?'·'+bn.split('·')[1]:''}<span class="bm">${bi.length} завд · готово ${bdone}</span></div>`+
+        `<div class="blk-b"><table class="tl"><tbody>`+bi.map(t=>{
+          const pr=t.prio==='Терміново'?'<span class="tag ur">терміново</span>':(t.prio==='Важливо'?'<span class="tag im">важливо</span>':'');
+          const ov=statusOf(t)=='late'?'<span class="tag ov">прострочено</span>':'';
+          return `<tr><td>${t.name} <span class="muted" style="font-size:11px">${t.start.slice(0,5)}–${t.end.slice(0,5)}</span></td><td class="d" style="width:150px">${pbar(t)}</td><td style="width:120px">${ov} ${pr}</td></tr>`;}).join('')+
+        '</tbody></table></div></div>';
+    });
+    h+=`<div class="ag ${collapsed?'col':''}"><div class="ag-h" onclick="this.parentNode.classList.toggle('col')">`+
+       `<span class="tg">▾</span><span class="nm">${p}</span>`+
+       `<span class="meta">${items.length} завд · готово ${dn}${ov?` · <span style="color:#ef7a72">прострочено ${ov}</span>`:''}</span></div>`+
+       `<div class="ag-b">${inner}</div></div>`;
+  });
+  box.innerHTML=h;
+  document.getElementById('agSub').textContent=groups.length+' осіб';
+}
+function gxEff(t){var e=pd(t.end);if(t.pct>=100)return 'done';if(e&&e<TODAY&&t.pct<100)return 'late';if(t.pct>0)return 'progress';return 'notstarted';}
+function gxHasChild(w){return TASKS.some(function(t){return t.wbs!==w&&t.wbs.indexOf(w+'.')===0;});}
+function gxDepth(w){return w.split('.').length;}
+var GX_MON=['січ','лют','бер','кві','тра','чер','лип','сер','вер','жов','лис','гру'];
+var GX_DAY=86400000,GX_LBL=300;
+var gxMin=null,gxMax=null;
+TASKS.forEach(function(t){var s=pd(t.start),e=pd(t.end);if(s&&(!gxMin||s<gxMin))gxMin=s;if(e&&(!gxMax||e>gxMax))gxMax=e;});
+var gxTotalDays=Math.max(1,Math.round((gxMax-gxMin)/GX_DAY)+1);
+var gxScale='week',gxPxd=20,gxCollapsed=new Set(),gxFilter='all';
+TASKS.forEach(function(t){if(gxDepth(t.wbs)>=2&&gxHasChild(t.wbs))gxCollapsed.add(t.wbs);});
+function gxCls(s){return s==='done'?'gb-done':s==='late'?'gb-late':s==='progress'?'gb-progress':'gb-none';}
+function gxX(d){return (pd(d)-gxMin)/GX_DAY*gxPxd;}
+function gxVisible(){
+  if(gxFilter!=='all')return TASKS.filter(function(t){return gxEff(t)===gxFilter&&gxDepth(t.wbs)>=3;});
+  return TASKS.filter(function(t){var p=t.wbs.split('.');for(var i=1;i<p.length;i++){if(gxCollapsed.has(p.slice(0,i).join('.')))return false;}return true;});
+}
+function gxToggle(w){if(gxCollapsed.has(w))gxCollapsed.delete(w);else gxCollapsed.add(w);gxRender();}
+function gxSetScale(s,btn){gxScale=s;var bs=document.querySelectorAll('.zbtn');for(var i=0;i<bs.length;i++)bs[i].classList.remove('active');btn.classList.add('active');gxRender();}
+function ft(f,btn){document.querySelectorAll('.fbtn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');gxFilter=f;gxRender();}
+function gxRender(){
+  gxPxd=gxScale==='day'?34:gxScale==='week'?20:gxScale==='month'?7:3;
+  var timeW=gxTotalDays*gxPxd,ticks='';
+  if(gxScale==='month'||gxScale==='year'){
+    var mc=new Date(gxMin.getFullYear(),gxMin.getMonth(),1);
+    while(mc<=gxMax){var off=(mc-gxMin)/GX_DAY;if(off>=0)ticks+='<div class="gx-tick" style="left:'+(off*gxPxd)+'px">'+GX_MON[mc.getMonth()]+' '+(''+mc.getFullYear()).slice(2)+'</div>';mc=new Date(mc.getFullYear(),mc.getMonth()+1,1);}
+  }else{
+    var step=gxScale==='day'?1:7;
+    for(var dd=0;dd<gxTotalDays;dd+=step){var dt=new Date(gxMin.getTime()+dd*GX_DAY);var lab=(gxScale==='day')?(dt.getDate()+((dt.getDate()===1||dd===0)?' '+GX_MON[dt.getMonth()]:'')):(dt.getDate()+' '+GX_MON[dt.getMonth()]);ticks+='<div class="gx-tick" style="left:'+(dd*gxPxd)+'px">'+lab+'</div>';}
+  }
+  var tdyX=(TODAY-gxMin)/GX_DAY*gxPxd;var tdyOn=tdyX>=0&&tdyX<=timeW;
+  var rows='';
+  gxVisible().forEach(function(t){
+    var dep=gxDepth(t.wbs),hc=gxHasChild(t.wbs),eff=gxEff(t),pad=(dep-1)*16;
+    var nmEsc=(''+t.name).replace(/"/g,'&quot;');
+    var tog=(hc&&gxFilter==='all')?'<span class="gx-toggle" onclick="gxToggle(\''+t.wbs+'\')">'+(gxCollapsed.has(t.wbs)?'▸':'▾')+'</span>':'<span class="gx-toggle"></span>';
+    var nm=dep<=2?'font-weight:700':'';
+    var x=gxX(t.start),bar;
+    if(t.milestone){bar='<div class="gx-ms '+gxCls(eff)+'" style="left:'+(x-6)+'px" title="'+nmEsc+'"></div>';}
+    else{var wid=Math.max(8,(pd(t.end)-pd(t.start))/GX_DAY*gxPxd+gxPxd);bar='<div class="gx-bar '+gxCls(eff)+'" style="left:'+x+'px;width:'+wid+'px" title="'+nmEsc+' ('+t.start+'–'+t.end+')">'+(wid>34&&t.pct>0?t.pct+'%':'')+'</div>';}
+    rows+='<div class="gx-row"><div class="gx-label" style="padding-left:'+(12+pad)+'px">'+tog+'<span class="gx-name" style="'+nm+'" title="'+t.wbs+' '+nmEsc+'">'+t.name+'</span></div><div class="gx-time" style="width:'+timeW+'px">'+bar+'</div></div>';
+  });
+  var html='<div class="gx-scroll"><div class="gx-grid" style="width:'+(GX_LBL+timeW)+'px"><div class="gx-head"><div class="gx-head-label">Завдання ('+gxVisible().length+')</div><div class="gx-head-time" style="width:'+timeW+'px">'+ticks+(tdyOn?'<div class="gx-today" style="left:'+tdyX+'px"></div>':'')+'</div></div><div class="gx-body">'+(tdyOn?'<div class="gx-today" style="left:'+(GX_LBL+tdyX)+'px"></div>':'')+rows+'</div></div></div>';
+  document.getElementById('gxWrap').innerHTML=html;
+}
+renderTop();renderRoadmap();gxRender();
+</script>
+<script>
+(function(){
+  if(localStorage.getItem('hub_ok')==='1')return;
+  var HASH="df936119b4543c7af155937d2272bf5a0fb295e5699da07ba3043a0f1dab41ca";
+  var ov=document.createElement('div');ov.id='hub-gate';
+  ov.style.cssText='position:fixed;inset:0;z-index:99999;background:#1A2332;display:flex;align-items:center;justify-content:center;font-family:Segoe UI,Arial,sans-serif';
+  ov.innerHTML='<div style="text-align:center;color:#E8EDF5"><div style="font-size:26px;font-weight:800;color:#E85D1A;letter-spacing:1px">PILLAR <span style="color:#9aafc8;font-weight:400;font-size:15px">Project Hub</span></div><div style="color:#9aafc8;font-size:13px;margin:6px 0 18px">Введіть код доступу до Project Hub</div><input id="hub-pin" type="password" inputmode="numeric" autocomplete="off" style="padding:11px 14px;font-size:16px;border-radius:8px;border:1px solid #2e4060;background:#22304a;color:#fff;text-align:center;width:200px;outline:none"><div id="hub-err" style="color:#ef7a72;font-size:12px;height:16px;margin-top:8px"></div><button id="hub-go" style="margin-top:6px;padding:10px 26px;border:none;border-radius:8px;background:#E85D1A;color:#fff;font-weight:600;font-size:14px;cursor:pointer">Увійти</button></div>';
+  document.documentElement.appendChild(ov);
+  var b=document.body;if(b)b.style.overflow='hidden';
+  async function sha(s){var d=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(d)).map(x=>x.toString(16).padStart(2,'0')).join('');}
+  async function go(){var v=document.getElementById('hub-pin').value.trim();if(await sha(v)===HASH){localStorage.setItem('hub_ok','1');ov.remove();if(b)b.style.overflow='';}else{document.getElementById('hub-err').textContent='Невірний код';}}
+  document.getElementById('hub-go').onclick=go;
+  document.getElementById('hub-pin').addEventListener('keydown',function(e){if(e.key==='Enter')go();});
+  setTimeout(function(){document.getElementById('hub-pin').focus();},50);
+})();
+</script>
+</body></html>
