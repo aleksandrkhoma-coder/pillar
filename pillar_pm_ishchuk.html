@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-<meta name="robots" content="noindex,nofollow">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#1A2332">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pillar — Портфель проєктів ОУП</title>
@@ -46,7 +40,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 .page{max-width:1320px;margin:0 auto;padding:20px 24px}
 
-.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px}
+.kpi-row{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:24px}
+.kpi-value.orange{color:var(--brand-orange)}
+.kpi.clickable.active#kpiCRCard,.kpi.clickable#kpiCRCard.active{border-color:var(--brand-orange);background:rgba(232,93,26,.08);box-shadow:0 2px 8px rgba(232,93,26,.2)}
+.kpi.clickable#kpiCRCard:hover{border-color:var(--brand-orange);box-shadow:0 2px 8px rgba(232,93,26,.15)}
+.kpi.clickable#kpiCRCard.active .kpi-label{color:var(--brand-orange)}
 .kpi{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
 .kpi-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);margin-bottom:6px}
 .kpi-value{font-size:28px;font-weight:800;color:var(--brand-dark);line-height:1}
@@ -181,6 +179,12 @@ body{padding-left:198px}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<meta name="robots" content="noindex,nofollow">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1A2332">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
 <nav class="pl-side">
@@ -239,6 +243,11 @@ body{padding-left:198px}
       <div class="kpi-value red" id="kpiRisk">—</div>
       <div class="kpi-sub">позначені ПМ</div>
     </div>
+    <div class="kpi clickable" id="kpiCRCard" onclick="applyFilter('cr')" title="Натисни щоб відфільтрувати">
+      <div class="kpi-label">Запит на зміни</div>
+      <div class="kpi-value orange" id="kpiCR">—</div>
+      <div class="kpi-sub">роботи призупинені</div>
+    </div>
     <div class="kpi clickable" id="kpiOverdueCard" onclick="applyFilter('overdue')" title="Натисни щоб відфільтрувати">
       <div class="kpi-label">Прострочених завдань</div>
       <div class="kpi-value red" id="kpiOverdue">—</div>
@@ -272,9 +281,9 @@ const PROJECTS = [{"id": "5682", "name": "А Сцена Корчин", "pm": "І
   {"id": "7536", "name": "А Ранчо “Едельвейс”  AGM  171PV", "pm": "Іщук", "pct": 100, "start": "19.05.2026", "end": "01.07.2026", "tasks": 51, "done": 51, "overdue": 0, "plan": 912346, "fact": 912346, "plan_cur": 912346, "fact_cur": 912346, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 49.08974, "lng": 23.55644, "loc": "Ранчо Едельвейс, Львівська обл."},
   {"id": "7960", "name": "Сірокко Sirocco вітрова ел ст Львів", "pm": "Іщук", "pct": 100, "start": "26.05.2026", "end": "30.07.2026", "tasks": 33, "done": 33, "overdue": 0, "plan": 99610, "fact": 99610, "plan_cur": 99610, "fact_cur": 99610, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 49.8397, "lng": 24.0297, "loc": "Львів"},
   {"id": "8070", "name": "А Карпорты B2C  SCP", "pm": "Іщук", "pct": 100, "start": "19.05.2026", "end": "15.06.2026", "tasks": 44, "done": 44, "overdue": 0, "plan": 126641, "fact": 126641, "plan_cur": 126641, "fact_cur": 126641, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 48.56038, "lng": 35.04316, "loc": "Дніпро (карпорт)"},
-  {"id": "8188", "name": "Фундамент Ужгород Стефанія", "pm": "Іщук", "pct": 75, "start": "26.05.2026", "end": "04.08.2026", "tasks": 46, "done": 40, "overdue": 6, "plan": 280126, "fact": 206200, "plan_cur": 280126, "fact_cur": 206200, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0},
-  {"id": "8238", "name": "А UTEM SOLAR  SCP Taurus 190PV", "pm": "Іщук", "pct": 72, "start": "26.05.2026", "end": "09.08.2026", "tasks": 50, "done": 43, "overdue": 0, "plan": 2011000, "fact": 2011000, "plan_cur": 2011000, "fact_cur": 2011000, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 50.3536, "lng": 30.5066, "loc": "Пирогово, Київ"},
-  {"id": "8496", "name": "А Greensource  SGM  110MWp", "pm": "Іщук", "pct": 100, "start": "26.05.2026", "end": "26.08.2026", "tasks": 41, "done": 41, "overdue": 0, "plan": 454432, "fact": 454432, "plan_cur": 8800, "fact_cur": 8800, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0}];
+  {"id": "8188", "name": "Фундамент Ужгород Стефанія", "pm": "Іщук", "pct": 100, "start": "26.05.2026", "end": "04.08.2026", "tasks": 46, "done": 46, "overdue": 0, "plan": 280126, "fact": 206200, "plan_cur": 280126, "fact_cur": 206200, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0},
+  {"id": "8238", "name": "А UTEM SOLAR  SCP Taurus 190PV", "pm": "Іщук", "pct": 83, "start": "26.05.2026", "end": "17.08.2026", "tasks": 50, "done": 43, "overdue": 0, "plan": 2011000, "fact": 2011000, "plan_cur": 2011000, "fact_cur": 2011000, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 50.3536, "lng": 30.5066, "loc": "Пирогово, Київ"},
+  {"id": "8496", "name": "А Greensource  SGM  110MWp", "pm": "Іщук", "pct": 100, "start": "26.05.2026", "end": "26.08.2026", "tasks": 41, "done": 41, "overdue": 0, "plan": 453552, "fact": 453552, "plan_cur": 8800, "fact_cur": 8800, "cur": "EUR", "paused": false, "risk": null, "status": "done", "lost_value": 0}];
 
 const PM_CONFIG = {
   'Донська':       {initials:'НД', color:'#9B5DE5'},
@@ -304,8 +313,8 @@ const LOST=PROJECTS.filter(p=>p.status==='lost');
 const DONE=PROJECTS.filter(p=>p.status==='done');
 
 // KPI (рахуємо лише активні)
-let sp=0,risk=0,ov=0,splan=0,sfact=0;
-ACTIVE.forEach(p=>{sp+=p.pct;if(p.risk)risk++;ov+=p.overdue;splan+=p.plan||0;sfact+=p.fact||0});
+let sp=0,risk=0,ov=0,cr=0,splan=0,sfact=0;
+ACTIVE.forEach(p=>{sp+=p.pct;if(p.risk)risk++;ov+=p.overdue;if(p.status==='cr')cr++;splan+=p.plan||0;sfact+=p.fact||0});
 const _act=document.getElementById('kpiActive');if(_act)_act.textContent=ACTIVE.length;
 (function(){var v=ACTIVE.length?Math.round(sp/ACTIVE.length):0;
   var th=Math.PI*(180-1.8*v)/180, nx=100+70*Math.cos(th), ny=100-70*Math.sin(th);
@@ -315,7 +324,8 @@ const _act=document.getElementById('kpiActive');if(_act)_act.textContent=ACTIVE.
   var s=document.getElementById('avgSub');if(s)s.textContent=lbl;})();
 document.getElementById('kpiRisk').textContent=risk;
 document.getElementById('kpiOverdue').textContent=ov+'+';
-const NBU_EUR=51.64;
+var _cr=document.getElementById('kpiCR');if(_cr)_cr.textContent=cr;
+const NBU_EUR=51.54;
 function kpiBud(c){const f=v=>!v?'—':(c==='EUR'?(v/NBU_EUR/1e6).toFixed(2)+' млн €':fmtM(v));
 document.getElementById('kpiPlan').textContent=f(splan);document.getElementById('kpiFact').textContent=f(sfact);
 document.querySelectorAll('#curTgl .ctb').forEach(b=>b.classList.toggle('on',b.dataset.c===c))}
@@ -387,7 +397,7 @@ PM_ORDER.forEach(pm=>{
     if(p.risk==='fired') _rb.push(['#D93025','&#128293; РИЗИК СПРАЦЮВАВ']);
     else if(p.risk==='watch') _rb.push(['#7A5CD6','&#9888; ПІД РИЗИКОМ']);
     var ribbon=_rb.map(function(r,i){return '<div style="margin:'+(i===0?'-13px':'0')+' -15px 0;padding:5px 14px;background:'+r[0]+';color:#fff;font-size:11px;font-weight:700;letter-spacing:.4px">'+r[1]+'</div>';}).join('');
-    html+='<div class="proj-card '+riskClass(p)+(p.status==='cr'?' cr-card':'')+'" data-id="'+p.id+'" data-overdue="'+p.overdue+'" data-pct="'+p.pct+'" data-risk="'+(p.risk?1:0)+'">'+ribbon
+    html+='<div class="proj-card '+riskClass(p)+(p.status==='cr'?' cr-card':'')+'" data-id="'+p.id+'" data-overdue="'+p.overdue+'" data-pct="'+p.pct+'" data-risk="'+(p.risk?1:0)+'" data-cr="'+(p.status==='cr'?1:0)+'">'+ribbon
       +'<div class="proj-top"><div><div class="proj-id">&#8470; '+p.id+' &nbsp;&#183;&nbsp; '+p.start+' &#8594; '+p.end+'</div><div class="proj-name">'+p.name+'</div></div>'
       +(p.overdue>0?'<div class="late-badge">&#9888; '+p.overdue+'</div>':'')+'</div>'
       +'<div class="prog-row"><div class="prog-bar"><div class="prog-fill '+pctFill(p)+'" style="width:'+p.pct+'%"></div></div>'
@@ -469,10 +479,12 @@ function applyFilter(type){
   activeFilter=type;
   const rCard=document.getElementById('kpiRiskCard');
   const oCard=document.getElementById('kpiOverdueCard');
+  const cCard=document.getElementById('kpiCRCard');
   const banner=document.getElementById('filterBanner');
   const lbl=document.getElementById('filterLabel');
   rCard.classList.toggle('active',type==='risk');
   oCard.classList.toggle('active',type==='overdue');
+  if(cCard)cCard.classList.toggle('active',type==='cr');
   const cards=document.querySelectorAll('.proj-card');
   const sections=document.querySelectorAll('.pm-section');
   if(!type){
@@ -488,6 +500,7 @@ function applyFilter(type){
     let match=false;
     if(type==='risk')    match=card.dataset.risk==='1';
     if(type==='overdue') match=ov>0;
+    if(type==='cr')      match=card.dataset.cr==='1';
     card.classList.toggle('hidden',!match);
     if(match) shown++;
   });
@@ -495,7 +508,7 @@ function applyFilter(type){
     const vis=s.querySelectorAll('.proj-card:not(.hidden)').length;
     s.style.display=vis===0?'none':'';
   });
-  const name=type==='risk'?'Під ризиком':'Прострочені завдання';
+  const name=type==='risk'?'Під ризиком':(type==='cr'?'Запит на зміни':'Прострочені завдання');
   lbl.textContent='🔍 Фільтр: '+name+' — '+shown+' проєктів';
   banner.classList.add('show');
 }
@@ -560,5 +573,7 @@ document.addEventListener('click',function(e){if(!e.target.closest('.psearch')){
   setTimeout(function(){document.getElementById('pl-pin').focus();},50);
 })();
 </script>
+
+
 </body>
 </html>

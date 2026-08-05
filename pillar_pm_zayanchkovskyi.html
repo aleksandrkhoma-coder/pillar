@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-<meta name="robots" content="noindex,nofollow">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#1A2332">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pillar — Портфель проєктів ОУП</title>
@@ -46,7 +40,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 .page{max-width:1320px;margin:0 auto;padding:20px 24px}
 
-.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px}
+.kpi-row{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:24px}
+.kpi-value.orange{color:var(--brand-orange)}
+.kpi.clickable.active#kpiCRCard,.kpi.clickable#kpiCRCard.active{border-color:var(--brand-orange);background:rgba(232,93,26,.08);box-shadow:0 2px 8px rgba(232,93,26,.2)}
+.kpi.clickable#kpiCRCard:hover{border-color:var(--brand-orange);box-shadow:0 2px 8px rgba(232,93,26,.15)}
+.kpi.clickable#kpiCRCard.active .kpi-label{color:var(--brand-orange)}
 .kpi{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
 .kpi-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);margin-bottom:6px}
 .kpi-value{font-size:28px;font-weight:800;color:var(--brand-dark);line-height:1}
@@ -181,6 +179,12 @@ body{padding-left:198px}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<meta name="robots" content="noindex,nofollow">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1A2332">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
 <nav class="pl-side">
@@ -239,6 +243,11 @@ body{padding-left:198px}
       <div class="kpi-value red" id="kpiRisk">—</div>
       <div class="kpi-sub">позначені ПМ</div>
     </div>
+    <div class="kpi clickable" id="kpiCRCard" onclick="applyFilter('cr')" title="Натисни щоб відфільтрувати">
+      <div class="kpi-label">Запит на зміни</div>
+      <div class="kpi-value orange" id="kpiCR">—</div>
+      <div class="kpi-sub">роботи призупинені</div>
+    </div>
     <div class="kpi clickable" id="kpiOverdueCard" onclick="applyFilter('overdue')" title="Натисни щоб відфільтрувати">
       <div class="kpi-label">Прострочених завдань</div>
       <div class="kpi-value red" id="kpiOverdue">—</div>
@@ -269,8 +278,8 @@ const TODAY = new Date('2026-08-05');
 const PROJECTS = [{"id": "4766", "name": "ALTECO Carport Model Taurus 280кВт", "pm": "Заянчковський", "pct": 44, "start": "01.05.2026", "end": "02.10.2026", "tasks": 45, "done": 13, "overdue": 0, "plan": 5815976, "fact": 4552528, "plan_cur": 5815976, "fact_cur": 4552528, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.58919, "lng": 22.97573, "loc": "Закарпатська обл. (Carport Taurus)"},
   {"id": "6130", "name": "-26 ГШ Фундамент домобудування Євро Простір Марія", "pm": "Заянчковський", "pct": 60, "start": "20.07.2026", "end": "05.10.2026", "tasks": 44, "done": 27, "overdue": 0, "plan": 292782, "fact": 256112, "plan_cur": 292782, "fact_cur": 256112, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0},
   {"id": "6312", "name": "-26 ГШ Фундамент домобудування Георгій", "pm": "Заянчковський", "pct": 35, "start": "20.07.2026", "end": "15.10.2026", "tasks": 38, "done": 11, "overdue": 0, "plan": 543429, "fact": 543429, "plan_cur": 543429, "fact_cur": 543429, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0},
-  {"id": "7244", "name": "В Модулекс модульна будівля Чернігів", "pm": "Заянчковський", "pct": 29, "start": "19.05.2026", "end": "08.09.2026", "tasks": 42, "done": 32, "overdue": 0, "plan": 210308, "fact": 77600, "plan_cur": 210308, "fact_cur": 77600, "cur": "UAH", "paused": false, "risk": "watch", "status": "active", "lost_value": 0, "lat": 51.48585, "lng": 31.30891, "loc": "Чернігів, вул. Підвальна 19"},
-  {"id": "7508", "name": "8602 Євген Весільна тераса Подорожнє", "pm": "Заянчковський", "pct": 83, "start": "26.05.2026", "end": "04.11.2026", "tasks": 43, "done": 33, "overdue": 0, "plan": 2747999, "fact": 1997000, "plan_cur": 2747999, "fact_cur": 1997000, "cur": "UAH", "paused": false, "risk": null, "status": "cr", "lost_value": 0, "lat": 49.05967, "lng": 33.07001, "loc": "Подорожнє, Кіровоградська обл. (MAXX Premium Resort)"},
+  {"id": "7244", "name": "В Модулекс модульна будівля Чернігів", "pm": "Заянчковський", "pct": 35, "start": "19.05.2026", "end": "08.09.2026", "tasks": 42, "done": 32, "overdue": 0, "plan": 210308, "fact": 77600, "plan_cur": 210308, "fact_cur": 77600, "cur": "UAH", "paused": false, "risk": "watch", "status": "active", "lost_value": 0, "lat": 51.48585, "lng": 31.30891, "loc": "Чернігів, вул. Підвальна 19"},
+  {"id": "7508", "name": "8602 Євген Весільна тераса Подорожнє", "pm": "Заянчковський", "pct": 83, "start": "26.05.2026", "end": "04.11.2026", "tasks": 43, "done": 33, "overdue": 0, "plan": 2747999, "fact": 1997000, "plan_cur": 2747999, "fact_cur": 1997000, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 49.05967, "lng": 33.07001, "loc": "Подорожнє, Кіровоградська обл. (MAXX Premium Resort)"},
   {"id": "8140", "name": "В Газинвестпроект фундамент Киев", "pm": "Заянчковський", "pct": 100, "start": "19.05.2026", "end": "14.06.2026", "tasks": 40, "done": 40, "overdue": 0, "plan": 236041, "fact": 236041, "plan_cur": 236041, "fact_cur": 236041, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 50.433316, "lng": 30.635755, "loc": "Київ, вул. Сосницька 5"},
   {"id": "8432", "name": "Олександр 12 мод. буд. с.Вільшанка Полт.обл", "pm": "Заянчковський", "pct": 47, "start": "19.05.2026", "end": "02.07.2026", "tasks": 35, "done": 21, "overdue": 14, "plan": 674264, "fact": 0, "plan_cur": 674264, "fact_cur": 0, "cur": "UAH", "paused": false, "risk": null, "status": "lost", "lost_value": 674264, "lat": 50.03804, "lng": 33.02955, "loc": "Вільшанка, Полтавська обл."},
   {"id": "8878", "name": "А ТОВ КОМПАНІЯ ВОЛЬТ СЕРВІС ГРУП", "pm": "Заянчковський", "pct": 94, "start": "06.06.2026", "end": "11.09.2026", "tasks": 41, "done": 29, "overdue": 0, "plan": 423143, "fact": 410320, "plan_cur": 423143, "fact_cur": 410320, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0}];
@@ -303,8 +312,8 @@ const LOST=PROJECTS.filter(p=>p.status==='lost');
 const DONE=PROJECTS.filter(p=>p.status==='done');
 
 // KPI (рахуємо лише активні)
-let sp=0,risk=0,ov=0,splan=0,sfact=0;
-ACTIVE.forEach(p=>{sp+=p.pct;if(p.risk)risk++;ov+=p.overdue;splan+=p.plan||0;sfact+=p.fact||0});
+let sp=0,risk=0,ov=0,cr=0,splan=0,sfact=0;
+ACTIVE.forEach(p=>{sp+=p.pct;if(p.risk)risk++;ov+=p.overdue;if(p.status==='cr')cr++;splan+=p.plan||0;sfact+=p.fact||0});
 const _act=document.getElementById('kpiActive');if(_act)_act.textContent=ACTIVE.length;
 (function(){var v=ACTIVE.length?Math.round(sp/ACTIVE.length):0;
   var th=Math.PI*(180-1.8*v)/180, nx=100+70*Math.cos(th), ny=100-70*Math.sin(th);
@@ -314,7 +323,8 @@ const _act=document.getElementById('kpiActive');if(_act)_act.textContent=ACTIVE.
   var s=document.getElementById('avgSub');if(s)s.textContent=lbl;})();
 document.getElementById('kpiRisk').textContent=risk;
 document.getElementById('kpiOverdue').textContent=ov+'+';
-const NBU_EUR=51.64;
+var _cr=document.getElementById('kpiCR');if(_cr)_cr.textContent=cr;
+const NBU_EUR=51.54;
 function kpiBud(c){const f=v=>!v?'—':(c==='EUR'?(v/NBU_EUR/1e6).toFixed(2)+' млн €':fmtM(v));
 document.getElementById('kpiPlan').textContent=f(splan);document.getElementById('kpiFact').textContent=f(sfact);
 document.querySelectorAll('#curTgl .ctb').forEach(b=>b.classList.toggle('on',b.dataset.c===c))}
@@ -386,7 +396,7 @@ PM_ORDER.forEach(pm=>{
     if(p.risk==='fired') _rb.push(['#D93025','&#128293; РИЗИК СПРАЦЮВАВ']);
     else if(p.risk==='watch') _rb.push(['#7A5CD6','&#9888; ПІД РИЗИКОМ']);
     var ribbon=_rb.map(function(r,i){return '<div style="margin:'+(i===0?'-13px':'0')+' -15px 0;padding:5px 14px;background:'+r[0]+';color:#fff;font-size:11px;font-weight:700;letter-spacing:.4px">'+r[1]+'</div>';}).join('');
-    html+='<div class="proj-card '+riskClass(p)+(p.status==='cr'?' cr-card':'')+'" data-id="'+p.id+'" data-overdue="'+p.overdue+'" data-pct="'+p.pct+'" data-risk="'+(p.risk?1:0)+'">'+ribbon
+    html+='<div class="proj-card '+riskClass(p)+(p.status==='cr'?' cr-card':'')+'" data-id="'+p.id+'" data-overdue="'+p.overdue+'" data-pct="'+p.pct+'" data-risk="'+(p.risk?1:0)+'" data-cr="'+(p.status==='cr'?1:0)+'">'+ribbon
       +'<div class="proj-top"><div><div class="proj-id">&#8470; '+p.id+' &nbsp;&#183;&nbsp; '+p.start+' &#8594; '+p.end+'</div><div class="proj-name">'+p.name+'</div></div>'
       +(p.overdue>0?'<div class="late-badge">&#9888; '+p.overdue+'</div>':'')+'</div>'
       +'<div class="prog-row"><div class="prog-bar"><div class="prog-fill '+pctFill(p)+'" style="width:'+p.pct+'%"></div></div>'
@@ -468,10 +478,12 @@ function applyFilter(type){
   activeFilter=type;
   const rCard=document.getElementById('kpiRiskCard');
   const oCard=document.getElementById('kpiOverdueCard');
+  const cCard=document.getElementById('kpiCRCard');
   const banner=document.getElementById('filterBanner');
   const lbl=document.getElementById('filterLabel');
   rCard.classList.toggle('active',type==='risk');
   oCard.classList.toggle('active',type==='overdue');
+  if(cCard)cCard.classList.toggle('active',type==='cr');
   const cards=document.querySelectorAll('.proj-card');
   const sections=document.querySelectorAll('.pm-section');
   if(!type){
@@ -487,6 +499,7 @@ function applyFilter(type){
     let match=false;
     if(type==='risk')    match=card.dataset.risk==='1';
     if(type==='overdue') match=ov>0;
+    if(type==='cr')      match=card.dataset.cr==='1';
     card.classList.toggle('hidden',!match);
     if(match) shown++;
   });
@@ -494,7 +507,7 @@ function applyFilter(type){
     const vis=s.querySelectorAll('.proj-card:not(.hidden)').length;
     s.style.display=vis===0?'none':'';
   });
-  const name=type==='risk'?'Під ризиком':'Прострочені завдання';
+  const name=type==='risk'?'Під ризиком':(type==='cr'?'Запит на зміни':'Прострочені завдання');
   lbl.textContent='🔍 Фільтр: '+name+' — '+shown+' проєктів';
   banner.classList.add('show');
 }
@@ -559,5 +572,7 @@ document.addEventListener('click',function(e){if(!e.target.closest('.psearch')){
   setTimeout(function(){document.getElementById('pl-pin').focus();},50);
 })();
 </script>
+
+
 </body>
 </html>
