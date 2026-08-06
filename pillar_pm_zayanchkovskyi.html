@@ -207,12 +207,12 @@ body{padding-left:198px}
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель ПМ — Заянчковський</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 05.08.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 06.08.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 05.08.2026</div>
+      <div>Оновлено: 06.08.2026</div>
       <div>8 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
     </div>
   </div>
@@ -273,7 +273,7 @@ body{padding-left:198px}
 </div>
 
 <script>
-const TODAY = new Date('2026-08-05');
+const TODAY = new Date('2026-08-06');
 
 const PROJECTS = [{"id": "4766", "name": "ALTECO Carport Model Taurus 280кВт", "pm": "Заянчковський", "pct": 44, "start": "01.05.2026", "end": "02.10.2026", "tasks": 45, "done": 13, "overdue": 0, "plan": 5815976, "fact": 4552528, "plan_cur": 5815976, "fact_cur": 4552528, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.58919, "lng": 22.97573, "loc": "Закарпатська обл. (Carport Taurus)"},
   {"id": "6130", "name": "-26 ГШ Фундамент домобудування Євро Простір Марія", "pm": "Заянчковський", "pct": 60, "start": "20.07.2026", "end": "05.10.2026", "tasks": 44, "done": 27, "overdue": 0, "plan": 292782, "fact": 256112, "plan_cur": 292782, "fact_cur": 256112, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0},
@@ -282,7 +282,7 @@ const PROJECTS = [{"id": "4766", "name": "ALTECO Carport Model Taurus 280кВт"
   {"id": "7508", "name": "8602 Євген Весільна тераса Подорожнє", "pm": "Заянчковський", "pct": 83, "start": "26.05.2026", "end": "04.11.2026", "tasks": 43, "done": 33, "overdue": 0, "plan": 2747999, "fact": 1997000, "plan_cur": 2747999, "fact_cur": 1997000, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 49.05967, "lng": 33.07001, "loc": "Подорожнє, Кіровоградська обл. (MAXX Premium Resort)"},
   {"id": "8140", "name": "В Газинвестпроект фундамент Киев", "pm": "Заянчковський", "pct": 100, "start": "19.05.2026", "end": "14.06.2026", "tasks": 40, "done": 40, "overdue": 0, "plan": 236041, "fact": 236041, "plan_cur": 236041, "fact_cur": 236041, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 50.433316, "lng": 30.635755, "loc": "Київ, вул. Сосницька 5"},
   {"id": "8432", "name": "Олександр 12 мод. буд. с.Вільшанка Полт.обл", "pm": "Заянчковський", "pct": 47, "start": "19.05.2026", "end": "02.07.2026", "tasks": 35, "done": 21, "overdue": 14, "plan": 674264, "fact": 0, "plan_cur": 674264, "fact_cur": 0, "cur": "UAH", "paused": false, "risk": null, "status": "lost", "lost_value": 674264, "lat": 50.03804, "lng": 33.02955, "loc": "Вільшанка, Полтавська обл."},
-  {"id": "8878", "name": "А ТОВ КОМПАНІЯ ВОЛЬТ СЕРВІС ГРУП", "pm": "Заянчковський", "pct": 94, "start": "06.06.2026", "end": "11.09.2026", "tasks": 41, "done": 29, "overdue": 0, "plan": 423143, "fact": 410320, "plan_cur": 423143, "fact_cur": 410320, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0}];
+  {"id": "8878", "name": "А ТОВ КОМПАНІЯ ВОЛЬТ СЕРВІС ГРУП", "pm": "Заянчковський", "pct": 94, "start": "06.06.2026", "end": "11.09.2026", "tasks": 41, "done": 32, "overdue": 0, "plan": 423143, "fact": 410320, "plan_cur": 423143, "fact_cur": 410320, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0}];
 
 const PM_CONFIG = {
   'Донська':       {initials:'НД', color:'#9B5DE5'},
@@ -324,7 +324,7 @@ const _act=document.getElementById('kpiActive');if(_act)_act.textContent=ACTIVE.
 document.getElementById('kpiRisk').textContent=risk;
 document.getElementById('kpiOverdue').textContent=ov+'+';
 var _cr=document.getElementById('kpiCR');if(_cr)_cr.textContent=cr;
-const NBU_EUR=51.54;
+const NBU_EUR=51.63;
 function kpiBud(c){const f=v=>!v?'—':(c==='EUR'?(v/NBU_EUR/1e6).toFixed(2)+' млн €':fmtM(v));
 document.getElementById('kpiPlan').textContent=f(splan);document.getElementById('kpiFact').textContent=f(sfact);
 document.querySelectorAll('#curTgl .ctb').forEach(b=>b.classList.toggle('on',b.dataset.c===c))}
@@ -572,6 +572,7 @@ document.addEventListener('click',function(e){if(!e.target.closest('.psearch')){
   setTimeout(function(){document.getElementById('pl-pin').focus();},50);
 })();
 </script>
+
 
 
 </body>
