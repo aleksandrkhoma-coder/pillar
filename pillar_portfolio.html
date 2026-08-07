@@ -207,13 +207,13 @@ body{padding-left:198px}
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель проєктів — ОУП</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 06.08.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 07.08.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 06.08.2026</div>
-      <div>36 проєкти &nbsp;&middot;&nbsp; 5 ПМ</div>
+      <div>Оновлено: 07.08.2026</div>
+      <div>36 проєкти &nbsp;&middot;&nbsp; 6 ПМ</div>
     </div>
   </div>
   <nav class="quick-nav" id="quickNav"></nav>
@@ -224,7 +224,7 @@ body{padding-left:198px}
     <div class="kpi">
       <div class="kpi-label">Активних проєктів</div>
       <div class="kpi-value" id="kpiActive">&mdash;</div>
-      <div class="kpi-sub">5 ПМ у портфелі</div>
+      <div class="kpi-sub">6 ПМ у портфелі</div>
     </div>
     <div class="kpi kpi-gauge">
       <div class="kpi-label">Середній прогрес</div>
@@ -273,22 +273,22 @@ body{padding-left:198px}
 </div>
 
 <script>
-const TODAY = new Date('2026-08-06');
+const TODAY = new Date('2026-08-07');
 
 const PROJECTS = [{"id": "3456", "name": "А Підселання фундаменту", "pm": "Донська", "pct": 56, "start": "19.05.2026", "end": "27.08.2026", "tasks": 43, "done": 33, "overdue": 0, "plan": 1541883, "fact": 1205908, "plan_cur": 1541883, "fact_cur": 1205908, "cur": "UAH", "paused": false, "risk": null, "status": "cr", "lost_value": 0, "lat": 50.42551, "lng": 30.51821, "loc": "Київ, Велика Васильківська"},
-  {"id": "4766", "name": "ALTECO Carport Model Taurus 280кВт", "pm": "Заянчковський", "pct": 44, "start": "01.05.2026", "end": "02.10.2026", "tasks": 45, "done": 13, "overdue": 0, "plan": 5815976, "fact": 4552528, "plan_cur": 5815976, "fact_cur": 4552528, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.58919, "lng": 22.97573, "loc": "Закарпатська обл. (Carport Taurus)"},
-  {"id": "5438", "name": "Stonava. Cz. SGM 100 MW", "pm": "Донська", "pct": 22, "start": "19.05.2026", "end": "22.08.2026", "tasks": 49, "done": 20, "overdue": 0, "plan": 258150000, "fact": 77445000, "plan_cur": 5000000, "fact_cur": 1500000, "cur": "EUR", "paused": true, "risk": null, "status": "paused", "lost_value": 0, "lat": 49.8211, "lng": 18.5061, "loc": "Stonava, Чехія (≈ центр)"},
+  {"id": "4766", "name": "ALTECO Carport Model Taurus 280кВт", "pm": "Заянчковський", "pct": 46, "start": "01.05.2026", "end": "07.10.2026", "tasks": 45, "done": 14, "overdue": 0, "plan": 5815976, "fact": 4552528, "plan_cur": 5815976, "fact_cur": 4552528, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.58919, "lng": 22.97573, "loc": "Закарпатська обл. (Carport Taurus)"},
+  {"id": "5438", "name": "Stonava. Cz. SGM 100 MW", "pm": "Донська", "pct": 22, "start": "19.05.2026", "end": "22.08.2026", "tasks": 49, "done": 20, "overdue": 0, "plan": 258350000, "fact": 77505000, "plan_cur": 5000000, "fact_cur": 1500000, "cur": "EUR", "paused": true, "risk": null, "status": "paused", "lost_value": 0, "lat": 49.8211, "lng": 18.5061, "loc": "Stonava, Чехія (≈ центр)"},
   {"id": "5682", "name": "А Сцена Корчин", "pm": "Іщук", "pct": 100, "start": "26.05.2026", "end": "06.07.2026", "tasks": 33, "done": 33, "overdue": 0, "plan": 457134, "fact": 457134, "plan_cur": 457134, "fact_cur": 457134, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0},
-  {"id": "5870", "name": "Carport Airport Munich", "pm": "Хома", "pct": 40, "start": "19.05.2026", "end": "30.08.2026", "tasks": 48, "done": 47, "overdue": 0, "plan": 10444490, "fact": 2611135, "plan_cur": 202295, "fact_cur": 50574, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.35631, "lng": 11.76392, "loc": "Аеропорт Мюнхен, Німеччина"},
-  {"id": "5910", "name": "SGM Brdovec, Хорватия", "pm": "Донська", "pct": 55, "start": "19.05.2026", "end": "29.09.2026", "tasks": 74, "done": 28, "overdue": 0, "plan": 28756102, "fact": 11591451, "plan_cur": 556965, "fact_cur": 224510, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 45.871, "lng": 15.76493, "loc": "Brdovec, Хорватія"},
+  {"id": "5870", "name": "Carport Airport Munich", "pm": "Хома", "pct": 99, "start": "19.05.2026", "end": "14.08.2026", "tasks": 49, "done": 48, "overdue": 0, "plan": 9186926, "fact": 7529610, "plan_cur": 177800, "fact_cur": 145725, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.35631, "lng": 11.76392, "loc": "Аеропорт Мюнхен, Німеччина"},
+  {"id": "5910", "name": "SGM Brdovec, Хорватия", "pm": "Донська", "pct": 55, "start": "19.05.2026", "end": "29.09.2026", "tasks": 74, "done": 28, "overdue": 2, "plan": 28778381, "fact": 11600431, "plan_cur": 556965, "fact_cur": 224510, "cur": "EUR", "paused": false, "risk": "watch", "status": "active", "lost_value": 0, "lat": 45.871, "lng": 15.76493, "loc": "Brdovec, Хорватія"},
   {"id": "6130", "name": "-26 ГШ Фундамент домобудування Євро Простір Марія", "pm": "Заянчковський", "pct": 60, "start": "20.07.2026", "end": "05.10.2026", "tasks": 44, "done": 27, "overdue": 0, "plan": 292782, "fact": 256112, "plan_cur": 292782, "fact_cur": 256112, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0},
   {"id": "6312", "name": "-26 ГШ Фундамент домобудування Георгій", "pm": "Заянчковський", "pct": 35, "start": "20.07.2026", "end": "15.10.2026", "tasks": 38, "done": 11, "overdue": 0, "plan": 543429, "fact": 543429, "plan_cur": 543429, "fact_cur": 543429, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0},
   {"id": "6352", "name": "АБМК SCP Blade 8PS", "pm": "Донська", "pct": 16, "start": "16.07.2026", "end": "18.11.2026", "tasks": 48, "done": 7, "overdue": 0, "plan": 3622059, "fact": 1479046, "plan_cur": 3622059, "fact_cur": 1479046, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 50.46775, "lng": 30.4608, "loc": "Київ (карпорт АБМК)"},
-  {"id": "6406", "name": "Максим Яловий Чинадієво", "pm": "Іщук", "pct": 33, "start": "08.06.2026", "end": "23.08.2026", "tasks": 48, "done": 37, "overdue": 0, "plan": 373582, "fact": 154980, "plan_cur": 373582, "fact_cur": 154980, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.4846, "lng": 22.82756, "loc": "Чинадійово, Закарпатська обл."},
-  {"id": "6704", "name": "SCP Taurus 236PS", "pm": "Хома", "pct": 100, "start": "19.05.2026", "end": "29.08.2026", "tasks": 43, "done": 43, "overdue": 0, "plan": 11835557, "fact": 11835557, "plan_cur": 229238, "fact_cur": 229238, "cur": "EUR", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 48.98825, "lng": 9.46467, "loc": "Баден-Вюртемберг, Німеччина"},
+  {"id": "6406", "name": "Максим Яловий Чинадієво", "pm": "Іщук", "pct": 33, "start": "08.06.2026", "end": "23.08.2026", "tasks": 48, "done": 37, "overdue": 0, "plan": 373582, "fact": 154980, "plan_cur": 373582, "fact_cur": 154980, "cur": "UAH", "paused": false, "risk": null, "status": "cr", "lost_value": 0, "lat": 48.4846, "lng": 22.82756, "loc": "Чинадійово, Закарпатська обл."},
+  {"id": "6704", "name": "SCP Taurus 236PS", "pm": "Хома", "pct": 100, "start": "19.05.2026", "end": "28.07.2026", "tasks": 43, "done": 43, "overdue": 0, "plan": 11093549, "fact": 11093549, "plan_cur": 214700, "fact_cur": 214700, "cur": "EUR", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 48.98825, "lng": 9.46467, "loc": "Баден-Вюртемберг, Німеччина"},
   {"id": "6842", "name": "2", "pm": "Александров", "pct": 100, "start": "22.05.2026", "end": "07.07.2026", "tasks": 50, "done": 50, "overdue": 0, "plan": 3308968, "fact": 3308968, "plan_cur": 3308968, "fact_cur": 3308968, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 45.55178, "lng": 15.16751, "loc": "Хорватія"},
   {"id": "7002", "name": "Фора SCP Млиново", "pm": "Донська", "pct": 88, "start": "19.05.2026", "end": "08.09.2026", "tasks": 49, "done": 40, "overdue": 0, "plan": 1401683, "fact": 827738, "plan_cur": 1401683, "fact_cur": 827738, "cur": "UAH", "paused": false, "risk": "watch", "status": "cr", "lost_value": 0, "lat": 50.33997, "lng": 30.62302, "loc": "Київ (ур. Млиново)"},
-  {"id": "7068", "name": "А Remtec energy  AGM  160 TP", "pm": "Александров", "pct": 100, "start": "19.05.2026", "end": "31.07.2026", "tasks": 52, "done": 52, "overdue": 0, "plan": 5640128, "fact": 5640128, "plan_cur": 5640128, "fact_cur": 5640128, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0},
+  {"id": "7068", "name": "А Remtec energy  AGM  160 TP", "pm": "—", "pct": 100, "start": "19.05.2026", "end": "22.08.2026", "tasks": 51, "done": 51, "overdue": 0, "plan": 2416856, "fact": 2416856, "plan_cur": 2416856, "fact_cur": 2416856, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0},
   {"id": "7244", "name": "В Модулекс модульна будівля Чернігів", "pm": "Заянчковський", "pct": 35, "start": "19.05.2026", "end": "08.09.2026", "tasks": 42, "done": 32, "overdue": 0, "plan": 210308, "fact": 77600, "plan_cur": 210308, "fact_cur": 77600, "cur": "UAH", "paused": false, "risk": "watch", "status": "active", "lost_value": 0, "lat": 51.48585, "lng": 31.30891, "loc": "Чернігів, вул. Підвальна 19"},
   {"id": "7474", "name": "А Головне управління Національної поліції в Одеській області  SCP  15PS", "pm": "Іщук", "pct": 100, "start": "19.05.2026", "end": "15.06.2026", "tasks": 51, "done": 51, "overdue": 0, "plan": 1749999, "fact": 1749999, "plan_cur": 1749999, "fact_cur": 1749999, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 46.4825, "lng": 30.7233, "loc": "Одеса"},
   {"id": "7508", "name": "8602 Євген Весільна тераса Подорожнє", "pm": "Заянчковський", "pct": 83, "start": "26.05.2026", "end": "04.11.2026", "tasks": 43, "done": 33, "overdue": 0, "plan": 2747999, "fact": 1997000, "plan_cur": 2747999, "fact_cur": 1997000, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 49.05967, "lng": 33.07001, "loc": "Подорожнє, Кіровоградська обл. (MAXX Premium Resort)"},
@@ -305,7 +305,7 @@ const PROJECTS = [{"id": "3456", "name": "А Підселання фундаме
   {"id": "8432", "name": "Олександр 12 мод. буд. с.Вільшанка Полт.обл", "pm": "Заянчковський", "pct": 47, "start": "19.05.2026", "end": "02.07.2026", "tasks": 35, "done": 21, "overdue": 14, "plan": 674264, "fact": 0, "plan_cur": 674264, "fact_cur": 0, "cur": "UAH", "paused": false, "risk": null, "status": "lost", "lost_value": 674264, "lat": 50.03804, "lng": 33.02955, "loc": "Вільшанка, Полтавська обл."},
   {"id": "8438", "name": "GS", "pm": "Александров", "pct": 100, "start": "19.05.2026", "end": "24.06.2026", "tasks": 51, "done": 51, "overdue": 0, "plan": 758160, "fact": 758160, "plan_cur": 758160, "fact_cur": 758160, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 50.61052, "lng": 6.29892, "loc": "Simmerath, Німеччина"},
   {"id": "8454", "name": "Олександр каркасний Верховина", "pm": "Донська", "pct": 100, "start": "26.05.2026", "end": "16.07.2026", "tasks": 43, "done": 43, "overdue": 0, "plan": 242938, "fact": 242938, "plan_cur": 242938, "fact_cur": 242938, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 48.1525, "lng": 24.8089, "loc": "Верховина, Івано-Фр. обл. (≈ центр)"},
-  {"id": "8496", "name": "А Greensource  SGM  110MWp", "pm": "Іщук", "pct": 100, "start": "26.05.2026", "end": "26.08.2026", "tasks": 41, "done": 41, "overdue": 0, "plan": 454344, "fact": 454344, "plan_cur": 8800, "fact_cur": 8800, "cur": "EUR", "paused": false, "risk": null, "status": "done", "lost_value": 0},
+  {"id": "8496", "name": "А Greensource  SGM  110MWp", "pm": "Іщук", "pct": 100, "start": "26.05.2026", "end": "26.08.2026", "tasks": 41, "done": 41, "overdue": 0, "plan": 454696, "fact": 454696, "plan_cur": 8800, "fact_cur": 8800, "cur": "EUR", "paused": false, "risk": null, "status": "done", "lost_value": 0},
   {"id": "8544", "name": "Isolar фланець Хмельницький", "pm": "Донська", "pct": 100, "start": "26.05.2026", "end": "29.08.2026", "tasks": 34, "done": 34, "overdue": 0, "plan": 269980, "fact": 269980, "plan_cur": 269980, "fact_cur": 269980, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0},
   {"id": "8604", "name": "МілТек", "pm": "Хома", "pct": 100, "start": "25.05.2026", "end": "04.08.2026", "tasks": 37, "done": 37, "overdue": 0, "plan": 0, "fact": 0, "plan_cur": 0, "fact_cur": 0, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0},
   {"id": "8644", "name": "Solars ГШ 1,7+надставки 3,5", "pm": "Хома", "pct": 100, "start": "08.06.2026", "end": "21.08.2026", "tasks": 51, "done": 51, "overdue": 0, "plan": 415900, "fact": 415900, "plan_cur": 415900, "fact_cur": 415900, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0},
@@ -352,7 +352,7 @@ const _act=document.getElementById('kpiActive');if(_act)_act.textContent=ACTIVE.
 document.getElementById('kpiRisk').textContent=risk;
 document.getElementById('kpiOverdue').textContent=ov+'+';
 var _cr=document.getElementById('kpiCR');if(_cr)_cr.textContent=cr;
-const NBU_EUR=51.63;
+const NBU_EUR=51.67;
 function kpiBud(c){const f=v=>!v?'—':(c==='EUR'?(v/NBU_EUR/1e6).toFixed(2)+' млн €':fmtM(v));
 document.getElementById('kpiPlan').textContent=f(splan);document.getElementById('kpiFact').textContent=f(sfact);
 document.querySelectorAll('#curTgl .ctb').forEach(b=>b.classList.toggle('on',b.dataset.c===c))}

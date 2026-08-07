@@ -207,12 +207,12 @@ body{padding-left:198px}
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель ПМ — Хома</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 06.08.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 07.08.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 06.08.2026</div>
+      <div>Оновлено: 07.08.2026</div>
       <div>4 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
     </div>
   </div>
@@ -273,10 +273,10 @@ body{padding-left:198px}
 </div>
 
 <script>
-const TODAY = new Date('2026-08-06');
+const TODAY = new Date('2026-08-07');
 
-const PROJECTS = [{"id": "5870", "name": "Carport Airport Munich", "pm": "Хома", "pct": 40, "start": "19.05.2026", "end": "30.08.2026", "tasks": 48, "done": 47, "overdue": 0, "plan": 10444490, "fact": 2611135, "plan_cur": 202295, "fact_cur": 50574, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.35631, "lng": 11.76392, "loc": "Аеропорт Мюнхен, Німеччина"},
-  {"id": "6704", "name": "SCP Taurus 236PS", "pm": "Хома", "pct": 100, "start": "19.05.2026", "end": "29.08.2026", "tasks": 43, "done": 43, "overdue": 0, "plan": 11835557, "fact": 11835557, "plan_cur": 229238, "fact_cur": 229238, "cur": "EUR", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 48.98825, "lng": 9.46467, "loc": "Баден-Вюртемберг, Німеччина"},
+const PROJECTS = [{"id": "5870", "name": "Carport Airport Munich", "pm": "Хома", "pct": 99, "start": "19.05.2026", "end": "14.08.2026", "tasks": 49, "done": 48, "overdue": 0, "plan": 9186926, "fact": 7529610, "plan_cur": 177800, "fact_cur": 145725, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.35631, "lng": 11.76392, "loc": "Аеропорт Мюнхен, Німеччина"},
+  {"id": "6704", "name": "SCP Taurus 236PS", "pm": "Хома", "pct": 100, "start": "19.05.2026", "end": "28.07.2026", "tasks": 43, "done": 43, "overdue": 0, "plan": 11093549, "fact": 11093549, "plan_cur": 214700, "fact_cur": 214700, "cur": "EUR", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 48.98825, "lng": 9.46467, "loc": "Баден-Вюртемберг, Німеччина"},
   {"id": "8604", "name": "МілТек", "pm": "Хома", "pct": 100, "start": "25.05.2026", "end": "04.08.2026", "tasks": 37, "done": 37, "overdue": 0, "plan": 0, "fact": 0, "plan_cur": 0, "fact_cur": 0, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0},
   {"id": "8644", "name": "Solars ГШ 1,7+надставки 3,5", "pm": "Хома", "pct": 100, "start": "08.06.2026", "end": "21.08.2026", "tasks": 51, "done": 51, "overdue": 0, "plan": 415900, "fact": 415900, "plan_cur": 415900, "fact_cur": 415900, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0}];
 
@@ -320,7 +320,7 @@ const _act=document.getElementById('kpiActive');if(_act)_act.textContent=ACTIVE.
 document.getElementById('kpiRisk').textContent=risk;
 document.getElementById('kpiOverdue').textContent=ov+'+';
 var _cr=document.getElementById('kpiCR');if(_cr)_cr.textContent=cr;
-const NBU_EUR=51.63;
+const NBU_EUR=51.67;
 function kpiBud(c){const f=v=>!v?'—':(c==='EUR'?(v/NBU_EUR/1e6).toFixed(2)+' млн €':fmtM(v));
 document.getElementById('kpiPlan').textContent=f(splan);document.getElementById('kpiFact').textContent=f(sfact);
 document.querySelectorAll('#curTgl .ctb').forEach(b=>b.classList.toggle('on',b.dataset.c===c))}
