@@ -48,7 +48,8 @@ a{color:#5BB3E0;text-decoration:none}
 .pl-side .foot{margin-top:auto;padding:12px 18px 4px;font-size:11px;color:rgba(255,255,255,.32)}
 body{padding-left:198px}
 @media(max-width:820px){.pl-side{width:52px}.pl-side a span,.pl-side .pl-logo span,.pl-side .foot{display:none}.pl-side .pl-logo{padding:2px 0 14px;text-align:center}.pl-side a{justify-content:center;padding:12px 0;gap:0}body{padding-left:52px}}
-</style></head>
+</style>  <meta name="robots" content="noindex,nofollow">
+</head>
 <body>
 <nav class="pl-side">
   <div class="pl-logo">P<span>ILLAR</span></div>
@@ -67,7 +68,7 @@ body{padding-left:198px}
   <a href="pillar_portfolio.html" class="logo">PILLAR<span>Грошовий потік</span></a>
   <a class="btn btn-blue" href="pillar_portfolio.html">&larr; Проєкти</a>
   <a class="btn btn-green" href="pillar_cashflow.xlsx" download>&#11015; Excel</a>
-  <span class="gen">Дані: 07.08.2026 &middot; 33 проєктів &middot; без пауз/втрачених</span>
+  <span class="gen">Дані: 09.08.2026 &middot; 33 проєктів &middot; без пауз/втрачених</span>
 </div>
 <div class="main">
   <div style="display:flex;justify-content:flex-end;margin-bottom:8px"><span id="cfTgl" style="display:inline-flex;gap:3px;cursor:pointer;user-select:none"><span class="ctb on" data-c="UAH">₴</span><span class="ctb" data-c="EUR">€</span></span></div>
@@ -106,13 +107,14 @@ body{padding-left:198px}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 const D={"labels": ["кві 26", "тра 26", "чер 26", "лип 26", "сер 26", "вер 26", "жов 26"], "plan": [0.45, 20.89, 7.54, 20.35, 27.9, 6.39, 1.02], "fact": [0.45, 20.89, 7.54, 20.35, 9.53, 0.0, 0.0], "cplan": [0.45, 21.33, 28.88, 49.23, 77.12, 83.52, 84.54], "cfact": [0.45, 21.33, 28.88, 49.23, 58.75, 58.75, 58.75]};
-new Chart(document.getElementById('cf'),{data:{labels:D.labels,datasets:[
- {type:'bar',label:'План/міс',data:D.plan,backgroundColor:'#85B7EB',order:3},
- {type:'bar',label:'Факт/міс',data:D.fact,backgroundColor:'#1E9E5A',order:2},
- {type:'line',label:'План накоп.',data:D.cplan,borderColor:'#1D6FA4',borderDash:[6,4],pointRadius:0,borderWidth:2,order:1},
- {type:'line',label:'Факт накоп.',data:D.cfact,borderColor:'#46c98a',pointRadius:0,borderWidth:2,order:0}
+window._cfU='млн ₴';window._cfD0={plan:D.plan,fact:D.fact,cplan:D.cplan,cfact:D.cfact};
+window._cfCH=new Chart(document.getElementById('cf'),{data:{labels:D.labels,datasets:[
+ {type:'bar',label:'План/міс',data:D.plan.slice(),backgroundColor:'#85B7EB',order:3},
+ {type:'bar',label:'Факт/міс',data:D.fact.slice(),backgroundColor:'#1E9E5A',order:2},
+ {type:'line',label:'План накоп.',data:D.cplan.slice(),borderColor:'#1D6FA4',borderDash:[6,4],pointRadius:0,borderWidth:2,order:1},
+ {type:'line',label:'Факт накоп.',data:D.cfact.slice(),borderColor:'#46c98a',pointRadius:0,borderWidth:2,order:0}
 ]},options:{responsive:true,maintainAspectRatio:false,
- plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.raw+' млн ₴'}}},
+ plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.raw+' '+window._cfU}}},
  scales:{y:{ticks:{color:'#9aafc8',callback:v=>v+' млн'},grid:{color:'rgba(255,255,255,.06)'}},x:{ticks:{color:'#9aafc8'},grid:{display:false}}}}});
 </script>
 <script>
@@ -120,7 +122,8 @@ const CFT={"plan": 84540485.60000001, "fact": 58753416.469999984, "left": 257870
 function cfCur(cu){const f=v=>cu==='EUR'?(v/CFT.rate/1e6).toFixed(2)+' млн €':(v>=1e6?(v/1e6).toFixed(1)+' млн ₴':Math.round(v/1e3)+'к ₴');
 document.getElementById('vplan').textContent=f(CFT.plan);document.getElementById('vfact').textContent=f(CFT.fact);
 document.getElementById('vleft').textContent=f(CFT.left);document.getElementById('vover').textContent=f(CFT.over);
-document.querySelectorAll('#cfTgl .ctb').forEach(b=>b.classList.toggle('on',b.dataset.c===cu))}
+document.querySelectorAll('#cfTgl .ctb').forEach(b=>b.classList.toggle('on',b.dataset.c===cu));
+if(window._cfCH){var r=cu==='EUR'?CFT.rate:1;window._cfU=cu==='EUR'?'млн €':'млн ₴';var D0=window._cfD0,cv=a=>a.map(x=>+(x/r).toFixed(2)),ds=window._cfCH.data.datasets;ds[0].data=cv(D0.plan);ds[1].data=cv(D0.fact);ds[2].data=cv(D0.cplan);ds[3].data=cv(D0.cfact);window._cfCH.update();}}
 document.querySelectorAll('#cfTgl .ctb').forEach(b=>b.onclick=()=>cfCur(b.dataset.c));
 </script>
 <script>
@@ -169,6 +172,22 @@ document.querySelectorAll('#cfTgl .ctb').forEach(b=>b.onclick=()=>cfCur(b.datase
   });
   if(inp){ inp.addEventListener('input',apply); inp.addEventListener('keydown',function(e){if(e.key==='Escape'){inp.value='';apply();}}); }
   apply();
+})();
+</script>
+<script>
+(function(){
+  if(localStorage.getItem('pl_ok')==='1')return;
+  var HASH="6c572826d2ee2da4d3918be50a0e2c0819aff221dd1319e8e4bc513cde0bbba4";
+  var ov=document.createElement('div');ov.id='pl-gate';
+  ov.style.cssText='position:fixed;inset:0;z-index:99999;background:#1A2332;display:flex;align-items:center;justify-content:center;font-family:Segoe UI,Arial,sans-serif';
+  ov.innerHTML='<div style="text-align:center;color:#E8EDF5"><div style="font-size:26px;font-weight:800;color:#E85D1A;letter-spacing:1px">PILLAR</div><div style="color:#9aafc8;font-size:13px;margin:6px 0 18px">Введіть код доступу</div><input id="pl-pin" type="password" inputmode="numeric" autocomplete="off" style="padding:11px 14px;font-size:16px;border-radius:8px;border:1px solid #2e4060;background:#22304a;color:#fff;text-align:center;width:200px;outline:none"><div id="pl-err" style="color:#ef7a72;font-size:12px;height:16px;margin-top:8px"></div><button id="pl-go" style="margin-top:6px;padding:10px 26px;border:none;border-radius:8px;background:#E85D1A;color:#fff;font-weight:600;font-size:14px;cursor:pointer">Увійти</button></div>';
+  document.documentElement.appendChild(ov);
+  var b=document.body;if(b)b.style.overflow='hidden';
+  async function sha(s){var d=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(d)).map(x=>x.toString(16).padStart(2,'0')).join('');}
+  async function go(){var v=document.getElementById('pl-pin').value.trim();if(await sha(v)===HASH){localStorage.setItem('pl_ok','1');ov.remove();if(b)b.style.overflow='';}else{document.getElementById('pl-err').textContent='Невірний код';}}
+  document.getElementById('pl-go').onclick=go;
+  document.getElementById('pl-pin').addEventListener('keydown',function(e){if(e.key==='Enter')go();});
+  setTimeout(function(){document.getElementById('pl-pin').focus();},50);
 })();
 </script>
 </body></html>
