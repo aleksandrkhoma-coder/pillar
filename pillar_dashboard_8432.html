@@ -150,7 +150,7 @@ body{padding-left:198px}
     <div style="width:1px;height:28px;background:rgba(255,255,255,.2)"></div>
     <div>
       <div style="font-size:15px;font-weight:600">Проєкт № 8432</div>
-      <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">ПМ: Заянчковський &nbsp;&middot;&nbsp; 19.05.2026 &rarr; 02.07.2026 &nbsp;&middot;&nbsp; Дані: 07.08.2026</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">ПМ: Заянчковський &nbsp;&middot;&nbsp; 19.05.2026 &rarr; 02.07.2026 &nbsp;&middot;&nbsp; Дані: 11.08.2026</div>
     </div>
   </div>
   <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
@@ -164,7 +164,7 @@ body{padding-left:198px}
     <div class="kpi"><div class="kpi-label">Загальний прогрес</div><div class="kpi-value orange">47%</div><div class="kpi-sub" id="activePhase">—</div></div>
     <div class="kpi"><div class="kpi-label">Терміни проєкту</div><div style="display:flex;align-items:baseline;gap:5px;margin-top:4px"><span style="font-size:17px;font-weight:800">19.05.2026</span><span style="font-size:13px;color:var(--text-muted)">&rarr;</span><span style="font-size:17px;font-weight:800">02.07.2026</span></div><div class="kpi-sub" id="kpiDur">—</div></div>
     <div class="kpi"><div class="kpi-label">Завдань</div><div class="kpi-value" id="kpiTasks">—</div><div class="kpi-sub" id="kpiTaskSub">—</div></div>
-    <div class="kpi"><div class="kpi-label">Прострочених</div><div class="kpi-value red" id="kpiOverdue">—</div><div class="kpi-sub">відносно 07.08.2026</div></div>
+    <div class="kpi"><div class="kpi-label">Прострочених</div><div class="kpi-value red" id="kpiOverdue">—</div><div class="kpi-sub">відносно 11.08.2026</div></div>
   </div>
 <div class="card"><h2>&#128176; Бюджет проєкту</h2><div class="budget-grid"><div><div class="bl">План (сума платежів)</div><div class="bv plan">674к ₴</div></div><div><div class="bl">Факт (отримано)</div><div class="bv fact">—</div></div><div><div class="bl">Оплачено</div><div class="bv pct">0%</div></div></div><div class="bbar"><div class="bfill" style="width:0%"></div></div><div style="display:flex;justify-content:space-between;margin-top:5px;font-size:11px;color:var(--text-muted)"><span>0</span><span style="color:var(--green);font-weight:600">— отримано</span><span>674к ₴</span></div></div>
 <div class="section-title">&#128179; Платіжний графік</div><div class="card pay-list"><div class="pay-row"><div class="pdot" style="background:var(--gray-200)"></div><div class="pname">Авансовий платіж</div><div class="pdate">15.06.2026</div><span class="pamount">план: 411к ₴</span><span class="pamount fact-empty">факт: —</span><div class="pst"><span class="sb s-none">Очікується</span></div></div><div class="pay-row"><div class="pdot" style="background:var(--gray-200)"></div><div class="pname">Другий платіж</div><div class="pdate">12.06.2026</div><span class="pamount">план: 132к ₴</span><span class="pamount fact-empty">факт: —</span><div class="pst"><span class="sb s-none">Очікується</span></div></div><div class="pay-row"><div class="pdot" style="background:var(--gray-200)"></div><div class="pname">Третій платіж</div><div class="pdate">12.06.2026</div><span class="pamount">план: 132к ₴</span><span class="pamount fact-empty">факт: —</span><div class="pst"><span class="sb s-none">Очікується</span></div></div><div class="pay-row" style="opacity:.6"><div class="pdot" style="background:var(--gray-200)"></div><div class="pname" style="text-decoration:line-through">П'ятий платіж</div><div class="pdate">01.07.2026</div><span class="pamount fact-empty" style="flex:1">не застосовується</span><div class="pst"><span class="sb s-none">&mdash;</span></div></div></div>
@@ -306,6 +306,22 @@ function psKey(e){if(e.key==='Enter'){var a=document.querySelector('#psResults .
 document.addEventListener('click',function(e){if(!e.target.closest('.psearch')){var b=document.getElementById('psResults');if(b)b.classList.remove('show');}});
 
 (function(){var b=document.createElement('button');b.textContent='↑';b.title='Вгору';b.setAttribute('aria-label','Вгору');b.style.cssText='position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;border:none;background:var(--brand-orange,#E85D1A);color:#fff;font-size:20px;font-weight:700;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.28);display:none;z-index:500';b.onclick=function(){window.scrollTo({top:0,behavior:'smooth'});};document.body.appendChild(b);var t=function(){b.style.display=(window.scrollY||document.documentElement.scrollTop)>300?'block':'none';};window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+<script>
+(function(){
+  if(localStorage.getItem('pl_ok')==='1')return;
+  var HASH="6c572826d2ee2da4d3918be50a0e2c0819aff221dd1319e8e4bc513cde0bbba4";
+  var ov=document.createElement('div');ov.id='pl-gate';
+  ov.style.cssText='position:fixed;inset:0;z-index:99999;background:#1A2332;display:flex;align-items:center;justify-content:center;font-family:Segoe UI,Arial,sans-serif';
+  ov.innerHTML='<div style="text-align:center;color:#E8EDF5"><div style="font-size:26px;font-weight:800;color:#E85D1A;letter-spacing:1px">PILLAR</div><div style="color:#9aafc8;font-size:13px;margin:6px 0 18px">Введіть код доступу</div><input id="pl-pin" type="password" inputmode="numeric" autocomplete="off" style="padding:11px 14px;font-size:16px;border-radius:8px;border:1px solid #2e4060;background:#22304a;color:#fff;text-align:center;width:200px;outline:none"><div id="pl-err" style="color:#ef7a72;font-size:12px;height:16px;margin-top:8px"></div><button id="pl-go" style="margin-top:6px;padding:10px 26px;border:none;border-radius:8px;background:#E85D1A;color:#fff;font-weight:600;font-size:14px;cursor:pointer">Увійти</button></div>';
+  document.documentElement.appendChild(ov);
+  var b=document.body;if(b)b.style.overflow='hidden';
+  async function sha(s){var d=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(d)).map(x=>x.toString(16).padStart(2,'0')).join('');}
+  async function go(){var v=document.getElementById('pl-pin').value.trim();if(await sha(v)===HASH){localStorage.setItem('pl_ok','1');ov.remove();if(b)b.style.overflow='';}else{document.getElementById('pl-err').textContent='Невірний код';}}
+  document.getElementById('pl-go').onclick=go;
+  document.getElementById('pl-pin').addEventListener('keydown',function(e){if(e.key==='Enter')go();});
+  setTimeout(function(){document.getElementById('pl-pin').focus();},50);
+})();
 </script>
 </body>
 </html>
