@@ -183,12 +183,7 @@ body{padding-left:198px}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-<meta name="robots" content="noindex,nofollow">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#1A2332">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="robots" content="noindex,nofollow">
 </head>
 <body>
 <nav class="pl-side">
@@ -211,12 +206,12 @@ body{padding-left:198px}
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель ПМ — Іщук</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 11.08.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 13.08.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 11.08.2026</div>
+      <div>Оновлено: 13.08.2026</div>
       <div>9 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
     </div>
   </div>
@@ -277,7 +272,7 @@ body{padding-left:198px}
 </div>
 
 <script>
-const TODAY = new Date('2026-08-11');
+const TODAY = new Date('2026-08-13');
 
 const PROJECTS = [{"id": "5682", "name": "А Сцена Корчин", "pm": "Іщук", "pct": 100, "start": "26.05.2026", "end": "06.07.2026", "tasks": 33, "done": 33, "overdue": 0, "plan": 457134, "fact": 457134, "plan_cur": 457134, "fact_cur": 457134, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "bl_end": "06.07.2026", "bl_bud": 457134.96},
   {"id": "6406", "name": "Максим Яловий Чинадієво", "pm": "Іщук", "pct": 33, "start": "08.06.2026", "end": "23.08.2026", "tasks": 48, "done": 37, "overdue": 0, "plan": 373582, "fact": 154980, "plan_cur": 373582, "fact_cur": 154980, "cur": "UAH", "paused": false, "risk": null, "status": "cr", "lost_value": 0, "lat": 48.4846, "lng": 22.82756, "loc": "Чинадійово, Закарпатська обл.", "bl_end": "23.08.2026", "bl_bud": 373582.0},
@@ -287,7 +282,7 @@ const PROJECTS = [{"id": "5682", "name": "А Сцена Корчин", "pm": "І
   {"id": "8070", "name": "А Карпорты B2C  SCP", "pm": "Іщук", "pct": 100, "start": "19.05.2026", "end": "15.06.2026", "tasks": 44, "done": 44, "overdue": 0, "plan": 126641, "fact": 126641, "plan_cur": 126641, "fact_cur": 126641, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 48.56038, "lng": 35.04316, "loc": "Дніпро (карпорт)", "bl_end": "15.06.2026", "bl_bud": 126641.0},
   {"id": "8188", "name": "Фундамент Ужгород Стефанія", "pm": "Іщук", "pct": 100, "start": "26.05.2026", "end": "04.08.2026", "tasks": 46, "done": 46, "overdue": 0, "plan": 280126, "fact": 282126, "plan_cur": 280126, "fact_cur": 282126, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "bl_end": "04.08.2026", "bl_bud": 280126.0},
   {"id": "8238", "name": "А UTEM SOLAR  SCP Taurus 190PV", "pm": "Іщук", "pct": 83, "start": "26.05.2026", "end": "17.08.2026", "tasks": 50, "done": 43, "overdue": 0, "plan": 2011000, "fact": 2011000, "plan_cur": 2011000, "fact_cur": 2011000, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 50.3536, "lng": 30.5066, "loc": "Пирогово, Київ", "bl_end": "17.08.2026", "bl_bud": 2011000.0},
-  {"id": "8496", "name": "А Greensource  SGM  110MWp", "pm": "Іщук", "pct": 100, "start": "26.05.2026", "end": "26.08.2026", "tasks": 41, "done": 41, "overdue": 0, "plan": 455664, "fact": 455664, "plan_cur": 8800, "fact_cur": 8800, "cur": "EUR", "paused": false, "risk": null, "status": "done", "lost_value": 0, "bl_end": "26.08.2026", "bl_bud": 8800.0}];
+  {"id": "8496", "name": "А Greensource  SGM  110MWp", "pm": "Іщук", "pct": 100, "start": "26.05.2026", "end": "26.08.2026", "tasks": 41, "done": 41, "overdue": 0, "plan": 454168, "fact": 454168, "plan_cur": 8800, "fact_cur": 8800, "cur": "EUR", "paused": false, "risk": null, "status": "done", "lost_value": 0, "bl_end": "26.08.2026", "bl_bud": 8800.0}];
 
 const PM_CONFIG = {
   'Донська':       {initials:'НД', color:'#9B5DE5'},
@@ -330,7 +325,7 @@ const _act=document.getElementById('kpiActive');if(_act)_act.textContent=ACTIVE.
 document.getElementById('kpiRisk').textContent=risk;
 document.getElementById('kpiOverdue').textContent=ov+'+';
 var _cr=document.getElementById('kpiCR');if(_cr)_cr.textContent=cr;
-const NBU_EUR=51.78;
+const NBU_EUR=51.61;
 function kpiBud(c){const f=v=>!v?'—':(c==='EUR'?(v/NBU_EUR/1e6).toFixed(2)+' млн €':fmtM(v));
 document.getElementById('kpiPlan').textContent=f(splan);document.getElementById('kpiFact').textContent=f(sfact);
 document.querySelectorAll('#curTgl .ctb').forEach(b=>b.classList.toggle('on',b.dataset.c===c))}
@@ -578,8 +573,5 @@ document.addEventListener('click',function(e){if(!e.target.closest('.psearch')){
   setTimeout(function(){document.getElementById('pl-pin').focus();},50);
 })();
 </script>
-
-
-
 </body>
 </html>
