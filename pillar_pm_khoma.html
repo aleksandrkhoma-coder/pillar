@@ -195,7 +195,6 @@ body{padding-left:198px}
   <a href="lessons_learned.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h11a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M9 4v16"/></svg><span>Lessons Learned</span></a>
   <a href="pillar_portfolio.html#mapSection" onclick="var m=document.getElementById('mapSection');if(m){m.style.display='block';m.scrollIntoView({behavior:'smooth'});return false}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4z"/><path d="M9 4v13"/><path d="M15 6.5v13"/></svg><span>Карта проєктів</span></a>
   <a href="pillar_cashflow.xlsx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v10"/><path d="M8 11l4 4 4-4"/><path d="M5 19h14"/></svg><span>Excel кеш-фло</span></a>
-  <a href="pillar_bpmap.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M7 11l9-4"/><path d="M7 13l9 4"/></svg><span>Карта БП</span></a>
   <a href="pillar_hub.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5z"/><path d="M3 13l9 5 9-5"/></svg><span>Project Hub</span></a>
   <div class="foot">Дані оновлюються щоранку</div>
 </nav>
@@ -207,12 +206,12 @@ body{padding-left:198px}
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель ПМ — Хома</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 13.08.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 14.08.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 13.08.2026</div>
+      <div>Оновлено: 14.08.2026</div>
       <div>4 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
     </div>
   </div>
@@ -273,10 +272,10 @@ body{padding-left:198px}
 </div>
 
 <script>
-const TODAY = new Date('2026-08-13');
+const TODAY = new Date('2026-08-14');
 
-const PROJECTS = [{"id": "5870", "name": "Carport Airport Munich", "pm": "Хома", "pct": 99, "start": "19.05.2026", "end": "14.08.2026", "tasks": 49, "done": 48, "overdue": 0, "plan": 9176258, "fact": 7520867, "plan_cur": 177800, "fact_cur": 145725, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.35631, "lng": 11.76392, "loc": "Аеропорт Мюнхен, Німеччина", "bl_end": "14.08.2026", "bl_bud": 177800.0},
-  {"id": "6704", "name": "SCP Taurus 236PS", "pm": "Хома", "pct": 100, "start": "19.05.2026", "end": "28.07.2026", "tasks": 43, "done": 43, "overdue": 0, "plan": 11080667, "fact": 11080667, "plan_cur": 214700, "fact_cur": 214700, "cur": "EUR", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 48.98825, "lng": 9.46467, "loc": "Баден-Вюртемберг, Німеччина", "bl_end": "28.07.2026", "bl_bud": 214700.0},
+const PROJECTS = [{"id": "5870", "name": "Carport Airport Munich", "pm": "Хома", "pct": 99, "start": "19.05.2026", "end": "14.08.2026", "tasks": 49, "done": 48, "overdue": 0, "plan": 9165590, "fact": 7512123, "plan_cur": 177800, "fact_cur": 145725, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.35631, "lng": 11.76392, "loc": "Аеропорт Мюнхен, Німеччина", "bl_end": "14.08.2026", "bl_bud": 177800.0},
+  {"id": "6704", "name": "SCP Taurus 236PS", "pm": "Хома", "pct": 100, "start": "19.05.2026", "end": "28.07.2026", "tasks": 43, "done": 43, "overdue": 0, "plan": 11067785, "fact": 11067785, "plan_cur": 214700, "fact_cur": 214700, "cur": "EUR", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 48.98825, "lng": 9.46467, "loc": "Баден-Вюртемберг, Німеччина", "bl_end": "28.07.2026", "bl_bud": 214700.0},
   {"id": "8604", "name": "МілТек", "pm": "Хома", "pct": 100, "start": "25.05.2026", "end": "04.08.2026", "tasks": 37, "done": 37, "overdue": 0, "plan": 0, "fact": 0, "plan_cur": 0, "fact_cur": 0, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "bl_end": "04.08.2026", "bl_bud": 0.0},
   {"id": "8644", "name": "Solars ГШ 1,7+надставки 3,5", "pm": "Хома", "pct": 100, "start": "08.06.2026", "end": "21.08.2026", "tasks": 51, "done": 51, "overdue": 0, "plan": 415900, "fact": 415900, "plan_cur": 415900, "fact_cur": 415900, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "bl_end": "21.08.2026", "bl_bud": 415900.0}];
 
@@ -321,7 +320,7 @@ const _act=document.getElementById('kpiActive');if(_act)_act.textContent=ACTIVE.
 document.getElementById('kpiRisk').textContent=risk;
 document.getElementById('kpiOverdue').textContent=ov+'+';
 var _cr=document.getElementById('kpiCR');if(_cr)_cr.textContent=cr;
-const NBU_EUR=51.61;
+const NBU_EUR=51.55;
 function kpiBud(c){const f=v=>!v?'—':(c==='EUR'?(v/NBU_EUR/1e6).toFixed(2)+' млн €':fmtM(v));
 document.getElementById('kpiPlan').textContent=f(splan);document.getElementById('kpiFact').textContent=f(sfact);
 document.querySelectorAll('#curTgl .ctb').forEach(b=>b.classList.toggle('on',b.dataset.c===c))}
