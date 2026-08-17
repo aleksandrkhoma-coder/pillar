@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="uk">
-<head>
+<head><meta name="robots" content="noindex,nofollow">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pillar — Портфель проєктів ОУП</title>
@@ -96,10 +96,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .proj-id{font-size:10px;font-weight:700;color:var(--text-muted);letter-spacing:.4px}
 .proj-name{font-size:13px;font-weight:700;color:var(--text);line-height:1.3;margin-top:2px}
 .late-badge{display:inline-flex;align-items:center;background:var(--red-light);color:var(--red);font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;white-space:nowrap;flex-shrink:0}
-.bl-badge{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;white-space:nowrap;flex-shrink:0;margin-left:5px;border:1px solid}
-.bl-badge.blb-over{background:#fdecea;color:#c0392b;border-color:#f3c3bd}
-.bl-badge.blb-under{background:#e9f7ef;color:#1e8e5a;border-color:#c2e8d3}
-.bl-badge.blb-zero{background:#f0f2f6;color:#7a8aa0;border-color:#dde3ec}
 
 .prog-row{display:flex;align-items:center;gap:8px}
 .prog-bar{flex:1;background:var(--gray-100);border-radius:3px;height:6px;overflow:hidden}
@@ -183,7 +179,6 @@ body{padding-left:198px}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <meta name="robots" content="noindex,nofollow">
 </head>
 <body>
 <nav class="pl-side">
@@ -207,12 +202,12 @@ body{padding-left:198px}
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель ПМ — Іщук</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 14.08.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 17.08.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 14.08.2026</div>
+      <div>Оновлено: 17.08.2026</div>
       <div>9 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
     </div>
   </div>
@@ -273,17 +268,17 @@ body{padding-left:198px}
 </div>
 
 <script>
-const TODAY = new Date('2026-08-14');
+const TODAY = new Date('2026-08-17');
 
 const PROJECTS = [{"id": "5682", "name": "А Сцена Корчин", "pm": "Іщук", "pct": 100, "start": "26.05.2026", "end": "06.07.2026", "tasks": 33, "done": 33, "overdue": 0, "plan": 457134, "fact": 457134, "plan_cur": 457134, "fact_cur": 457134, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "bl_end": "06.07.2026", "bl_bud": 457134.96},
-  {"id": "6406", "name": "Максим Яловий Чинадієво", "pm": "Іщук", "pct": 35, "start": "08.06.2026", "end": "26.08.2026", "tasks": 48, "done": 37, "overdue": 0, "plan": 373582, "fact": 154980, "plan_cur": 373582, "fact_cur": 154980, "cur": "UAH", "paused": false, "risk": null, "status": "cr", "lost_value": 0, "lat": 48.4846, "lng": 22.82756, "loc": "Чинадійово, Закарпатська обл.", "bl_end": "23.08.2026", "bl_bud": 373582.0},
+  {"id": "6406", "name": "Максим Яловий Чинадієво", "pm": "Іщук", "pct": 32, "start": "08.06.2026", "end": "26.08.2026", "tasks": 48, "done": 37, "overdue": 0, "plan": 373582, "fact": 154980, "plan_cur": 373582, "fact_cur": 154980, "cur": "UAH", "paused": false, "risk": null, "status": "cr", "lost_value": 0, "lat": 48.4846, "lng": 22.82756, "loc": "Чинадійово, Закарпатська обл.", "bl_end": "23.08.2026", "bl_bud": 373582.0},
   {"id": "7474", "name": "А Головне управління Національної поліції в Одеській області  SCP  15PS", "pm": "Іщук", "pct": 100, "start": "19.05.2026", "end": "15.06.2026", "tasks": 51, "done": 51, "overdue": 0, "plan": 1749999, "fact": 1749999, "plan_cur": 1749999, "fact_cur": 1749999, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 46.4825, "lng": 30.7233, "loc": "Одеса", "bl_end": "15.06.2026", "bl_bud": 1749999.0},
   {"id": "7536", "name": "А Ранчо “Едельвейс”  AGM  171PV", "pm": "Іщук", "pct": 100, "start": "19.05.2026", "end": "01.07.2026", "tasks": 51, "done": 51, "overdue": 0, "plan": 912346, "fact": 912346, "plan_cur": 912346, "fact_cur": 912346, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 49.08974, "lng": 23.55644, "loc": "Ранчо Едельвейс, Львівська обл.", "bl_end": "01.07.2026", "bl_bud": 912346.8},
   {"id": "7960", "name": "Сірокко Sirocco вітрова ел ст Львів", "pm": "Іщук", "pct": 100, "start": "26.05.2026", "end": "30.07.2026", "tasks": 33, "done": 33, "overdue": 0, "plan": 99610, "fact": 99610, "plan_cur": 99610, "fact_cur": 99610, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 49.8397, "lng": 24.0297, "loc": "Львів", "bl_end": "30.07.2026", "bl_bud": 99610.8},
   {"id": "8070", "name": "А Карпорты B2C  SCP", "pm": "Іщук", "pct": 100, "start": "19.05.2026", "end": "15.06.2026", "tasks": 44, "done": 44, "overdue": 0, "plan": 126641, "fact": 126641, "plan_cur": 126641, "fact_cur": 126641, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 48.56038, "lng": 35.04316, "loc": "Дніпро (карпорт)", "bl_end": "15.06.2026", "bl_bud": 126641.0},
   {"id": "8188", "name": "Фундамент Ужгород Стефанія", "pm": "Іщук", "pct": 100, "start": "26.05.2026", "end": "04.08.2026", "tasks": 46, "done": 46, "overdue": 0, "plan": 280126, "fact": 282126, "plan_cur": 280126, "fact_cur": 282126, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "bl_end": "04.08.2026", "bl_bud": 280126.0},
-  {"id": "8238", "name": "А UTEM SOLAR  SCP Taurus 190PV", "pm": "Іщук", "pct": 89, "start": "26.05.2026", "end": "17.08.2026", "tasks": 50, "done": 43, "overdue": 0, "plan": 2011000, "fact": 2011000, "plan_cur": 2011000, "fact_cur": 2011000, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 50.3536, "lng": 30.5066, "loc": "Пирогово, Київ", "bl_end": "17.08.2026", "bl_bud": 2011000.0},
-  {"id": "8496", "name": "А Greensource  SGM  110MWp", "pm": "Іщук", "pct": 100, "start": "26.05.2026", "end": "26.08.2026", "tasks": 41, "done": 41, "overdue": 0, "plan": 453640, "fact": 453640, "plan_cur": 8800, "fact_cur": 8800, "cur": "EUR", "paused": false, "risk": null, "status": "done", "lost_value": 0, "bl_end": "26.08.2026", "bl_bud": 8800.0}];
+  {"id": "8238", "name": "А UTEM SOLAR  SCP Taurus 190PV", "pm": "Іщук", "pct": 89, "start": "26.05.2026", "end": "17.08.2026", "tasks": 50, "done": 43, "overdue": 6, "plan": 2011000, "fact": 2011000, "plan_cur": 2011000, "fact_cur": 2011000, "cur": "UAH", "paused": false, "risk": "watch", "status": "active", "lost_value": 0, "lat": 50.3536, "lng": 30.5066, "loc": "Пирогово, Київ", "bl_end": "17.08.2026", "bl_bud": 2011000.0},
+  {"id": "8496", "name": "А Greensource  SGM  110MWp", "pm": "Іщук", "pct": 100, "start": "26.05.2026", "end": "26.08.2026", "tasks": 41, "done": 41, "overdue": 0, "plan": 455048, "fact": 455048, "plan_cur": 8800, "fact_cur": 8800, "cur": "EUR", "paused": false, "risk": null, "status": "done", "lost_value": 0, "bl_end": "26.08.2026", "bl_bud": 8800.0}];
 
 const PM_CONFIG = {
   'Донська':       {initials:'НД', color:'#9B5DE5'},
@@ -300,7 +295,6 @@ function expectedPct(p){const s=parseDate(p.start),e=parseDate(p.end);if(!s||!e|
 const RISK_LAG=15; // поріг відставання від графіка, пунктів
 function isRisk(p){if(p.paused||p.status==='cr')return true;if(p.risk)return true;if(p.overdue>0)return true;const st=parseDate(p.start);if(st&&TODAY>=st&&p.pct===0)return true;if(p.pct<expectedPct(p)-RISK_LAG)return true;return false;}
 function fmtM(n){if(!n||n===0)return '—';if(n>=1000000)return (n/1000000).toFixed(1)+' млн ₴';return (n/1000).toFixed(0)+'к ₴'}
-function blDev(p){if(!p.bl_end)return '';var ce=parseDate(p.end),be=parseDate(p.bl_end);var td=(ce&&be)?Math.round((ce-be)/86400000):0;var cb=(p.plan_cur!=null?p.plan_cur:p.plan)||0,bb=p.bl_bud||0;var bp=bb?((cb-bb)/bb*100):0;if(Math.abs(td)<1&&Math.abs(bp)<0.5)return '';var cls=(td>0||bp>0.5)?'blb-over':((td<0||bp<-0.5)?'blb-under':'blb-zero');var pr=[];if(Math.abs(td)>=1)pr.push((td>0?'+':'')+td+'\u0434');if(Math.abs(bp)>=0.5)pr.push((bp>0?'+':'')+bp.toFixed(0)+'%');return '<div class="bl-badge '+cls+'" title="\u0412\u0456\u0434\u0445\u0438\u043b\u0435\u043d\u043d\u044f \u0432\u0456\u0434 \u0431\u0430\u0437\u043e\u0432\u043e\u0433\u043e \u043f\u043b\u0430\u043d\u0443 (\u0442\u0435\u0440\u043c\u0456\u043d/\u0431\u044e\u0434\u0436\u0435\u0442)">\u25ce \u0411\u041f '+pr.join(' ')+'</div>';}
 function fmtB(p,key){const v=p[key];if(!v)return '—';if(p.cur&&p.cur!=='UAH'&&p[key+'_cur']!=null){const sym=p.cur==='EUR'?'€':'$';const n=p[key+'_cur'];const t=n>=1000000?sym+(n/1000000).toFixed(1)+'M':sym+Math.round(n).toLocaleString('uk-UA');return '<span title="≈ '+fmtM(v)+' за курсом НБУ">'+t+'</span>'}return fmtM(v)}
 function dateProg(s,e){const sd=parseDate(s),ed=parseDate(e);if(!sd||!ed)return 0;return Math.max(0,Math.min(100,(TODAY-sd)/(ed-sd)*100))}
 function riskClass(p){if(p.overdue>5)return 'rc-red';if(p.overdue>0)return 'rc-orange';if(p.pct>=80)return 'rc-green';if(p.pct>=40)return 'rc-yellow';return 'rc-gray'}
@@ -326,7 +320,7 @@ const _act=document.getElementById('kpiActive');if(_act)_act.textContent=ACTIVE.
 document.getElementById('kpiRisk').textContent=risk;
 document.getElementById('kpiOverdue').textContent=ov+'+';
 var _cr=document.getElementById('kpiCR');if(_cr)_cr.textContent=cr;
-const NBU_EUR=51.55;
+const NBU_EUR=51.71;
 function kpiBud(c){const f=v=>!v?'—':(c==='EUR'?(v/NBU_EUR/1e6).toFixed(2)+' млн €':fmtM(v));
 document.getElementById('kpiPlan').textContent=f(splan);document.getElementById('kpiFact').textContent=f(sfact);
 document.querySelectorAll('#curTgl .ctb').forEach(b=>b.classList.toggle('on',b.dataset.c===c))}
@@ -400,7 +394,7 @@ PM_ORDER.forEach(pm=>{
     var ribbon=_rb.map(function(r,i){return '<div style="margin:'+(i===0?'-13px':'0')+' -15px 0;padding:5px 14px;background:'+r[0]+';color:#fff;font-size:11px;font-weight:700;letter-spacing:.4px">'+r[1]+'</div>';}).join('');
     html+='<div class="proj-card '+riskClass(p)+(p.status==='cr'?' cr-card':'')+'" data-id="'+p.id+'" data-overdue="'+p.overdue+'" data-pct="'+p.pct+'" data-risk="'+(p.risk?1:0)+'" data-cr="'+(p.status==='cr'?1:0)+'">'+ribbon
       +'<div class="proj-top"><div><div class="proj-id">&#8470; '+p.id+' &nbsp;&#183;&nbsp; '+p.start+' &#8594; '+p.end+'</div><div class="proj-name">'+p.name+'</div></div>'
-      +(p.overdue>0?'<div class="late-badge">&#9888; '+p.overdue+'</div>':'')+blDev(p)+'</div>'
+      +(p.overdue>0?'<div class="late-badge">&#9888; '+p.overdue+'</div>':'')+'</div>'
       +'<div class="prog-row"><div class="prog-bar"><div class="prog-fill '+pctFill(p)+'" style="width:'+p.pct+'%"></div></div>'
       +'<span class="prog-pct" style="color:'+pctClr(p)+'">'+p.pct+'%</span></div>'
       +'<div class="task-stats"><span>Задач: <strong>'+p.tasks+'</strong></span><span>Готово: <strong>'+p.done+'</strong></span>'
