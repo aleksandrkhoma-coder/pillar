@@ -219,7 +219,7 @@ body{padding-left:198px}
     <div class="kpi">
       <div class="kpi-label">Активних проєктів</div>
       <div class="kpi-value" id="kpiActive">&mdash;</div>
-      <div class="kpi-sub">1 ПМ у портфелі</div>
+      <div class="kpi-sub" id="kpiPmCount">1 ПМ у портфелі</div>
     </div>
     <div class="kpi kpi-gauge">
       <div class="kpi-label">Середній прогрес</div>
@@ -305,6 +305,7 @@ const DONE=PROJECTS.filter(p=>p.status==='done');
 let sp=0,risk=0,ov=0,cr=0,splan=0,sfact=0;
 ACTIVE.forEach(p=>{sp+=p.pct;if(p.risk)risk++;ov+=p.overdue;if(p.status==='cr')cr++;splan+=p.plan||0;sfact+=p.fact||0});
 const _act=document.getElementById('kpiActive');if(_act)_act.textContent=ACTIVE.length;
+var _pms=new Set(ACTIVE.map(p=>p.pm).filter(x=>x&&x!=='—'));var _pmc=document.getElementById('kpiPmCount');if(_pmc)_pmc.textContent=_pms.size+' ПМ у портфелі';
 (function(){var v=ACTIVE.length?Math.round(sp/ACTIVE.length):0;
   var th=Math.PI*(180-1.8*v)/180, nx=100+70*Math.cos(th), ny=100-70*Math.sin(th);
   var nd=document.getElementById('avgNeedle');if(nd){nd.setAttribute('x2',nx.toFixed(1));nd.setAttribute('y2',ny.toFixed(1));}
