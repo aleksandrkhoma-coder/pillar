@@ -145,7 +145,7 @@ body{padding-left:198px}
     <div style="width:1px;height:28px;background:rgba(255,255,255,.2)"></div>
     <div>
       <div style="font-size:15px;font-weight:600">Проєкт № 7960</div>
-      <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">ПМ: Іщук &nbsp;&middot;&nbsp; 26.05.2026 &rarr; 30.07.2026 &nbsp;&middot;&nbsp; Дані: 21.08.2026</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">ПМ: Іщук &nbsp;&middot;&nbsp; 26.05.2026 &rarr; 30.07.2026 &nbsp;&middot;&nbsp; Дані: 24.08.2026</div>
     </div>
   </div>
   <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
@@ -159,7 +159,7 @@ body{padding-left:198px}
     <div class="kpi"><div class="kpi-label">Загальний прогрес</div><div class="kpi-value orange">100%</div><div class="kpi-sub" id="activePhase">—</div></div>
     <div class="kpi"><div class="kpi-label">Терміни проєкту</div><div style="display:flex;align-items:baseline;gap:5px;margin-top:4px"><span style="font-size:17px;font-weight:800">26.05.2026</span><span style="font-size:13px;color:var(--text-muted)">&rarr;</span><span style="font-size:17px;font-weight:800">30.07.2026</span></div><div class="kpi-sub" id="kpiDur">—</div></div>
     <div class="kpi"><div class="kpi-label">Завдань</div><div class="kpi-value" id="kpiTasks">—</div><div class="kpi-sub" id="kpiTaskSub">—</div></div>
-    <div class="kpi"><div class="kpi-label">Прострочених</div><div class="kpi-value red" id="kpiOverdue">—</div><div class="kpi-sub">відносно 21.08.2026</div></div>
+    <div class="kpi"><div class="kpi-label">Прострочених</div><div class="kpi-value red" id="kpiOverdue">—</div><div class="kpi-sub">відносно 24.08.2026</div></div>
   </div>
 <div class="card"><h2>&#128176; Бюджет проєкту</h2><div class="budget-grid"><div><div class="bl">План (сума платежів)</div><div class="bv plan">100к ₴</div></div><div><div class="bl">Факт (отримано)</div><div class="bv fact">100к ₴</div></div><div><div class="bl">Оплачено</div><div class="bv pct">100%</div></div></div><div class="bbar"><div class="bfill" style="width:100%"></div></div><div style="display:flex;justify-content:space-between;margin-top:5px;font-size:11px;color:var(--text-muted)"><span>0</span><span style="color:var(--green);font-weight:600">100к ₴ отримано</span><span>100к ₴</span></div></div>
 <div class="section-title">&#128179; Платіжний графік</div><div class="card pay-list"><div class="pay-row"><div class="pdot" style="background:var(--green)"></div><div class="pname">Авансовий платіж</div><div class="pdate">27.05.2026</div><span class="pamount">план: 100к ₴</span><span class="pamount fact-val">факт: 100к ₴</span><div class="pst"><span class="sb s-done">&#10003; Отримано</span></div></div><div class="pay-row" style="opacity:.6"><div class="pdot" style="background:var(--gray-200)"></div><div class="pname" style="text-decoration:line-through">Другий платіж</div><div class="pdate">24.06.2026</div><span class="pamount fact-empty" style="flex:1">не застосовується</span><div class="pst"><span class="sb s-none">&mdash;</span></div></div><div class="pay-row" style="opacity:.6"><div class="pdot" style="background:var(--gray-200)"></div><div class="pname" style="text-decoration:line-through">Третій платіж</div><div class="pdate">24.06.2026</div><span class="pamount fact-empty" style="flex:1">не застосовується</span><div class="pst"><span class="sb s-none">&mdash;</span></div></div><div class="pay-row" style="opacity:.6"><div class="pdot" style="background:var(--gray-200)"></div><div class="pname" style="text-decoration:line-through">Четвертий платіж</div><div class="pdate">24.06.2026</div><span class="pamount fact-empty" style="flex:1">не застосовується</span><div class="pst"><span class="sb s-none">&mdash;</span></div></div><div class="pay-row" style="opacity:.6"><div class="pdot" style="background:var(--gray-200)"></div><div class="pname" style="text-decoration:line-through">П'ятий платіж</div><div class="pdate">24.06.2026</div><span class="pamount fact-empty" style="flex:1">не застосовується</span><div class="pst"><span class="sb s-none">&mdash;</span></div></div></div>
@@ -190,6 +190,8 @@ body{padding-left:198px}
   .gx-bar{position:absolute;top:8px;height:14px;border-radius:3px;display:flex;align-items:center;padding:0 4px;font-size:9px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden}
   .gx-ms{position:absolute;top:8px;width:13px;height:13px;transform:rotate(45deg);border-radius:2px;border:1px solid #fff;box-sizing:border-box}
   .gx-today{position:absolute;top:0;bottom:0;width:2px;background:var(--brand-orange);z-index:3}
+  .gx-bl{position:absolute;top:0;bottom:0;width:0;border-left:2px dashed;z-index:2}
+  .gx-bl-lab{position:absolute;font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;color:#fff;white-space:nowrap;transform:translateX(-50%);z-index:6}
   .gb-na{background:repeating-linear-gradient(45deg,var(--gray-200),var(--gray-200) 4px,#fff 4px,#fff 8px);color:#999}
   .gx-na{opacity:.65}
   .gx-na .gx-name{text-decoration:line-through;color:var(--gray-400)}
@@ -290,7 +292,9 @@ function gxRender(){
     else{var wid=Math.max(8,(pd(t.end)-pd(t.start))/GX_DAY*gxPxd+gxPxd);bar='<div class="gx-bar '+gxCls(eff)+'" style="left:'+x+'px;width:'+wid+'px" title="'+nmEsc+' ('+t.start+'–'+t.end+')">'+(wid>34&&t.pct>0?t.pct+'%':'')+'</div>';}
     rows+='<div class="gx-row'+(t.na?' gx-na':'')+'"><div class="gx-label" style="padding-left:'+(12+pad)+'px">'+tog+'<span class="gx-name" style="'+nm+'" title="'+t.wbs+' '+nmEsc+'">'+t.name+'</span></div><div class="gx-time" style="width:'+timeW+'px">'+bar+'</div></div>';
   });
-  var html='<div class="gx-scroll"><div class="gx-grid" style="width:'+(GX_LBL+timeW)+'px"><div class="gx-head"><div class="gx-head-label">Завдання ('+gxVisible().length+')</div><div class="gx-head-time" style="width:'+timeW+'px">'+ticks+(tdyOn?'<div class="gx-today" style="left:'+tdyX+'px"></div>':'')+'</div></div><div class="gx-body">'+(tdyOn?'<div class="gx-today" style="left:'+(GX_LBL+tdyX)+'px"></div>':'')+rows+'</div></div></div>';
+  var blov='';
+  if(typeof BASELINES!=='undefined'&&BASELINES){var _bk=Object.keys(BASELINES);_bk.forEach(function(k,idx){var v=BASELINES[k];if(!v||!v.end)return;var bx=gxX(v.end);if(bx<0||bx>timeW)return;var isB0=idx===0;var col=isB0?'#b0392f':'#2A9D8F';var lab=isB0?'БП0':('БП'+idx);blov+='<div class="gx-bl" style="left:'+(GX_LBL+bx)+'px;border-left-color:'+col+'"></div><div class="gx-bl-lab" style="left:'+(GX_LBL+bx)+'px;top:'+(isB0?2:16)+'px;background:'+col+'" title="'+(v.label||lab)+'">'+lab+' '+v.end.slice(0,5)+'</div>';});}
+  var html='<div class="gx-scroll"><div class="gx-grid" style="width:'+(GX_LBL+timeW)+'px"><div class="gx-head"><div class="gx-head-label">Завдання ('+gxVisible().length+')</div><div class="gx-head-time" style="width:'+timeW+'px">'+ticks+(tdyOn?'<div class="gx-today" style="left:'+tdyX+'px"></div>':'')+'</div></div><div class="gx-body">'+(tdyOn?'<div class="gx-today" style="left:'+(GX_LBL+tdyX)+'px"></div>':'')+blov+rows+'</div></div></div>';
   document.getElementById('gxWrap').innerHTML=html;
 }
 function ft(f,btn){document.querySelectorAll('.fbtn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');gxFilter=f;gxRender();}
