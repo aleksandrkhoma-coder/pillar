@@ -202,12 +202,12 @@ body{padding-left:198px}
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель ПМ — Александров</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 21.08.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 24.08.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 21.08.2026</div>
+      <div>Оновлено: 24.08.2026</div>
       <div>3 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
     </div>
   </div>
@@ -268,7 +268,7 @@ body{padding-left:198px}
 </div>
 
 <script>
-const TODAY = new Date('2026-08-21');
+const TODAY = new Date('2026-08-24');
 
 const PROJECTS = [{"id": "6842", "name": "2", "pm": "Александров", "pct": 100, "start": "22.05.2026", "end": "07.07.2026", "tasks": 50, "done": 50, "overdue": 0, "plan": 3308968, "fact": 3308968, "plan_cur": 3308968, "fact_cur": 3308968, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 45.55178, "lng": 15.16751, "loc": "Хорватія", "bl_end": "07.07.2026", "bl_bud": 3308968.0},
   {"id": "7068", "name": "А Remtec energy  AGM  160 TP", "pm": "Александров", "pct": 100, "start": "19.05.2026", "end": "22.08.2026", "tasks": 51, "done": 51, "overdue": 0, "plan": 2416856, "fact": 2416856, "plan_cur": 2416856, "fact_cur": 2416856, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "bl_end": "22.08.2026", "bl_bud": 2416856.0},
@@ -315,7 +315,7 @@ var _pms=new Set(ACTIVE.map(p=>p.pm).filter(x=>x&&x!=='—'));var _pmc=document.
 document.getElementById('kpiRisk').textContent=risk;
 document.getElementById('kpiOverdue').textContent=ov+'+';
 var _cr=document.getElementById('kpiCR');if(_cr)_cr.textContent=cr;
-const NBU_EUR=52.13;
+const NBU_EUR=52.24;
 function kpiBud(c){const f=v=>!v?'—':(c==='EUR'?(v/NBU_EUR/1e6).toFixed(2)+' млн €':fmtM(v));
 document.getElementById('kpiPlan').textContent=f(splan);document.getElementById('kpiFact').textContent=f(sfact);
 document.querySelectorAll('#curTgl .ctb').forEach(b=>b.classList.toggle('on',b.dataset.c===c))}
@@ -382,7 +382,10 @@ PM_ORDER.forEach(pm=>{
   ps.forEach(p=>{
     const dp=dateProg(p.start,p.end).toFixed(0);
     var _rb=[];
-    if(p.status==='cr') _rb.push(['#D89A1A','&#9998; ЗАПИТ НА ЗМІНИ']);
+    var _bp1=null;
+    if(p.bl1_end){var _d0=parseDate(p.bl_end),_d1=parseDate(p.bl1_end);var _dd=(_d0&&_d1)?Math.round((_d1-_d0)/86400000):0;var _db=(p.bl_bud&&p.bl1_bud)?Math.round((p.bl1_bud-p.bl_bud)/p.bl_bud*100):0;var _pp=[];if(_dd)_pp.push((_dd>0?'+':'')+_dd+'д');if(_db)_pp.push((_db>0?'+':'')+_db+'%');_bp1='БП1 '+(_pp.join(' / ')||'0');}
+    if(_bp1) _rb.push(['#2A9D8F','&#128207; '+_bp1]);
+    else if(p.status==='cr') _rb.push(['#D89A1A','&#9998; ЗАПИТ НА ЗМІНИ']);
     if(p.status==='paused') _rb.push(['#6B7280','&#9208; ПАУЗА']);
     if(p.risk==='fired') _rb.push(['#D93025','&#128293; РИЗИК СПРАЦЮВАВ']);
     else if(p.risk==='watch') _rb.push(['#7A5CD6','&#9888; ПІД РИЗИКОМ']);
