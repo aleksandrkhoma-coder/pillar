@@ -202,12 +202,12 @@ body{padding-left:198px}
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель проєктів — ОУП</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 31.08.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 01.09.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 31.08.2026</div>
+      <div>Оновлено: 01.09.2026</div>
       <div>43 проєкти &nbsp;&middot;&nbsp; 5 ПМ</div>
     </div>
   </div>
@@ -268,9 +268,9 @@ body{padding-left:198px}
 </div>
 
 <script>
-const TODAY = new Date('2026-08-31');
+const TODAY = new Date('2026-09-01');
 
-const PROJECTS = [{"id": "3456", "name": "А Підселання фундаменту", "pm": "Донська", "pct": 38, "start": "19.05.2026", "end": "30.09.2026", "tasks": 43, "done": 33, "overdue": 0, "plan": 1541883, "fact": 1205908, "plan_cur": 1541883, "fact_cur": 1205908, "cur": "UAH", "paused": false, "risk": null, "status": "cr", "lost_value": 0, "lat": 50.42551, "lng": 30.51821, "loc": "Київ, Велика Васильківська", "bl_end": "01.09.2026", "bl_bud": 1541883.6},
+const PROJECTS = [{"id": "3456", "name": "А Підселання фундаменту", "pm": "Донська", "pct": 38, "start": "19.05.2026", "end": "30.09.2026", "tasks": 43, "done": 33, "overdue": 0, "plan": 1541883, "fact": 1205908, "plan_cur": 1541883, "fact_cur": 1205908, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 50.42551, "lng": 30.51821, "loc": "Київ, Велика Васильківська", "bl_end": "20.07.2026", "bl_bud": 1541883.6, "bl1_end": "14.08.2026", "bl1_bud": 1541883.6, "bl1_label": "БП 1 · узгоджено ЧР"},
   {"id": "4766", "name": "ALTECO Carport Model Taurus 280кВт", "pm": "Заянчковський", "pct": 82, "start": "01.05.2026", "end": "21.10.2026", "tasks": 40, "done": 22, "overdue": 0, "plan": 5815976, "fact": 4552528, "plan_cur": 5815976, "fact_cur": 4552528, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.58919, "lng": 22.97573, "loc": "Закарпатська обл. (Carport Taurus)", "bl_end": "07.10.2026", "bl_bud": 5815976.4},
   {"id": "5438", "name": "Stonava. Cz. SGM 100 MW", "pm": "Донська", "pct": 22, "start": "19.05.2026", "end": "22.08.2026", "tasks": 49, "done": 20, "overdue": 0, "plan": 259400000, "fact": 77820000, "plan_cur": 5000000, "fact_cur": 1500000, "cur": "EUR", "paused": true, "risk": null, "status": "paused", "lost_value": 0, "lat": 49.8211, "lng": 18.5061, "loc": "Stonava, Чехія (≈ центр)", "bl_end": "22.08.2026", "bl_bud": 5000000.0},
   {"id": "5682", "name": "А Сцена Корчин", "pm": "Іщук", "pct": 100, "start": "26.05.2026", "end": "06.07.2026", "tasks": 33, "done": 33, "overdue": 0, "plan": 457134, "fact": 457134, "plan_cur": 457134, "fact_cur": 457134, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "bl_end": "06.07.2026", "bl_bud": 457134.96},
@@ -279,7 +279,7 @@ const PROJECTS = [{"id": "3456", "name": "А Підселання фундаме
   {"id": "5910", "name": "SGM Brdovec, Хорватия", "pm": "Донська", "pct": 75, "start": "19.05.2026", "end": "05.10.2026", "tasks": 76, "done": 41, "overdue": 0, "plan": 28895344, "fact": 11895824, "plan_cur": 556965, "fact_cur": 229295, "cur": "EUR", "paused": false, "risk": "watch", "status": "active", "lost_value": 0, "lat": 45.871, "lng": 15.76493, "loc": "Brdovec, Хорватія", "bl_end": "29.09.2026", "bl_bud": 556965.0},
   {"id": "6024", "name": "-26 ГШ с. Липовиця Черніг. обл. Модулекс", "pm": "Заянчковський", "pct": 89, "start": "26.05.2026", "end": "10.10.2026", "tasks": 39, "done": 26, "overdue": 0, "plan": 448002, "fact": 201600, "plan_cur": 448002, "fact_cur": 201600, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 50.46712, "lng": 32.39886, "loc": "с. Линовиця, Чернігівська обл.", "bl_end": "10.09.2026", "bl_bud": 448002.0},
   {"id": "6130", "name": "-26 ГШ Фундамент домобудування Євро Простір Марія", "pm": "Заянчковський", "pct": 100, "start": "20.07.2026", "end": "05.10.2026", "tasks": 42, "done": 42, "overdue": 0, "plan": 292782, "fact": 292782, "plan_cur": 292782, "fact_cur": 292782, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "bl_end": "05.10.2026", "bl_bud": 292782.0},
-  {"id": "6312", "name": "-26 ГШ Фундамент домобудування Георгій", "pm": "Заянчковський", "pct": 85, "start": "20.07.2026", "end": "30.09.2026", "tasks": 38, "done": 24, "overdue": 0, "plan": 543429, "fact": 543429, "plan_cur": 543429, "fact_cur": 543429, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "bl_end": "15.10.2026", "bl_bud": 543429.0},
+  {"id": "6312", "name": "-26 ГШ Фундамент домобудування Георгій", "pm": "Заянчковський", "pct": 85, "start": "20.07.2026", "end": "30.09.2026", "tasks": 38, "done": 24, "overdue": 1, "plan": 543429, "fact": 543429, "plan_cur": 543429, "fact_cur": 543429, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "bl_end": "15.10.2026", "bl_bud": 543429.0},
   {"id": "6352", "name": "АБМК SCP Blade 8PS", "pm": "Донська", "pct": 47, "start": "16.07.2026", "end": "27.11.2026", "tasks": 48, "done": 20, "overdue": 0, "plan": 3622059, "fact": 1479046, "plan_cur": 3622059, "fact_cur": 1479046, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 50.46775, "lng": 30.4608, "loc": "Київ (карпорт АБМК)", "bl_end": "18.11.2026", "bl_bud": 3622059.12},
   {"id": "6356", "name": "-26 SOLAR Наземні СЕС 3 Kirill Trokhin", "pm": "Хома", "pct": 8, "start": "26.05.2026", "end": "03.11.2026", "tasks": 37, "done": 10, "overdue": 0, "plan": 128480, "fact": 0, "plan_cur": 128480, "fact_cur": 0, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 41.6322, "lng": 44.9024, "loc": "Qvemo Ponichala, Грузія", "bl_end": "05.11.2026", "bl_bud": 182821.0},
   {"id": "6406", "name": "Максим Яловий Чинадієво", "pm": "Іщук", "pct": 100, "start": "08.06.2026", "end": "26.08.2026", "tasks": 48, "done": 48, "overdue": 0, "plan": 373582, "fact": 325768, "plan_cur": 373582, "fact_cur": 325768, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 48.4846, "lng": 22.82756, "loc": "Чинадійово, Закарпатська обл.", "bl_end": "23.08.2026", "bl_bud": 373582.0, "bl1_end": "13.09.2026", "bl1_bud": 325788.0, "bl1_label": "БП 1 · узгоджено ЧР"},

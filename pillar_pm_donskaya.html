@@ -202,12 +202,12 @@ body{padding-left:198px}
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель ПМ — Донська</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 31.08.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 01.09.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 31.08.2026</div>
+      <div>Оновлено: 01.09.2026</div>
       <div>12 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
     </div>
   </div>
@@ -268,9 +268,9 @@ body{padding-left:198px}
 </div>
 
 <script>
-const TODAY = new Date('2026-08-31');
+const TODAY = new Date('2026-09-01');
 
-const PROJECTS = [{"id": "3456", "name": "А Підселання фундаменту", "pm": "Донська", "pct": 38, "start": "19.05.2026", "end": "30.09.2026", "tasks": 43, "done": 33, "overdue": 0, "plan": 1541883, "fact": 1205908, "plan_cur": 1541883, "fact_cur": 1205908, "cur": "UAH", "paused": false, "risk": null, "status": "cr", "lost_value": 0, "lat": 50.42551, "lng": 30.51821, "loc": "Київ, Велика Васильківська", "bl_end": "01.09.2026", "bl_bud": 1541883.6},
+const PROJECTS = [{"id": "3456", "name": "А Підселання фундаменту", "pm": "Донська", "pct": 38, "start": "19.05.2026", "end": "30.09.2026", "tasks": 43, "done": 33, "overdue": 0, "plan": 1541883, "fact": 1205908, "plan_cur": 1541883, "fact_cur": 1205908, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 50.42551, "lng": 30.51821, "loc": "Київ, Велика Васильківська", "bl_end": "20.07.2026", "bl_bud": 1541883.6, "bl1_end": "14.08.2026", "bl1_bud": 1541883.6, "bl1_label": "БП 1 · узгоджено ЧР"},
   {"id": "5438", "name": "Stonava. Cz. SGM 100 MW", "pm": "Донська", "pct": 22, "start": "19.05.2026", "end": "22.08.2026", "tasks": 49, "done": 20, "overdue": 0, "plan": 259400000, "fact": 77820000, "plan_cur": 5000000, "fact_cur": 1500000, "cur": "EUR", "paused": true, "risk": null, "status": "paused", "lost_value": 0, "lat": 49.8211, "lng": 18.5061, "loc": "Stonava, Чехія (≈ центр)", "bl_end": "22.08.2026", "bl_bud": 5000000.0},
   {"id": "5910", "name": "SGM Brdovec, Хорватия", "pm": "Донська", "pct": 75, "start": "19.05.2026", "end": "05.10.2026", "tasks": 76, "done": 41, "overdue": 0, "plan": 28895344, "fact": 11895824, "plan_cur": 556965, "fact_cur": 229295, "cur": "EUR", "paused": false, "risk": "watch", "status": "active", "lost_value": 0, "lat": 45.871, "lng": 15.76493, "loc": "Brdovec, Хорватія", "bl_end": "29.09.2026", "bl_bud": 556965.0},
   {"id": "6352", "name": "АБМК SCP Blade 8PS", "pm": "Донська", "pct": 47, "start": "16.07.2026", "end": "27.11.2026", "tasks": 48, "done": 20, "overdue": 0, "plan": 3622059, "fact": 1479046, "plan_cur": 3622059, "fact_cur": 1479046, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 50.46775, "lng": 30.4608, "loc": "Київ (карпорт АБМК)", "bl_end": "18.11.2026", "bl_bud": 3622059.12},
