@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="uk">
-<head><meta name="robots" content="noindex,nofollow">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pillar — Портфель проєктів ОУП</title>
@@ -179,6 +179,7 @@ body{padding-left:198px}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<meta name="robots" content="noindex,nofollow">
 </head>
 <body>
 <nav class="pl-side">
@@ -202,12 +203,12 @@ body{padding-left:198px}
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель ПМ — Хома</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 31.08.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 02.09.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 31.08.2026</div>
+      <div>Оновлено: 02.09.2026</div>
       <div>7 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
     </div>
   </div>
@@ -268,12 +269,12 @@ body{padding-left:198px}
 </div>
 
 <script>
-const TODAY = new Date('2026-08-31');
+const TODAY = new Date('2026-09-02');
 
-const PROJECTS = [{"id": "5870", "name": "Carport Airport Munich", "pm": "Хома", "pct": 43, "start": "19.05.2026", "end": "04.09.2026", "tasks": 50, "done": 49, "overdue": 0, "plan": 9224264, "fact": 8316364, "plan_cur": 177800, "fact_cur": 160300, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.35631, "lng": 11.76392, "loc": "Аеропорт Мюнхен, Німеччина", "bl_end": "14.08.2026", "bl_bud": 177800.0},
-  {"id": "5904", "name": "SOLAR Карпорти шт. 10 шт. 0.03 Мвт SIA Realcom", "pm": "Хома", "pct": 9, "start": "26.05.2026", "end": "09.10.2026", "tasks": 38, "done": 12, "overdue": 0, "plan": 10815, "fact": 10815, "plan_cur": 10815, "fact_cur": 10815, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 56.9496, "lng": 24.1052, "loc": "Рига, Латвія", "bl_end": "31.10.2026", "bl_bud": 10815.0},
-  {"id": "6356", "name": "-26 SOLAR Наземні СЕС 3 Kirill Trokhin", "pm": "Хома", "pct": 8, "start": "26.05.2026", "end": "03.11.2026", "tasks": 37, "done": 10, "overdue": 0, "plan": 128480, "fact": 0, "plan_cur": 128480, "fact_cur": 0, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 41.6322, "lng": 44.9024, "loc": "Qvemo Ponichala, Грузія", "bl_end": "05.11.2026", "bl_bud": 182821.0},
-  {"id": "6704", "name": "SCP Taurus 236PS", "pm": "Хома", "pct": 100, "start": "19.05.2026", "end": "28.07.2026", "tasks": 43, "done": 43, "overdue": 0, "plan": 11138636, "fact": 11138636, "plan_cur": 214700, "fact_cur": 214700, "cur": "EUR", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 48.98825, "lng": 9.46467, "loc": "Баден-Вюртемберг, Німеччина", "bl_end": "28.07.2026", "bl_bud": 214700.0},
+const PROJECTS = [{"id": "5870", "name": "Carport Airport Munich", "pm": "Хома", "pct": 43, "start": "19.05.2026", "end": "04.09.2026", "tasks": 50, "done": 49, "overdue": 0, "plan": 9162034, "fact": 8260259, "plan_cur": 177800, "fact_cur": 160300, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.35631, "lng": 11.76392, "loc": "Аеропорт Мюнхен, Німеччина", "bl_end": "14.08.2026", "bl_bud": 177800.0},
+  {"id": "5904", "name": "SOLAR Карпорти шт. 10 шт. 0.03 Мвт SIA Realcom", "pm": "Хома", "pct": 9, "start": "26.05.2026", "end": "09.10.2026", "tasks": 38, "done": 12, "overdue": 0, "plan": 557296, "fact": 557296, "plan_cur": 10815, "fact_cur": 10815, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 56.9496, "lng": 24.1052, "loc": "Рига, Латвія", "bl_end": "31.10.2026", "bl_bud": 10815.0},
+  {"id": "6356", "name": "-26 SOLAR Наземні СЕС 3 Kirill Trokhin", "pm": "Хома", "pct": 8, "start": "26.05.2026", "end": "03.11.2026", "tasks": 37, "done": 10, "overdue": 0, "plan": 6620574, "fact": 0, "plan_cur": 128480, "fact_cur": 0, "cur": "EUR", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 41.6322, "lng": 44.9024, "loc": "Qvemo Ponichala, Грузія", "bl_end": "05.11.2026", "bl_bud": 182821.0},
+  {"id": "6704", "name": "SCP Taurus 236PS", "pm": "Хома", "pct": 100, "start": "19.05.2026", "end": "28.07.2026", "tasks": 43, "done": 43, "overdue": 0, "plan": 11063491, "fact": 11063491, "plan_cur": 214700, "fact_cur": 214700, "cur": "EUR", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 48.98825, "lng": 9.46467, "loc": "Баден-Вюртемберг, Німеччина", "bl_end": "28.07.2026", "bl_bud": 214700.0},
   {"id": "6824", "name": "SOLAR Карпорти 2", "pm": "Хома", "pct": 86, "start": "26.05.2026", "end": "22.11.2026", "tasks": 42, "done": 32, "overdue": 0, "plan": 0, "fact": 0, "plan_cur": 0, "fact_cur": 0, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "bl_end": "07.09.2026", "bl_bud": 149710.0},
   {"id": "8604", "name": "МілТек", "pm": "Хома", "pct": 100, "start": "25.05.2026", "end": "04.08.2026", "tasks": 37, "done": 37, "overdue": 0, "plan": 0, "fact": 0, "plan_cur": 0, "fact_cur": 0, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "bl_end": "04.08.2026", "bl_bud": 0.0},
   {"id": "8644", "name": "Solars ГШ 1,7+надставки 3,5", "pm": "Хома", "pct": 100, "start": "08.06.2026", "end": "21.08.2026", "tasks": 51, "done": 51, "overdue": 0, "plan": 415900, "fact": 415900, "plan_cur": 415900, "fact_cur": 415900, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "bl_end": "21.08.2026", "bl_bud": 415900.0}];
@@ -329,7 +330,7 @@ var _pms=new Set(ACTIVE.map(p=>p.pm).filter(x=>x&&x!=='—'));var _pmc=document.
 document.getElementById('kpiRisk').textContent=risk;
 document.getElementById('kpiOverdue').textContent=ov+'+';
 var _cr=document.getElementById('kpiCR');if(_cr)_cr.textContent=cr;
-const NBU_EUR=51.88;
+const NBU_EUR=51.53;
 function kpiBud(c){const f=v=>!v?'—':(c==='EUR'?(v/NBU_EUR/1e6).toFixed(2)+' млн €':fmtM(v));
 document.getElementById('kpiPlan').textContent=f(splan);document.getElementById('kpiFact').textContent=f(sfact);
 document.querySelectorAll('#curTgl .ctb').forEach(b=>b.classList.toggle('on',b.dataset.c===c))}
