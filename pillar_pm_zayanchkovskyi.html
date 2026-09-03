@@ -290,7 +290,7 @@ const PM_CONFIG = {
   'Хома':          {initials:'ОХ', color:'#E85D1A'},
 };
 
-const PM_ORDER = ['Донська','Александров','Іщук','Заянчковський','Хома'];
+const PM_ORDER = ['Донська','Іщук','Заянчковський','Хома'];
 
 function parseDate(s){if(!s)return null;const[d,m,y]=s.split('.');return new Date(+y,+m-1,+d)}
 function expectedPct(p){const s=parseDate(p.start),e=parseDate(p.end);if(!s||!e||e<=s)return 0;return Math.max(0,Math.min(100,(TODAY-s)/(e-s)*100));}
