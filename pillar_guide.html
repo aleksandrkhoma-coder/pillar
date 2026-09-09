@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>PILLAR · Гайд продажів — Гант-декомпозиція</title>
+<style>
+  :root{
+    --bg:#1A2332;--card:#202c3e;--card2:#26344a;--line:#33455f;--text:#E8EDF5;--muted:#9FB0C3;
+    --orange:#E85D1A;--blue:#1D6FA4;--green:#1E9E5A;--red:#D93025;--violet:#7A5CD6;
+    --stage:#0f1621;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:"Segoe UI",Roboto,Arial,sans-serif;line-height:1.4;font-size:14px}
+  .wrap{max-width:1320px;margin:0 auto;padding:18px 18px 60px}
+  header{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:14px}
+  .brand{font-size:21px;font-weight:800;color:var(--orange)}
+  .htxt{font-size:12.5px;color:var(--muted)}.htxt b{color:var(--text);font-weight:600}
+  .proto{margin-left:auto;background:#3a2a12;color:#f2b874;border:1px solid #6b4a1e;border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+  .toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+  .lab{font-size:12px;color:var(--muted)}
+  .btn{background:var(--card);border:1px solid var(--line);color:var(--text);border-radius:8px;padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer}
+  .btn:hover{border-color:var(--orange)}
+  .btn.on{background:var(--orange);border-color:var(--orange);color:#fff}
+  .btn.on.long{background:var(--blue);border-color:var(--blue)} .btn.on.short{background:var(--green);border-color:var(--green)}
+  .layout{display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start}
+  @media(max-width:920px){.layout{grid-template-columns:1fr}}
+
+  .gantt{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .grow{display:grid;grid-template-columns:340px repeat(7,1fr);align-items:stretch;border-bottom:1px solid #2a3purple}
+  .grow{border-bottom:1px solid #26344a}
+  .ghead{position:sticky;top:0;background:#18202e;z-index:2}
+  .ghead .name{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:700;padding:9px 12px;display:flex;align-items:center}
+  .stg{font-size:10px;color:var(--muted);text-align:center;padding:9px 4px;border-left:1px solid #26344a;font-weight:700;text-transform:uppercase;letter-spacing:.3px}
+  .name{padding:8px 12px;display:flex;align-items:center;gap:7px;cursor:pointer;border-right:1px solid #2b3a51}
+  .name:hover{background:var(--card2)}
+  .tw{width:14px;color:var(--muted);font-size:10px;flex:0 0 14px;text-align:center}
+  .nm{font-size:13.5px;font-weight:700}
+  .sub .nm{font-size:12px;font-weight:500;color:#cdd8e6}
+  .sub .name{padding-left:30px}
+  .k{font-size:10px;color:var(--muted);font-weight:700;margin-right:5px}
+  .track{grid-column:2 / -1;display:grid;grid-template-columns:repeat(7,1fr);position:relative}
+  .cell{border-left:1px solid #22303f}
+  .bar{position:absolute;top:50%;transform:translateY(-50%);height:15px;border-radius:4px;left:2px;right:2px;display:flex;align-items:center;justify-content:center;font-size:9px;color:#04121a;font-weight:700;white-space:nowrap;overflow:hidden}
+  .sub .bar{height:9px;opacity:.8}
+  .b-green{background:var(--green)} .b-blue{background:var(--blue)} .b-orange{background:var(--orange)} .b-violet{background:var(--violet)} .b-grey{background:#5b6b80}
+  .bar.dash{background:repeating-linear-gradient(90deg,#3a4a60 0 7px,transparent 7px 13px);height:3px}
+  .active .name{background:rgba(232,93,26,.15);box-shadow:inset 3px 0 0 var(--orange)}
+  .row-hidden{display:none}
+  body.f-short .r-long{opacity:.25} body.f-long .r-short{opacity:.25}
+
+  .panel{position:sticky;top:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;min-height:300px}
+  @media(max-width:920px){.panel{position:static}}
+  .pk{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:700}
+  .pt{font-size:18px;font-weight:800;margin:3px 0 8px}
+  .rw{margin:10px 0}.rl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-weight:700;margin-bottom:2px}.rv{font-size:12.5px}
+  .rv.imp{background:#2a1a12;border-left:3px solid var(--orange);padding:7px 9px;border-radius:0 8px 8px 0;color:#f0d4bf}
+  .who{color:#7fd6a0;font-weight:600}.next{color:#8fc4e6}
+  .subs{margin-top:6px} .subs .s{font-size:12px;padding:4px 0;border-top:1px dashed #2b3a51;display:flex;gap:8px} .subs .s .si{color:var(--muted);flex:0 0 26px}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px;font-size:11px;color:var(--muted)}
+  .legend span{display:inline-flex;align-items:center;gap:5px}.sw{width:11px;height:11px;border-radius:3px}
+  .foot{margin-top:22px;border-top:1px solid var(--line);padding-top:10px;font-size:11px;color:var(--muted)}
+  .hint{font-size:12.5px;color:var(--muted)}
+</style>
+</head>
+<body class="f-all">
+<div class="wrap">
+  <header>
+    <div><div class="brand">PILLAR</div><div class="htxt"><b>Гайд відділу продажів</b> · Фаза ініціації — <b>Гант-декомпозиція процесу (WBS)</b></div></div>
+    <div class="proto">Прототип v2 · концепт на узгодження</div>
+  </header>
+  <div class="toolbar">
+    <span class="lab">Шлях:</span>
+    <button class="btn on" data-f="all" id="fAll">Усі</button>
+    <button class="btn" data-f="short" id="fShort">Короткий · ШК</button>
+    <button class="btn" data-f="long" id="fLong">Велике коло</button>
+    <button class="btn" id="expAll" style="margin-left:12px">Розгорнути все</button>
+    <button class="btn" id="colAll">Згорнути все</button>
+    <span class="hint" style="margin-left:auto">Клік на крок → деталі + підзадачі праворуч. ▶ розкриває декомпозицію в рядку.</span>
+  </div>
+
+  <div class="layout">
+    <div class="gantt" id="gantt"></div>
+    <div class="panel" id="panel">
+      <div class="pk">Як користуватись</div>
+      <div class="pt">Декомпозиція процесу продажів</div>
+      <div class="hint">Ліворуч — процес як у діаграмі Ганта наших проєктів: рядки-етапи зі смугами на осі стадій. Натисніть <b>▶</b> біля кроку, щоб розкрити його <b>підзадачі (WBS)</b>, або клікніть на назву кроку — тут покажу <b>суть, хто відповідає, вхід/вихід, SLA</b> та перелік підзадач.<br><br>Угорі перемикайте <b>Короткий (ШК)</b> / <b>Велике коло</b>.</div>
+    </div>
+  </div>
+  <div class="foot">Джерело: «PILLAR · Гайд відділу продажів — Фаза ініціації», TO-BE v2.3–2.4. Прототип v2: WBS-декомпозиція за принципом Ганта. Стадії — схематична вісь послідовності (не календарні дати). Контакти/SLA уточнюються за фінальним гайдом.</div>
+</div>
+<script>
+const STAGES=["1·Кваліфі-кація","2·Конструк-тори","3·Еконо-міст","4·КП","5·Дого-вір","6·Пере-вірка ПМ","7·Підпис/ПМО"];
+// step: id,k,t,stage(1..7),span,path(all|short|long),color,who,detail rows, subs[[si,text]]
+const STEPS=[
+ {id:"s1",k:"Крок 1",t:"Кваліфікація ліда · маршрутизація",stage:1,path:"all",color:"grey",
+  det:[["Суть","Менеджер збирає дані про проєкт, заповнює матрицю зрілості/привабливості; система рекомендує маршрут, рішення — за менеджером."],["Хто","Продажі (менеджер)","who"],["Вихід","Матриця + рекомендований маршрут"],["Розвилка","ШК → одразу Крок 4a · Велике коло → Крок 2","imp"]],
+  subs:[["1.1","Внести первинні дані про запит/проєкт"],["1.2","Дані клієнта (якщо новий) в картку ліда"],["1.3","Заповнити матрицю зрілості/привабливості"],["1.4","Статус «Оцінка проєкту» → рекомендація маршруту"],["1.5","Рішення маршруту: ШК або Велике коло"]]},
+ {id:"shk",k:"Маршрут А",t:"Швидкий калькулятор (ШК)",stage:1,span:3,path:"short",color:"green",
+  det:[["Суть","Первинне орієнтування: складність, вартість, вага, к-сть модулів, потужність. Без конструкторів/економіста."],["Хто","Продажі","who"],["Обмеження","НЕ дає фінальну КП; генплан/мережі/спецвимоги → перехід на велике коло","imp"],["Що далі","Крок 4a — попереднє КП","next"]],
+  subs:[["A.1","Розрахунок у калькуляторі (орієнтир)"],["A.2","Перевірка правила переходу на велике коло"],["A.3","→ одразу до Кроку 4a"]]},
+ {id:"s2",k:"Крок 2 · ТД1",t:"Конструктори — ескізний проєкт",stage:2,path:"long",color:"violet",
+  det:[["Суть","Менеджер формує повне ТЗ; конструктор готує ескізний проєкт (технічне рішення передпродажу)."],["Хто","КВ, керівник Ігор Тарасенко · «одне вікно»","who"],["Вихід","Ескіз + опис генплану + к-сть конструкцій + специфікація (основа собівартості)"],["SLA","оцінка ≤2 год · типові 1 доба · складні до 3 діб"],["Що далі","Крок 3 — економіст","next"]],
+  subs:[["2.1","Сформувати повне ТЗ (менеджер+керівник)"],["2.2","Постановка задачі на керівника КВ"],["2.3","Взяття в роботу → старт SLA"],["2.4","Ескіз рішення + опис генплану"],["2.5","Перелік і к-сть конструкцій за типами"],["2.6","Специфікація в межах ескізу"],["2.7","Фіксація версії/дати в CRM"]]},
+ {id:"s3",k:"Крок 3 · ТД2",t:"Економіст — собівартість",stage:3,path:"long",color:"violet",
+  det:[["Суть","Економіст формує консолідовану собівартість по кожному варіанту, сам залучає логіста, закупівлю, монтаж."],["Хто","Фінвідділ / економіст","who"],["Вихід","1 Excel собівартості (варіанти на вкладках): матеріали, виробництво, логістика, монтаж, доставка"],["SLA","1 роб. день (попередній) · до 3 діб (фінальний)"],["Важливо","Продажі НЕ звертаються до логіста/монтажу напряму — це робить економіст","imp"],["Що далі","Крок 4a","next"]],
+  subs:[["3.1","Постановка задачі економісту (специфікація+умови+графік)"],["3.2","Економіст залучає логіста/закупівлю/монтаж"],["3.3","Консолідована собівартість по варіантах"],["3.4","Повернення файлу собівартості"]]},
+ {id:"s4a",k:"Крок 4a",t:"Попереднє КП (приценка)",stage:4,path:"all",color:"blue",
+  det:[["Суть","Швидка попередня пропозиція. Велике коло: ескіз+собівартість. ШК: розрахунок калькулятора."],["Хто","Менеджер (КП) · керівник продажів (націнка)","who"],["Валідність","7 днів · позначати як «попереднє»"],["Що далі","Крок 4b або повернення на уточнення","next"]],
+  subs:[["4a.1","Зібрати ескіз/розрахунок + собівартість"],["4a.2","Погодити націнку з керівником продажів"],["4a.3","Сформувати й видати попереднє КП"]]},
+ {id:"s4b",k:"Крок 4b",t:"Фінальне КП (під контракт)",stage:4,path:"all",color:"blue",
+  det:[["Суть","Актуалізація ціни й строків під реальне завантаження виробництва/монтажу."],["Хто","Менеджер · керівник продажів (націнка за потреби)","who"],["Вихід","Фінальна КП: ескіз, к-сть конструкцій, ціна, платіжні умови, валідність 7 дн"],["Що далі","Крок 5 — договір","next"]],
+  subs:[["4b.1","Актуалізувати ціну й строки під завантаження"],["4b.2","Погодити націнку (за потреби)"],["4b.3","Видати фінальне КП"]]},
+ {id:"s5",k:"Крок 5",t:"Підготовка договору",stage:5,path:"all",color:"blue",
+  det:[["Суть","Продажі готують договір за шаблоном юристів (комерційна частина). Договір готують Продажі, не ПМ."],["Хто","Продажі · юристи (за потреби)","who"],["Важливо","Перевірка контрагента: Україна — юрист Чорний; ЄС — керівник ПМО. Відхилення від шаблону → погодження в CRM","imp"],["Що далі","Крок 6 — перевірка ПМ","next"]],
+  subs:[["5.1","Комерційна частина за шаблоном юристів"],["5.2","(за потреби) перевірка контрагента/відхилень"],["5.3","Передати проєкт договору ПМ"]]},
+ {id:"s6",k:"Крок 6 · ТД3 · контроль",t:"Перевірка ПМ + діаграма Ганта",stage:6,path:"all",color:"orange",
+  det:[["Суть","ПМ звіряє договір з КП/ескізом/собівартістю, перевіряє ресурси, формує Гант. Погоджує з керівником ПМО."],["Хто","Призначений ПМ","who"],["Вихід","Підтвердження здійсненності (або коригування) + діаграма Ганта"],["SLA","1 роб. день · до 2, якщо потрібні виправлення"],["Виняток","Пряма продажа зі складу — без ПМ/ПМО","imp"],["Що далі","Крок 7","next"]],
+  subs:[["6.1","Звірка договору з КП/ескізом/собівартістю"],["6.2","Перевірка доступності виробництва/монтажу"],["6.3","Формування діаграми Ганта"],["6.4","Підтвердження або перелік коригувань"]]},
+ {id:"s7",k:"Крок 7",t:"Підписання та передача в ПМО",stage:7,path:"all",color:"green",
+  det:[["Суть","Після підписання — паспорт проєкту, перехід у ПМО. Старт КМД після авансу."],["Хто","Продажі (підписання) → ПМ (приймання)","who"],["Вихід","Паспорт проєкту: договір + ескіз + собівартість + Гант з платіжними вехами"],["Що далі","Кінець фази ініціації → реалізація ПМО","next"]],
+  subs:[["7.1","Підписання договору клієнтом"],["7.2","Формування паспорта проєкту"],["7.3","Передача/приймання ПМ; старт КМД після авансу"]]},
+ {id:"opt",k:"Опційно",t:"Консультація ПМО (будь-який крок)",stage:1,span:7,path:"all",color:"grey",dashed:true,
+  det:[["Суть","На будь-якому етапі менеджер може залучити ПМ як консультанта (НЕ обовʼязкова перевірка)."],["Хто","Керівник ПМО (призначає ПМ) · ПМ консультує","who"],["Критерії","1) випробування + власний монтаж; 2) запит підтримки через керівника продажів","imp"],["Що далі","Повернення до відповідного кроку","next"]],
+  subs:[["К1","Випробування + власний/аутсорс монтаж"],["К2","Запит підтримки: менеджер→керівник продажів→керівник ПМО"]]}
+];
+const CMAP={green:"b-green",blue:"b-blue",orange:"b-orange",violet:"b-violet",grey:"b-grey"};
+const g=document.getElementById('gantt');
+// header
+let html='<div class="grow ghead"><div class="name" style="cursor:default"><span class="tw"></span><span class="nm" style="font-size:11px;color:#9FB0C3">ЕТАПИ / WBS</span></div>';
+STAGES.forEach(s=>html+='<div class="stg">'+s+'</div>');
+html+='</div>';
+STEPS.forEach(st=>{
+  const pcls = st.path==='short'?'r-short':(st.path==='long'?'r-long':'');
+  html+='<div class="grow step '+pcls+'" data-id="'+st.id+'">';
+  html+='<div class="name" data-id="'+st.id+'"><span class="tw" data-tog="'+st.id+'">▶</span><span><span class="k">'+st.k+'</span><span class="nm">'+st.t+'</span></span></div>';
+  html+='<div class="track">';
+  const start=st.stage, span=st.span||1;
+  for(let c=1;c<=7;c++) html+='<div class="cell"></div>';
+  const barcls = st.dashed?'bar dash':('bar '+CMAP[st.color]);
+  const l/*noop*/=0;
+  html+='<div class="'+barcls+'" style="grid-column:'+start+' / '+(start+span)+';position:absolute;left:calc('+((start-1)/7*100)+'% + 3px);width:calc('+(span/7*100)+'% - 6px)">'+(st.dashed?'':st.k)+'</div>';
+  html+='</div></div>';
+  // sub rows
+  st.subs.forEach(su=>{
+    html+='<div class="grow sub row-hidden s-'+st.id+' '+pcls+'"><div class="name" data-id="'+st.id+'"><span class="tw"></span><span><span class="k">'+su[0]+'</span><span class="nm">'+su[1]+'</span></span></div>';
+    html+='<div class="track">';
+    for(let c=1;c<=7;c++) html+='<div class="cell"></div>';
+    html+='<div class="bar '+CMAP[st.color]+'" style="left:calc('+((start-1)/7*100)+'% + 6px);width:calc('+(span/7*100)+'% - 12px);height:9px;opacity:.75"></div>';
+    html+='</div></div>';
+  });
+});
+g.innerHTML=html;
+const DET=Object.fromEntries(STEPS.map(s=>[s.id,s]));
+function panel(id){
+  const st=DET[id];if(!st)return;
+  document.querySelectorAll('.step').forEach(e=>e.classList.toggle('active',e.dataset.id===id));
+  let h='<div class="pk">'+st.k+'</div><div class="pt">'+st.t+'</div>';
+  st.det.forEach(r=>{const c=r[2]||'';
+    if(c==='next')h+='<div class="rw"><div class="rl">'+r[0]+'</div><div class="rv"><span class="next">▶ '+r[1]+'</span></div></div>';
+    else if(c==='who')h+='<div class="rw"><div class="rl">'+r[0]+'</div><div class="rv"><span class="who">'+r[1]+'</span></div></div>';
+    else if(c==='imp')h+='<div class="rw"><div class="rl">'+r[0]+'</div><div class="rv imp">'+r[1]+'</div></div>';
+    else h+='<div class="rw"><div class="rl">'+r[0]+'</div><div class="rv">'+r[1]+'</div></div>';});
+  h+='<div class="rw"><div class="rl">Підзадачі (WBS)</div><div class="subs">';
+  st.subs.forEach(su=>h+='<div class="s"><span class="si">'+su[0]+'</span><span>'+su[1]+'</span></div>');
+  h+='</div></div>';
+  document.getElementById('panel').innerHTML=h;
+}
+function toggle(id){document.querySelectorAll('.s-'+id).forEach(e=>e.classList.toggle('row-hidden'));
+  const tw=document.querySelector('[data-tog="'+id+'"]'); if(tw)tw.textContent=tw.textContent==='▶'?'▼':'▶';}
+g.addEventListener('click',e=>{
+  const tog=e.target.closest('[data-tog]'); if(tog){toggle(tog.getAttribute('data-tog'));e.stopPropagation();return;}
+  const nm=e.target.closest('.name'); if(nm&&nm.dataset.id)panel(nm.dataset.id);
+});
+document.getElementById('expAll').onclick=()=>{document.querySelectorAll('.sub').forEach(e=>e.classList.remove('row-hidden'));document.querySelectorAll('[data-tog]').forEach(t=>t.textContent='▼');};
+document.getElementById('colAll').onclick=()=>{document.querySelectorAll('.sub').forEach(e=>e.classList.add('row-hidden'));document.querySelectorAll('[data-tog]').forEach(t=>t.textContent='▶');};
+function setF(f){document.body.className='f-'+f;document.querySelectorAll('.toolbar .btn[data-f]').forEach(b=>b.classList.remove('on','short','long'));const m={all:'fAll',short:'fShort',long:'fLong'};const b=document.getElementById(m[f]);b.classList.add('on');if(f!=='all')b.classList.add(f);}
+document.querySelectorAll('.toolbar .btn[data-f]').forEach(b=>b.onclick=()=>setF(b.dataset.f));
+</script>
+<script>(function(){if(localStorage.getItem('pl_ok')==='1')return;var HASH="6c572826d2ee2da4d3918be50a0e2c0819aff221dd1319e8e4bc513cde0bbba4";var ov=document.createElement('div');ov.id='pl-gate';ov.style.cssText='position:fixed;inset:0;z-index:99999;background:#1A2332;display:flex;align-items:center;justify-content:center;font-family:Segoe UI,Arial,sans-serif';ov.innerHTML='<div style="text-align:center;color:#E8EDF5"><div style="font-size:26px;font-weight:800;color:#E85D1A;margin-bottom:8px">PILLAR</div><div style="margin-bottom:14px;font-size:13px;color:#9FB0C3">Введіть PIN</div><input id="plp" type="password" inputmode="numeric" style="font-size:18px;padding:10px 14px;border-radius:8px;border:1px solid #2A3A4F;background:#0F1621;color:#fff;text-align:center;width:150px"><div id="ple" style="color:#D93025;font-size:12px;height:16px;margin-top:8px"></div></div>';document.body.appendChild(ov);var i=ov.querySelector('#plp');i.focus();async function c(){var h=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(i.value.trim()));var x=[...new Uint8Array(h)].map(b=>b.toString(16).padStart(2,'0')).join('');if(x===HASH){localStorage.setItem('pl_ok','1');ov.remove();}else{ov.querySelector('#ple').textContent='Невірний PIN';i.value='';}}i.addEventListener('keydown',e=>{if(e.key==='Enter')c();});})();</script>
+</body>
+</html>
