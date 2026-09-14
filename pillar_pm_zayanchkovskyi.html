@@ -203,12 +203,12 @@ body{padding-left:198px}
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель ПМ — Заянчковський</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 11.09.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 14.09.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 11.09.2026</div>
+      <div>Оновлено: 14.09.2026</div>
       <div>10 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
     </div>
   </div>
@@ -269,7 +269,7 @@ body{padding-left:198px}
 </div>
 
 <script>
-const TODAY = new Date('2026-09-11');
+const TODAY = new Date('2026-09-14');
 
 const PROJECTS = [{"id": "4766", "name": "ALTECO Carport Model Taurus 280кВт", "pm": "Заянчковський", "pct": 89, "start": "01.05.2026", "end": "21.10.2026", "tasks": 40, "done": 26, "overdue": 0, "plan": 5815976, "fact": 4552528, "plan_cur": 5815976, "fact_cur": 4552528, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 48.58919, "lng": 22.97573, "loc": "Закарпатська обл. (Carport Taurus)", "bl_end": "07.10.2026", "bl_bud": 5815976.4},
   {"id": "6024", "name": "-26 ГШ с. Липовиця Черніг. обл. Модулекс", "pm": "Заянчковський", "pct": 86, "start": "26.05.2026", "end": "10.10.2026", "tasks": 40, "done": 34, "overdue": 0, "plan": 452001, "fact": 201600, "plan_cur": 452001, "fact_cur": 201600, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "lat": 50.46712, "lng": 32.39886, "loc": "с. Линовиця, Чернігівська обл.", "bl_end": "10.09.2026", "bl_bud": 448002.0},
@@ -333,7 +333,7 @@ var _pms=new Set(ACTIVE.map(p=>p.pm).filter(x=>x&&x!=='—'));var _pmc=document.
 document.getElementById('kpiRisk').textContent=risk;
 document.getElementById('kpiOverdue').textContent=ov+'+';
 var _cr=document.getElementById('kpiCR');if(_cr)_cr.textContent=cr;
-const NBU_EUR=51.76;
+const NBU_EUR=51.64;
 function kpiBud(c){const f=v=>!v?'—':(c==='EUR'?(v/NBU_EUR/1e6).toFixed(2)+' млн €':fmtM(v));
 document.getElementById('kpiPlan').textContent=f(splan);document.getElementById('kpiFact').textContent=f(sfact);
 document.querySelectorAll('#curTgl .ctb').forEach(b=>b.classList.toggle('on',b.dataset.c===c))}
