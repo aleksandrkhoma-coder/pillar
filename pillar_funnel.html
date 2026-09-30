@@ -1,22 +1,5 @@
 <!DOCTYPE html>
-<html lang="uk"><head>
-<meta name="robots" content="noindex,nofollow">
-<script>
-(function(){
-  if(localStorage.getItem('pl_ok')==='1')return;
-  var HASH="6c572826d2ee2da4d3918be50a0e2c0819aff221dd1319e8e4bc513cde0bbba4";
-  var ov=document.createElement('div');ov.id='pl-gate';
-  ov.style.cssText='position:fixed;inset:0;z-index:99999;background:#1A2332;display:flex;align-items:center;justify-content:center;font-family:Segoe UI,Arial,sans-serif';
-  ov.innerHTML='<div style="text-align:center;color:#E8EDF5"><div style="font-size:26px;font-weight:800;color:#E85D1A;letter-spacing:1px">PILLAR</div><div style="color:#9aafc8;font-size:13px;margin:6px 0 18px">Введіть код доступу</div><input id="pl-pin" type="password" inputmode="numeric" autocomplete="off" style="padding:11px 14px;font-size:16px;border-radius:8px;border:1px solid #2e4060;background:#22304a;color:#fff;text-align:center;width:200px;outline:none"><div id="pl-err" style="color:#ef7a72;font-size:12px;height:16px;margin-top:8px"></div><button id="pl-go" style="margin-top:6px;padding:10px 26px;border:none;border-radius:8px;background:#E85D1A;color:#fff;font-weight:600;font-size:14px;cursor:pointer">Увійти</button></div>';
-  document.documentElement.appendChild(ov);
-  var b=document.body;if(b)b.style.overflow='hidden';
-  async function sha(s){var d=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(d)).map(x=>x.toString(16).padStart(2,'0')).join('');}
-  async function go(){var v=document.getElementById('pl-pin').value.trim();if(await sha(v)===HASH){localStorage.setItem('pl_ok','1');ov.remove();if(b)b.style.overflow='';}else{document.getElementById('pl-err').textContent='Невірний код';}}
-  document.getElementById('pl-go').onclick=go;
-  document.getElementById('pl-pin').addEventListener('keydown',function(e){if(e.key==='Enter')go();});
-  setTimeout(function(){document.getElementById('pl-pin').focus();},50);
-})();
-</script><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="uk"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Воронка ЗЕД | Pillar</title>
 <style>
 :root{--bg:#1A2332;--bg2:#223047;--accent:#E85D1A;--blue:#1D6FA4;--green:#1E9E5A;--red:#D93025;--amber:#E9A23B;--text:#E8EDF5;--text2:#9aafc8;--border:#2e4060;--card:#1e2d42}
@@ -60,7 +43,8 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--te
 .pl-side .foot{margin-top:auto;padding:12px 18px 4px;font-size:11px;color:rgba(255,255,255,.32)}
 body{padding-left:198px}
 @media(max-width:820px){.pl-side{width:52px}.pl-side a span,.pl-side .pl-logo span,.pl-side .foot{display:none}.pl-side .pl-logo{padding:2px 0 14px;text-align:center}.pl-side a{justify-content:center;padding:12px 0;gap:0}body{padding-left:52px}}
-</style></head>
+</style><meta name="robots" content="noindex,nofollow">
+</head>
 <body>
 <nav class="pl-side">
   <div class="pl-logo">P<span>ILLAR</span></div>
@@ -95,6 +79,9 @@ body{padding-left:198px}
       <input id="thr" type="range" min="0" max="100" step="5" value="75" aria-label="Поріг ймовірності">
       <span id="thrv" style="min-width:42px;font-weight:700">75%</span>
     </label>
+    <label style="display:flex;align-items:center;gap:8px;color:var(--text2)"><span>Менеджер</span>
+      <select id="mgr" style="background:var(--bg2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:5px 10px;font-size:13px;min-width:180px" aria-label="Фільтр за менеджером"><option value="">Усі менеджери</option></select>
+    </label>
     <label style="display:flex;align-items:center;gap:6px;color:var(--text2);cursor:pointer"><input id="hide" type="checkbox"> ховати нижче порогу</label>
     <span class="leg">
       <span><span class="dot" style="background:#4DC98A"></span>&ge;90%</span>
@@ -112,17 +99,21 @@ body{padding-left:198px}
   var CLR={success:['rgba(30,158,90,.15)','rgba(30,158,90,.45)','#4DC98A'],accent:['rgba(232,93,26,.15)','rgba(232,93,26,.5)','#F2894E'],warning:['rgba(233,162,59,.13)','rgba(233,162,59,.4)','#E9A23B'],muted:['var(--card)','var(--border)','#9aafc8']};
   function role(p){if(p==null)return 'muted';if(p>=90)return 'success';if(p>=75)return 'accent';if(p>=50)return 'warning';return 'muted';}
   function fmt(n){if(n==null)return '—';if(n>=1e6)return '€'+(n/1e6).toFixed(1)+'M';return '€'+Math.round(n/1e3)+'k';}
-  var board=document.getElementById('board'),thr=document.getElementById('thr'),thrv=document.getElementById('thrv'),hide=document.getElementById('hide');
+  var board=document.getElementById('board'),thr=document.getElementById('thr'),thrv=document.getElementById('thrv'),hide=document.getElementById('hide'),mgr=document.getElementById('mgr');
+  (function(){var ms={};D.forEach(function(d){if(d.m)ms[d.m]=(ms[d.m]||0)+1;});
+    Object.keys(ms).sort(function(a,b){return ms[b]-ms[a];}).forEach(function(m){
+      var o=document.createElement('option');o.value=m;o.textContent=m+' ('+ms[m]+')';mgr.appendChild(o);});})();
   function render(){
     var T=+thr.value;thrv.textContent=T+'%';var H=hide.checked;
-    var _ap=D.filter(function(d){return d.p!=null&&d.p>=T;});
+    var M=mgr.value;var DF=M?D.filter(function(d){return d.m===M;}):D;
+    var _ap=DF.filter(function(d){return d.p!=null&&d.p>=T;});
     document.getElementById('kThr').textContent=T;
     document.getElementById('kN').textContent=_ap.length;
     document.getElementById('kNom').textContent=fmt(_ap.reduce(function(a,d){return a+(d.s||0);},0));
     document.getElementById('kWgt').textContent=fmt(_ap.reduce(function(a,d){return a+((d.s||0)*d.p/100);},0));
     document.getElementById('k90').textContent=fmt(_ap.filter(function(d){return d.h<3;}).reduce(function(a,d){return a+(d.s||0);},0));
     board.innerHTML=COLS.map(function(col,ci){
-      var items=D.filter(function(d){return d.h===ci;});
+      var items=DF.filter(function(d){return d.h===ci;});
       var pass=items.filter(function(d){return d.p!=null&&d.p>=T;});
       var nom=pass.reduce(function(a,d){return a+(d.s||0);},0);
       var wgt=pass.reduce(function(a,d){return a+((d.s||0)*d.p/100);},0);
@@ -146,7 +137,24 @@ body{padding-left:198px}
         (cards||'<div style="font-size:12px;color:var(--text2);padding:6px 2px">немає угод ≥ порогу</div>')+'</div>';
     }).join('');
   }
-  thr.addEventListener('input',render);hide.addEventListener('change',render);render();
+  thr.addEventListener('input',render);hide.addEventListener('change',render);mgr.addEventListener('change',render);render();
+})();
+</script>
+
+<script>
+(function(){
+  if(localStorage.getItem('pl_ok')==='1')return;
+  var HASH="6c572826d2ee2da4d3918be50a0e2c0819aff221dd1319e8e4bc513cde0bbba4";
+  var ov=document.createElement('div');ov.id='pl-gate';
+  ov.style.cssText='position:fixed;inset:0;z-index:99999;background:#1A2332;display:flex;align-items:center;justify-content:center;font-family:Segoe UI,Arial,sans-serif';
+  ov.innerHTML='<div style="text-align:center;color:#E8EDF5"><div style="font-size:26px;font-weight:800;color:#E85D1A;letter-spacing:1px">PILLAR</div><div style="color:#9aafc8;font-size:13px;margin:6px 0 18px">Введіть код доступу</div><input id="pl-pin" type="password" inputmode="numeric" autocomplete="off" style="padding:11px 14px;font-size:16px;border-radius:8px;border:1px solid #2e4060;background:#22304a;color:#fff;text-align:center;width:200px;outline:none"><div id="pl-err" style="color:#ef7a72;font-size:12px;height:16px;margin-top:8px"></div><button id="pl-go" style="margin-top:6px;padding:10px 26px;border:none;border-radius:8px;background:#E85D1A;color:#fff;font-weight:600;font-size:14px;cursor:pointer">Увійти</button></div>';
+  document.documentElement.appendChild(ov);
+  var b=document.body;if(b)b.style.overflow='hidden';
+  async function sha(s){var d=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(d)).map(x=>x.toString(16).padStart(2,'0')).join('');}
+  async function go(){var v=document.getElementById('pl-pin').value.trim();if(await sha(v)===HASH){localStorage.setItem('pl_ok','1');ov.remove();if(b)b.style.overflow='';}else{document.getElementById('pl-err').textContent='Невірний код';}}
+  document.getElementById('pl-go').onclick=go;
+  document.getElementById('pl-pin').addEventListener('keydown',function(e){if(e.key==='Enter')go();});
+  setTimeout(function(){document.getElementById('pl-pin').focus();},50);
 })();
 </script>
 </body></html>
