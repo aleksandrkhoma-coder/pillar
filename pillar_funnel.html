@@ -40,9 +40,35 @@ ul.ref{margin:0;padding-left:18px}ul.ref li{margin-bottom:5px;font-size:12px;col
 @media(max-width:720px){.kpis{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}
  .acc{display:block;overflow-x:auto;white-space:nowrap}}
 </style><meta name="robots" content="noindex,nofollow">
-</head><body><div class="wrap">
+</head><body><style>
+body{padding-left:198px}
+.pl-side{position:fixed;left:0;top:0;width:198px;height:100vh;background:#232F42;border-right:1px solid rgba(255,255,255,.08);padding:14px 0;display:flex;flex-direction:column;z-index:300;overflow-y:auto}
+.pl-side .pl-logo{padding:2px 18px 14px;font-size:19px;font-weight:700;color:#E85D1A;letter-spacing:1px}
+.pl-side a{display:flex;align-items:center;gap:11px;padding:10px 18px;font-size:13.5px;color:rgba(255,255,255,.62);text-decoration:none;border-left:3px solid transparent;white-space:nowrap;cursor:pointer}
+.pl-side a:hover{color:#fff;background:rgba(255,255,255,.05)}
+.pl-side a.on{color:#fff;background:rgba(232,93,26,.16);border-left-color:#E85D1A}
+.pl-side a svg{width:18px;height:18px;flex-shrink:0}
+.pl-side .foot{margin-top:auto;padding:12px 18px 4px;font-size:11px;color:rgba(255,255,255,.32)}
+@media(max-width:720px){body{padding-left:52px}
+ .pl-side{width:52px}
+ .pl-side a span,.pl-side .pl-logo span,.pl-side .foot{display:none}
+ .pl-side .pl-logo{padding:2px 0 14px;text-align:center}
+ .pl-side a{justify-content:center;padding:12px 0;gap:0}}
+</style>
+<nav class="pl-side">
+  <div class="pl-logo">P<span>ILLAR</span></div>
+  <a href="pillar_portfolio.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6" height="7" rx="1"/><rect x="4" y="15" width="6" height="5" rx="1"/><rect x="14" y="4" width="6" height="5" rx="1"/><rect x="14" y="13" width="6" height="7" rx="1"/></svg><span>Портфель</span></a>
+  <a href="pillar_cashflow.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg><span>Грошовий потік</span></a>
+  <a href="pillar_kv.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1.7"/><path d="M11 6.4 5.5 20"/><path d="m13 6.4 5.5 13.6"/><path d="M8.4 15h7.2"/></svg><span>Конструктора</span></a>
+  <a class="on" href="pillar_funnel.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16l-6 8v5l-4 2v-7z"/></svg><span>Воронка ЗЕД</span></a>
+  <a href="lessons_learned.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h11a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M9 4v16"/></svg><span>Lessons Learned</span></a>
+  <a href="pillar_portfolio.html#mapSection" onclick="var m=document.getElementById('mapSection');if(m){m.style.display='block';m.scrollIntoView({behavior:'smooth'});return false}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4z"/><path d="M9 4v13"/><path d="M15 6.5v13"/></svg><span>Карта проєктів</span></a>
+  <a href="pillar_hub.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5z"/><path d="M3 13l9 5 9-5"/></svg><span>Project Hub</span></a>
+  <div class="foot">Дані оновлюються щоранку</div>
+</nav>
+<div class="wrap">
 <header class="top"><h1>Воронка ЗЕД — пайплайн до підписання</h1>
-<div class="sub">Станом на 09.10.2026 · джерело: PILLAR_Проєкти_до_підписання_2026-10-09</div></header>
+<div class="sub">Станом на 12.10.2026 · джерело: PILLAR_Проєкти_до_підписання_2026-10-09</div></header>
 
 <div class="kpis">
 <div class="kpi"><div class="l">Угод у пайплайні</div><div class="v" id="kN">86</div></div>
