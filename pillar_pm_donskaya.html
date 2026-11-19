@@ -179,7 +179,8 @@ body{padding-left:198px}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<meta name="robots" content="noindex,nofollow"></head>
+<meta name="robots" content="noindex,nofollow">
+</head>
 <body>
 <nav class="pl-side">
   <div class="pl-logo">P<span>ILLAR</span></div>
@@ -202,12 +203,12 @@ body{padding-left:198px}
       <div style="width:1px;height:28px;background:rgba(255,255,255,.15);margin:0 16px"></div>
       <div>
         <div style="font-size:15px;font-weight:600;color:#fff">Портфель ПМ — Донська</div>
-        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 18.11.2026</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">Власник: Oleksandr Khoma &nbsp;&middot;&nbsp; Дані: 19.11.2026</div>
       </div>
     </div>
     <div class="psearch"><input id="psInput" type="text" placeholder="Пошук проєкту за № або назвою…" autocomplete="off" oninput="psFilter()" onkeydown="psKey(event)"><div id="psResults" class="ps-results"></div></div>
     <div style="font-size:11px;color:rgba(255,255,255,.45);text-align:right">
-      <div>Оновлено: 18.11.2026</div>
+      <div>Оновлено: 19.11.2026</div>
       <div>19 проєкти &nbsp;&middot;&nbsp; 1 ПМ</div>
     </div>
   </div>
@@ -260,7 +261,22 @@ body{padding-left:198px}
     <span id="filterLabel"></span>
     <button class="clear-filter" onclick="applyFilter(null)">✕ Скинути фільтр</button>
   </div>
-  <div id="pmSections"></div>
+  <style>
+#ptrend{background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 18px 10px;margin:0 0 18px}
+#ptrend .th{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:4px}
+#ptrend h3{margin:0;font-size:13px;color:var(--text-muted);font-weight:600;letter-spacing:.3px;text-transform:uppercase}
+#ptrend select{border:1px solid var(--border);border-radius:6px;padding:4px 8px;font-size:12.5px;background:#fff;color:var(--text)}
+#ptrend .kp{font-size:12.5px;color:var(--text-muted)}#ptrend .kp b{color:var(--text)}
+#ptrend svg{display:block;width:100%;height:250px}
+#ptrend svg text{fill:var(--text-muted);font-size:11px;font-family:inherit}
+#ptrend .tleg{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--text-muted);margin-top:2px}
+#ptrend .tleg i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+</style>
+<div id="ptrend"><div class="th"><h3>Тренд портфеля — проєктів по місяцях</h3>
+<select id="ptPm"><option value="">Усі ПМ</option></select><span class="kp" id="ptKp"></span></div>
+<svg id="ptSvg"></svg>
+<div class="tleg"><span><i style="background:#1D6FA4"></i>у роботі в місяці</span><span><i style="background:#1E9E5A;border-radius:50%"></i>нові (старт у місяці)</span><span><i style="background:#6B7280;border-radius:50%"></i>завершені (фініш закритих)</span><span><i style="background:#E85D1A;height:3px;vertical-align:3px"></i>проєктів на 1 ПМ (права шкала)</span><span>За поточними датами планів Planner; втрачені не враховано.</span></div></div>
+<div id="pmSections"></div>
   <div id="mapSection" style="display:none">
     <div class="map-head">&#128506; Карта проєктів</div>
     <div id="projMap"></div>
@@ -268,12 +284,12 @@ body{padding-left:198px}
 </div>
 
 <script>
-const TODAY = new Date('2026-11-18');
+const TODAY = new Date('2026-11-19');
 
 const PROJECTS = [{"id": "10002", "name": "26 SOLAR Карпорти Київ шт. шт. Мвт Цикл", "pm": "Донська", "pct": 79, "start": "01.10.2026", "end": "02.12.2026", "tasks": 35, "done": 28, "overdue": 0, "plan": 139410, "fact": 139410, "plan_cur": 139410, "fact_cur": 139410, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "bl_end": "01.04.2027", "bl_bud": 0.0},
   {"id": "3456", "name": "А Підселання фундаменту", "pm": "Донська", "pct": 37, "start": "19.05.2026", "end": "02.12.2026", "tasks": 37, "done": 33, "overdue": 0, "plan": 1541883, "fact": 1205908, "plan_cur": 1541883, "fact_cur": 1205908, "cur": "UAH", "paused": false, "risk": "fired", "status": "active", "lost_value": 0, "lat": 50.42551, "lng": 30.51821, "loc": "Київ, Велика Васильківська", "bl_end": "20.07.2026", "bl_bud": 1541883.6},
-  {"id": "5438", "name": "Stonava. Cz. SGM 100 MW", "pm": "Донська", "pct": 22, "start": "19.05.2026", "end": "22.08.2026", "tasks": 29, "done": 20, "overdue": 0, "plan": 249300000, "fact": 74790000, "plan_cur": 5000000, "fact_cur": 1500000, "cur": "EUR", "paused": false, "risk": "fired", "status": "active", "lost_value": 0, "lat": 49.8211, "lng": 18.5061, "loc": "Stonava, Чехія (≈ центр)", "bl_end": "22.08.2026", "bl_bud": 5000000.0},
-  {"id": "5910", "name": "SGM Brdovec, Хорватия", "pm": "Донська", "pct": 100, "start": "19.05.2026", "end": "18.11.2026", "tasks": 76, "done": 76, "overdue": 0, "plan": 27770274, "fact": 27770274, "plan_cur": 556965, "fact_cur": 556965, "cur": "EUR", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 45.871, "lng": 15.76493, "loc": "Brdovec, Хорватія", "bl_end": "17.09.2026", "bl_bud": 556965.0, "bl1_end": "29.09.2026", "bl1_bud": 556965.0, "bl1_label": "БП 1 · узгоджений ЧР 04.08"},
+  {"id": "5438", "name": "Stonava. Cz. SGM 100 MW", "pm": "Донська", "pct": 22, "start": "19.05.2026", "end": "22.08.2026", "tasks": 29, "done": 20, "overdue": 0, "plan": 247850000, "fact": 74355000, "plan_cur": 5000000, "fact_cur": 1500000, "cur": "EUR", "paused": false, "risk": "fired", "status": "active", "lost_value": 0, "lat": 49.8211, "lng": 18.5061, "loc": "Stonava, Чехія (≈ центр)", "bl_end": "22.08.2026", "bl_bud": 5000000.0},
+  {"id": "5910", "name": "SGM Brdovec, Хорватия", "pm": "Донська", "pct": 100, "start": "19.05.2026", "end": "18.11.2026", "tasks": 76, "done": 76, "overdue": 0, "plan": 27608755, "fact": 27608755, "plan_cur": 556965, "fact_cur": 556965, "cur": "EUR", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 45.871, "lng": 15.76493, "loc": "Brdovec, Хорватія", "bl_end": "17.09.2026", "bl_bud": 556965.0, "bl1_end": "29.09.2026", "bl1_bud": 556965.0, "bl1_label": "БП 1 · узгоджений ЧР 04.08"},
   {"id": "6352", "name": "АБМК SCP Blade 8PS", "pm": "Донська", "pct": 96, "start": "16.07.2026", "end": "02.12.2026", "tasks": 47, "done": 39, "overdue": 0, "plan": 3622059, "fact": 2970266, "plan_cur": 3622059, "fact_cur": 2970266, "cur": "UAH", "paused": false, "risk": "watch", "status": "active", "lost_value": 0, "lat": 50.46775, "lng": 30.4608, "loc": "Київ (карпорт АБМК)", "bl_end": "18.11.2026", "bl_bud": 3622059.12},
   {"id": "7002", "name": "Фора SCP Млиново", "pm": "Донська", "pct": 100, "start": "19.05.2026", "end": "18.11.2026", "tasks": 50, "done": 50, "overdue": 0, "plan": 1658683, "fact": 1658683, "plan_cur": 1658683, "fact_cur": 1658683, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 50.33997, "lng": 30.62302, "loc": "Київ (ур. Млиново)", "bl_end": "08.09.2026", "bl_bud": 1401683.28},
   {"id": "7894", "name": "SCP Фора  Хотів", "pm": "Донська", "pct": 100, "start": "04.06.2026", "end": "19.11.2026", "tasks": 50, "done": 50, "overdue": 0, "plan": 3334874, "fact": 3334874, "plan_cur": 3334874, "fact_cur": 3334874, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 50.33023, "lng": 30.4506, "loc": "Хотів, Київська обл.", "bl_end": "03.10.2026", "bl_bud": 3334874.76},
@@ -284,10 +300,10 @@ const PROJECTS = [{"id": "10002", "name": "26 SOLAR Карпорти Київ ш
   {"id": "8360", "name": "Хаджет Лебедівка", "pm": "Донська", "pct": 100, "start": "19.05.2026", "end": "25.06.2026", "tasks": 43, "done": 43, "overdue": 0, "plan": 422936, "fact": 422936, "plan_cur": 422936, "fact_cur": 422936, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "bl_end": "25.06.2026", "bl_bud": 422936.6},
   {"id": "8454", "name": "Олександр каркасний Верховина", "pm": "Донська", "pct": 100, "start": "26.05.2026", "end": "16.07.2026", "tasks": 43, "done": 43, "overdue": 0, "plan": 242938, "fact": 242938, "plan_cur": 242938, "fact_cur": 242938, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 48.1525, "lng": 24.8089, "loc": "Верховина, Івано-Фр. обл. (≈ центр)", "bl_end": "16.07.2026", "bl_bud": 242938.2},
   {"id": "8544", "name": "Isolar фланець Хмельницький", "pm": "Донська", "pct": 100, "start": "26.05.2026", "end": "29.08.2026", "tasks": 34, "done": 34, "overdue": 0, "plan": 269980, "fact": 269980, "plan_cur": 269980, "fact_cur": 269980, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "bl_end": "29.08.2026", "bl_bud": 269980.8},
-  {"id": "8680", "name": "-26 SOLAR Карпорти ПрАТ Інтервибухпром Денис", "pm": "Донська", "pct": 5, "start": "03.11.2026", "end": "27.05.2027", "tasks": 51, "done": 10, "overdue": 0, "plan": 4843345, "fact": 2320988, "plan_cur": 4843345, "fact_cur": 2320988, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "bl_end": "07.06.2027", "bl_bud": 0.0},
+  {"id": "8680", "name": "-26 SOLAR Карпорти ПрАТ Інтервибухпром Денис", "pm": "Донська", "pct": 4, "start": "03.11.2026", "end": "27.05.2027", "tasks": 51, "done": 10, "overdue": 0, "plan": 4843345, "fact": 2320988, "plan_cur": 4843345, "fact_cur": 2320988, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "bl_end": "07.06.2027", "bl_bud": 0.0},
   {"id": "8898", "name": "Григорівка №3", "pm": "Донська", "pct": 100, "start": "13.07.2026", "end": "24.09.2026", "tasks": 43, "done": 43, "overdue": 0, "plan": 666491, "fact": 666491, "plan_cur": 666491, "fact_cur": 666491, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "lat": 49.929544, "lng": 31.405436, "loc": "Григорівка, Черкаська обл.", "bl_end": "12.09.2026", "bl_bud": 666491.15, "bl1_end": "18.09.2026", "bl1_bud": 666491.15, "bl1_label": "БП 1 · узгоджений ЧР 28.08"},
-  {"id": "9588", "name": "26 ГШ Фундамент домобудування Пряжів шт. 0 шт. Мвт Сканди 11610", "pm": "Донська", "pct": 99, "start": "01.10.2026", "end": "20.11.2026", "tasks": 31, "done": 29, "overdue": 0, "plan": 127326, "fact": 93861, "plan_cur": 127326, "fact_cur": 93861, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "bl_end": "01.04.2027", "bl_bud": 0.0},
-  {"id": "9670", "name": "26 ГШ Фундамент домобудування шт. шт. Мвт Хітте Славське етап 2", "pm": "Донська", "pct": 76, "start": "02.11.2026", "end": "01.01.2027", "tasks": 37, "done": 25, "overdue": 0, "plan": 176813, "fact": 93501, "plan_cur": 176813, "fact_cur": 93501, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "bl_end": "03.05.2027", "bl_bud": 0.0},
+  {"id": "9588", "name": "26 ГШ Фундамент домобудування Пряжів шт. 0 шт. Мвт Сканди 11610", "pm": "Донська", "pct": 100, "start": "01.10.2026", "end": "20.11.2026", "tasks": 31, "done": 31, "overdue": 0, "plan": 127326, "fact": 127326, "plan_cur": 127326, "fact_cur": 127326, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "bl_end": "01.04.2027", "bl_bud": 0.0},
+  {"id": "9670", "name": "26 ГШ Фундамент домобудування шт. шт. Мвт Хітте Славське етап 2", "pm": "Донська", "pct": 76, "start": "02.11.2026", "end": "01.01.2027", "tasks": 37, "done": 25, "overdue": 2, "plan": 176813, "fact": 93501, "plan_cur": 176813, "fact_cur": 93501, "cur": "UAH", "paused": false, "risk": null, "status": "active", "lost_value": 0, "bl_end": "03.05.2027", "bl_bud": 0.0},
   {"id": "9698", "name": "26  ГШ Фундамент домобудування шт. 0 шт", "pm": "Донська", "pct": 100, "start": "01.07.2026", "end": "18.11.2026", "tasks": 31, "done": 31, "overdue": 0, "plan": 143490, "fact": 143490, "plan_cur": 143490, "fact_cur": 143490, "cur": "UAH", "paused": false, "risk": null, "status": "done", "lost_value": 0, "bl_end": "25.01.2027", "bl_bud": 0.0}];
 
 const PM_CONFIG = {
@@ -341,7 +357,7 @@ var _pms=new Set(ACTIVE.map(p=>p.pm).filter(x=>x&&x!=='—'));var _pmc=document.
 document.getElementById('kpiRisk').textContent=risk;
 document.getElementById('kpiOverdue').textContent=ov+'+';
 var _cr=document.getElementById('kpiCR');if(_cr)_cr.textContent=cr;
-const NBU_EUR=49.86;
+const NBU_EUR=49.57;
 function kpiBud(c){const f=v=>!v?'—':(c==='EUR'?(v/NBU_EUR/1e6).toFixed(2)+' млн €':fmtM(v));
 document.getElementById('kpiPlan').textContent=f(splan);document.getElementById('kpiFact').textContent=f(sfact);
 document.querySelectorAll('#curTgl .ctb').forEach(b=>b.classList.toggle('on',b.dataset.c===c))}
@@ -578,6 +594,40 @@ document.addEventListener('click',function(e){if(!e.target.closest('.psearch')){
 </script>
 <script>
 (function(){
+const MSN=['Січ','Лют','Бер','Кві','Тра','Чер','Лип','Сер','Вер','Жов','Лис','Гру'];
+const pd=s=>{if(!s)return null;const p=s.split('.');return p.length===3?new Date(+p[2],+p[1]-1,+p[0]):null;};
+const mk=d=>d.getFullYear()*12+d.getMonth();
+const sel=document.getElementById('ptPm');
+[...new Set(PROJECTS.filter(p=>p.status!=='lost').map(p=>p.pm).filter(Boolean))].sort().forEach(x=>sel.add(new Option(x,x)));
+function draw(){
+  const pmf=sel.value;
+  const L=PROJECTS.filter(p=>p.status!=='lost'&&(!pmf||p.pm===pmf)).map(p=>({s:pd(p.start),e:pd(p.end),pm:p.pm,done:p.status==='done'})).filter(p=>p.s&&p.e);
+  const svg=document.getElementById('ptSvg');
+  if(!L.length){svg.innerHTML='';document.getElementById('ptKp').textContent='немає даних';return;}
+  const now=mk(TODAY);let m0=Math.min(...L.map(p=>mk(p.s)));const m1=Math.max(now,...L.map(p=>Math.min(mk(p.e),now+2)));
+  const M=[];for(let m=m0;m<=m1;m++)M.push(m);
+  const act=m=>L.filter(p=>mk(p.s)<=m&&mk(p.e)>=m);
+  const D=M.map(m=>{const a=act(m);return{m,a:a.length,n:L.filter(p=>mk(p.s)===m).length,c:L.filter(p=>p.done&&mk(p.e)===m).length,pm:new Set(a.map(p=>p.pm)).size};});
+  const W=Math.max(600,svg.clientWidth||900),H=250,pl=34,pr=38,pt=14,pb=26;
+  const ymax=Math.max(1,...D.map(d=>Math.max(d.a,d.n,d.c))),y2max=Math.max(1,...D.map(d=>d.pm?d.a/d.pm:0));
+  const bw=(W-pl-pr)/D.length,y=v=>H-pb-(H-pt-pb)*v/ymax,y2=v=>H-pb-(H-pt-pb)*v/y2max,cx=i=>pl+i*bw+bw/2;
+  let g='';
+  for(let i=0;i<=4;i++){const v=ymax*i/4;g+=`<line x1="${pl}" x2="${W-pr}" y1="${y(v)}" y2="${y(v)}" stroke="#EEF0F3"/><text x="${pl-6}" y="${y(v)+4}" text-anchor="end">${Math.round(v)}</text><text x="${W-pr+6}" y="${y2(y2max*i/4)+4}" fill="#E85D1A">${(y2max*i/4).toFixed(1)}</text>`;}
+  D.forEach((d,i)=>{const x=pl+i*bw,w=Math.max(4,bw*.6),x0=x+(bw-w)/2,lab=MSN[d.m%12]+' '+String(Math.floor(d.m/12)).slice(2);
+    if(d.m===now)g+=`<rect x="${x}" y="${pt}" width="${bw}" height="${H-pt-pb}" fill="rgba(232,93,26,.07)"/>`;
+    if(d.a)g+=`<rect x="${x0}" y="${y(d.a)}" width="${w}" height="${H-pb-y(d.a)}" rx="3" fill="${d.m>now?'#9CC3E0':'#1D6FA4'}"><title>${lab}: у роботі ${d.a}, нові ${d.n}, завершені ${d.c}, ПМ ${d.pm}</title></rect><text x="${cx(i)}" y="${y(d.a)-4}" text-anchor="middle" fill="#1A2332">${d.a}</text>`;
+    g+=`<text x="${cx(i)}" y="${H-8}" text-anchor="middle">${lab}</text>`;});
+  const line=(f,col,yf)=>`<polyline points="${D.map((d,i)=>cx(i)+','+yf(f(d))).join(' ')}" fill="none" stroke="${col}" stroke-width="2"/>`+D.map((d,i)=>`<circle cx="${cx(i)}" cy="${yf(f(d))}" r="3.5" fill="${col}"><title>${f(d).toFixed?f(d).toFixed(1):f(d)}</title></circle>`).join('');
+  g+=line(d=>d.n,'#1E9E5A',y)+line(d=>d.c,'#6B7280',y)+line(d=>d.pm?d.a/d.pm:0,'#E85D1A',y2);
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.innerHTML=g;
+  const cur=D.find(d=>d.m===now)||D[D.length-1],pk=D.reduce((a,d)=>d.a>a.a?d:a,D[0]);
+  document.getElementById('ptKp').innerHTML=`Зараз у роботі <b>${cur.a}</b> · пік <b>${pk.a}</b> (${MSN[pk.m%12]} ${String(Math.floor(pk.m/12)).slice(2)}) · нових за період <b>${D.reduce((a,d)=>a+d.n,0)}</b> · завершено <b>${D.reduce((a,d)=>a+d.c,0)}</b> · поточний місяць підсвічено, світлі стовпці — план`;
+}
+sel.onchange=draw;window.addEventListener('resize',draw);draw();
+})();
+</script>
+<script>
+(function(){
   if(localStorage.getItem('pl_ok')==='1')return;
   var HASH="6c572826d2ee2da4d3918be50a0e2c0819aff221dd1319e8e4bc513cde0bbba4";
   var ov=document.createElement('div');ov.id='pl-gate';
@@ -591,5 +641,6 @@ document.addEventListener('click',function(e){if(!e.target.closest('.psearch')){
   document.getElementById('pl-pin').addEventListener('keydown',function(e){if(e.key==='Enter')go();});
   setTimeout(function(){document.getElementById('pl-pin').focus();},50);
 })();
-</script></body>
+</script>
+</body>
 </html>
